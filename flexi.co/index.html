@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexi.co — Studio Pembuatan Website Modern</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: HANYA Poppins & sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- File CSS Terpisah -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased selection:bg-blue-600 selection:text-white min-h-screen flex flex-col w-full m-0 p-0 bg-[#F4F8FF] text-[#06152D]">
+
+    <!-- ==========================================================
+        TOP STICKY PUBLIC NAVBAR (CLEAN SQUARE LOGO + FITUR GELAP TERANG)
+    =========================================================== -->
+    <header id="public-site-header" class="sticky-navbar full-bleed-section bg-white/95 backdrop-blur-md border-b border-blue-200/80 shadow-sm">
+        <div class="w-full m-0 px-4 sm:px-8">
+            <div class="flex items-center justify-between h-[76px] gap-3">
+                
+                <!-- LEFT: Brand Identity (Ikon Kotak Layers Biru Gradien yang Elegan) -->
+                <a href="#beranda" onclick="navigateToSection('beranda'); return false;" class="flex items-center gap-3 focus:outline-none shrink-0 select-none cursor-pointer group">
+                    <div class="w-10 h-10 rounded-xl bg-blue-gradient flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="theme-heading font-heading font-extrabold text-xl tracking-tight text-[#06152D] leading-none">
+                            flexi.co
+                        </span>
+                        <span class="text-[10px] font-semibold uppercase tracking-widest text-[#0052FF] mt-0.5">Web Studio</span>
+                    </div>
+                </a>
+
+                <!-- CENTER: Clean Pill Navigation -->
+                <nav id="nav-pill-container" aria-label="Navigasi Utama" class="hidden lg:flex items-center bg-[#EBF3FF]/90 p-1.5 rounded-xl border border-blue-200/80 gap-1 relative shrink-0">
+                    <div id="nav-sliding-pill" style="width: 88px; transform: translate3d(6px, 0, 0);"></div>
+
+                    <button type="button" onclick="navigateToSection('beranda')" id="nav-spy-beranda" data-spy="beranda" class="nav-pill-item nav-pill-active px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        Beranda
+                    </button>
+                    <button type="button" onclick="navigateToSection('layanan')" id="nav-spy-layanan" data-spy="layanan" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        Layanan
+                    </button>
+                    <button type="button" onclick="navigateToSection('tentang-kami')" id="nav-spy-tentang-kami" data-spy="tentang-kami" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        Tentang Kami
+                    </button>
+                    <button type="button" onclick="navigateToSection('paket-harga')" id="nav-spy-paket-harga" data-spy="paket-harga" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        Harga
+                    </button>
+                    <button type="button" onclick="navigateToSection('cara-kerja')" id="nav-spy-cara-kerja" data-spy="cara-kerja" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        Cara Kerja
+                    </button>
+                    <button type="button" onclick="navigateToSection('faq')" id="nav-spy-faq" data-spy="faq" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors">
+                        FAQ
+                    </button>
+                    <button type="button" onclick="navigateToRoute('/dashboard')" id="nav-spy-dashboard" data-spy="dashboard" class="nav-pill-item px-4 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] transition-colors flex items-center gap-1.5">
+                        <span>Proyek Saya</span>
+                        <span id="nav-my-project-count" class="hidden px-1.5 py-0.2 rounded bg-blue-500/20 text-current font-bold text-[10px]">0</span>
+                    </button>
+                </nav>
+
+                <!-- RIGHT: Dark/Light Toggle + Auth Buttons -->
+                <div class="hidden sm:flex items-center gap-2.5 shrink-0">
+                    <!-- TOMBOL MODE GELAP / TERANG -->
+                    <button
+                        type="button"
+                        onclick="toggleDarkMode()"
+                        id="theme-toggle-btn"
+                        title="Ubah Mode Gelap / Terang"
+                        class="btn-animated p-2.5 rounded-xl bg-[#EBF3FF] border border-blue-200 text-[#06152D] flex items-center gap-1.5 text-xs font-semibold"
+                    >
+                        <i id="theme-toggle-icon" data-lucide="moon" class="w-4 h-4 text-[#0052FF]"></i>
+                        <span id="theme-toggle-label" class="hidden xl:inline">Gelap</span>
+                    </button>
+
+                    <!-- STATE A: LOGGED OUT -->
+                    <div id="nav-auth-logged-out" class="flex items-center gap-2">
+                        <button
+                            type="button"
+                            onclick="openAuthModal('login')"
+                            class="btn-animated px-4 py-2 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-semibold text-xs sm:text-sm"
+                        >
+                            Masuk
+                        </button>
+                        <button
+                            type="button"
+                            onclick="openAuthModal('signup')"
+                            class="btn-animated px-4 py-2 rounded-xl border border-blue-300 text-[#0052FF] font-semibold text-xs sm:text-sm"
+                        >
+                            Daftar
+                        </button>
+                        <button
+                            type="button"
+                            onclick="openProjectModal('Paket Profesional')"
+                            class="btn-animated px-4 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm shadow-sm flex items-center gap-1.5"
+                        >
+                            <span>Buat Website</span>
+                        </button>
+                    </div>
+
+                    <!-- STATE B: LOGGED IN -->
+                    <div id="nav-auth-logged-in" class="hidden items-center gap-2.5">
+                        <button
+                            type="button"
+                            onclick="openProjectModal('Paket Profesional')"
+                            class="btn-animated px-4 py-2 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm shadow-sm flex items-center gap-1.5"
+                        >
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Proyek Baru</span>
+                        </button>
+
+                        <div class="flex items-center gap-2 pl-2.5 border-l border-blue-200">
+                            <button
+                                type="button"
+                                onclick="navigateToRoute('/dashboard')"
+                                class="flex items-center gap-2 text-left"
+                            >
+                                <div id="nav-user-avatar" class="w-9 h-9 rounded-xl bg-blue-gradient text-white font-bold text-xs flex items-center justify-center shrink-0">
+                                    FX
+                                </div>
+                                <div class="max-w-[140px]">
+                                    <p id="nav-company-name" class="theme-heading font-bold text-xs text-[#06152D] truncate leading-tight">Perusahaan</p>
+                                    <p id="nav-user-email" class="theme-text text-[10px] text-slate-500 truncate leading-tight mt-0.5">email@company.com</p>
+                                </div>
+                            </button>
+                            <button
+                                type="button"
+                                onclick="handleClientLogout()"
+                                title="Keluar"
+                                class="p-2 rounded-xl text-slate-400 hover:text-[#0052FF] hover:bg-blue-50 transition-colors"
+                            >
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Hamburger + Theme Toggle -->
+                <div class="flex items-center gap-2 lg:hidden">
+                    <button
+                        type="button"
+                        onclick="toggleDarkMode()"
+                        aria-label="Mode Gelap Terang"
+                        class="p-2.5 rounded-xl bg-[#EBF3FF] text-[#06152D] border border-blue-200"
+                    >
+                        <i id="mobile-theme-icon" data-lucide="moon" class="w-4 h-4 text-[#0052FF]"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" aria-label="Buka Menu" class="p-2 rounded-xl theme-heading text-[#06152D] hover:bg-blue-50">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-blue-100 px-4 pt-3 pb-5 space-y-3 shadow-lg">
+            <nav class="flex flex-col space-y-1 text-sm font-medium theme-heading text-[#06152D]">
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('beranda');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left font-semibold">Beranda</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('layanan');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left">Layanan</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('tentang-kami');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left">Tentang Kami</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('paket-harga');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left">Paket Harga</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('cara-kerja');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left">Cara Kerja</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToSection('faq');" class="px-3 py-2.5 rounded-xl hover:bg-blue-50/40 text-left">FAQ</button>
+                <button type="button" onclick="toggleMobileMenu(); navigateToRoute('/dashboard');" class="px-3 py-2.5 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-semibold text-left">Proyek Saya</button>
+            </nav>
+            <div id="mobile-auth-logged-out" class="pt-3 border-t border-blue-100 grid grid-cols-2 gap-2">
+                <button type="button" onclick="toggleMobileMenu(); openAuthModal('login');" class="py-2.5 px-3 rounded-xl border border-blue-200 text-[#0052FF] font-semibold text-xs">Masuk</button>
+                <button type="button" onclick="toggleMobileMenu(); openAuthModal('signup');" class="py-2.5 px-3 rounded-xl bg-blue-gradient text-white font-bold text-xs">Daftar Akun</button>
+            </div>
+            <div id="mobile-auth-logged-in" class="hidden pt-3 border-t border-blue-100">
+                <div class="flex items-center justify-between bg-[#F4F8FF] p-3 rounded-xl border border-blue-100">
+                    <div>
+                        <p id="mobile-company-name" class="font-bold text-xs text-[#06152D]">Perusahaan</p>
+                        <p id="mobile-user-email" class="text-[11px] text-slate-500">email@perusahaan.com</p>
+                    </div>
+                    <button type="button" onclick="toggleMobileMenu(); handleClientLogout();" class="px-3 py-1.5 rounded-lg bg-white border border-blue-200 text-[#002B7F] text-xs font-bold">Keluar</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+        MAIN CONTENT CONTAINER
+    =========================================== -->
+    <main id="main-content-wrapper" class="flex-grow full-bleed-section pt-[76px]">
+
+        <!-- =====================================================
+            VIEW 1: BERANDA UTAMA ("/")
+        ====================================================== -->
+        <div id="view-home" class="block page-transition full-bleed-section">
+
+            <!-- HERO SECTION (RATA TENGAH, GRADIEN BIRU HALUS, CLEAN & MODERN) -->
+            <section id="beranda" class="full-bleed-section min-h-[90vh] flex flex-col justify-between bg-hero-blue-mesh border-b border-blue-200/70">
+                <div class="w-full m-0 px-4 sm:px-8 py-20 lg:py-28 my-auto flex flex-col items-center text-center">
+                    
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <h1 class="theme-heading font-heading font-extrabold text-4xl sm:text-6xl lg:text-[64px] text-[#06152D] leading-[1.14] tracking-tight">
+                            Bangun Website Modern &amp; Elegan untuk Bisnis Anda.
+                        </h1>
+
+                        <p class="theme-text font-body text-slate-600 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+                            Cepat, responsif di semua perangkat, gratis 6 bulan maintenance, dan terintegrasi langsung dengan portal pantau progres pengerjaan.
+                        </p>
+
+                        <div class="flex flex-wrap items-center justify-center gap-4 pt-3">
+                            <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated px-8 py-4 rounded-xl bg-blue-gradient text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-500/20 flex items-center gap-2">
+                                <span>Mulai Buat Website</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button type="button" onclick="navigateToSection('paket-harga')" class="btn-animated theme-card px-8 py-4 rounded-xl bg-white text-[#002B7F] border border-blue-200 font-bold text-sm sm:text-base shadow-sm">
+                                Lihat Paket Harga
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3 STAT CARDS DI TENGAH -->
+                    <div class="pt-14 grid grid-cols-1 sm:grid-cols-3 gap-5 w-full max-w-5xl mx-auto text-left">
+                        <div class="interactive-card theme-card bg-white rounded-2xl border border-blue-200/80 p-6 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-gradient text-white flex items-center justify-center shrink-0 shadow-sm">
+                                <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="theme-heading font-heading font-extrabold text-3xl text-[#06152D] leading-none">150+</p>
+                                <p class="theme-text text-xs font-semibold text-slate-600 mt-1.5">Proyek Selesai</p>
+                            </div>
+                        </div>
+
+                        <div class="interactive-card theme-card bg-white rounded-2xl border-2 border-[#0052FF] p-6 shadow-md flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-gradient text-white flex items-center justify-center shrink-0 shadow-sm">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="theme-heading font-heading font-extrabold text-3xl text-[#06152D] leading-none">6 Bulan</p>
+                                <p class="theme-text text-xs font-semibold text-slate-600 mt-1.5">Gratis Maintenance</p>
+                            </div>
+                        </div>
+
+                        <div class="interactive-card theme-card bg-white rounded-2xl border border-blue-200/80 p-6 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-gradient text-white flex items-center justify-center shrink-0 shadow-sm">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="theme-heading font-heading font-extrabold text-3xl text-[#06152D] leading-none">99%</p>
+                                <p class="theme-text text-xs font-semibold text-slate-600 mt-1.5">Kepuasan Klien</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget Progres Singkat di Bawah Hero -->
+                    <div class="w-full max-w-5xl mx-auto pt-6 text-left">
+                        <div class="interactive-card theme-card bg-white rounded-2xl border border-blue-200 p-5 shadow-sm">
+                            <div id="hero-portal-widget"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- KONTEN MARQUEE FITUR & TEKNOLOGI -->
+                <div class="w-full border-t border-blue-200/80 bg-[#EBF3FF] dark:bg-[#08152B] py-4 overflow-hidden">
+                    <div class="feature-marquee-viewport w-full overflow-hidden">
+                        <div class="feature-marquee-track flex items-center gap-4 px-4">
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="smartphone" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">Desain Responsif HP, Tablet &amp; Laptop</span>
+                            </div>
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="gauge" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">Kecepatan Tinggi &amp; Struktur Rapi</span>
+                            </div>
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">Garansi Gratis 6 Bulan Maintenance</span>
+                            </div>
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="file-edit" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">CMS Mandiri Mudah Edit Konten</span>
+                            </div>
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="activity" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">Portal Pantau Progres Real-Time</span>
+                            </div>
+                            <div class="theme-card bg-white border border-blue-200 rounded-xl px-4 py-2.5 flex items-center gap-2.5 text-[#06152D] shrink-0">
+                                <i data-lucide="credit-card" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                <span class="text-xs font-semibold">Integrasi WhatsApp &amp; Payment Gateway</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                SECTION 2: LAYANAN UTAMA (FULL TEKS & ELEGAN)
+            ====================================================== -->
+            <section id="layanan" class="full-bleed-section tall-section bg-soft-blue-gradient border-b border-blue-200/70">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-14">
+                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                            Layanan Pembuatan Website
+                        </h2>
+                        <p class="theme-text font-body text-slate-600 text-sm sm:text-base mt-3">
+                            Dikerjakan dengan struktur kode bersih, cepat diakses, dan mudah Anda kelola kapan saja.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+                        
+                        <!-- Layanan 01 -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border border-blue-200/90 p-8 sm:p-10 shadow-sm flex flex-col justify-between min-h-[420px]">
+                            <div class="space-y-5">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3.5 py-1 rounded-lg bg-[#EBF3FF] text-[#002B7F] text-xs font-bold uppercase tracking-wider">
+                                        01 • PERSONAL &amp; PROMO
+                                    </span>
+                                    <div class="w-11 h-11 rounded-xl bg-blue-gradient text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                                        <i data-lucide="layout" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    Landing Page &amp; Portofolio
+                                </h3>
+
+                                <p class="theme-text font-body text-slate-600 text-sm leading-relaxed">
+                                    Halaman tunggal yang fokus memperkenalkan jasa atau produk Anda secara ringkas dan langsung mengarahkan pengunjung ke kontak Anda.
+                                </p>
+
+                                <ul class="space-y-3 text-xs sm:text-sm theme-heading text-[#06152D] pt-2">
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>1 halaman penuh dengan tata letak terarah.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Tampilan responsif di smartphone &amp; laptop.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Tombol kontak langsung ke WhatsApp.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-8">
+                                <button type="button" onclick="openProjectModal('Paket Starter')" class="btn-animated w-full py-4 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-sm">
+                                    Pilih Layanan Ini
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Layanan 02 -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border-2 border-[#0052FF] p-8 sm:p-10 shadow-md flex flex-col justify-between min-h-[420px]">
+                            <div class="space-y-5">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3.5 py-1 rounded-lg bg-blue-gradient text-white text-xs font-bold uppercase tracking-wider">
+                                        02 • UMKM &amp; PERUSAHAAN
+                                    </span>
+                                    <div class="w-11 h-11 rounded-xl bg-blue-gradient text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                                        <i data-lucide="layers" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    Website Multi-Halaman &amp; CMS
+                                </h3>
+
+                                <p class="theme-text font-body text-slate-600 text-sm leading-relaxed">
+                                    Website resmi hingga 5–7 halaman untuk usaha berkembang, lengkap dengan fitur edit konten mandiri tanpa perlu coding.
+                                </p>
+
+                                <ul class="space-y-3 text-xs sm:text-sm theme-heading text-[#06152D] pt-2">
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Hingga 5–7 halaman lengkap profil &amp; katalog.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>CMS mandiri untuk mengubah teks dan gambar.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Optimasi SEO dasar &amp; kecepatan akses.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-8">
+                                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated w-full py-4 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-sm">
+                                    Pilih Layanan Ini
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Layanan 03 -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border border-blue-200/90 p-8 sm:p-10 shadow-sm flex flex-col justify-between min-h-[420px]">
+                            <div class="space-y-5">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-3.5 py-1 rounded-lg bg-[#EBF3FF] text-[#002B7F] text-xs font-bold uppercase tracking-wider">
+                                        03 • SKALA BISNIS
+                                    </span>
+                                    <div class="w-11 h-11 rounded-xl bg-blue-gradient text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                                        <i data-lucide="database" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    E-Commerce &amp; Web Custom
+                                </h3>
+
+                                <p class="theme-text font-body text-slate-600 text-sm leading-relaxed">
+                                    Sistem website bisnis dan toko online dengan pengelolaan database produk serta integrasi pembayaran otomatis.
+                                </p>
+
+                                <ul class="space-y-3 text-xs sm:text-sm theme-heading text-[#06152D] pt-2">
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Fitur custom &amp; arsitektur database produk.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Integrasi Payment Gateway otomatis.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
+                                        <span>Fleksibel sesuai alur bisnis perusahaan.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-8">
+                                <button type="button" onclick="openProjectModal('Paket Bisnis')" class="btn-animated w-full py-4 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-sm">
+                                    Pilih Layanan Ini
+                                </button>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                SECTION: ABOUT US / WHO WE ARE
+            ====================================================== -->
+            <section id="tentang-kami" class="full-bleed-section tall-section theme-surface bg-white border-b border-blue-200/70">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        
+                        <!-- Left: Studio Visual Collage -->
+                        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <div class="rounded-2xl overflow-hidden border border-blue-100 shadow-sm h-56 bg-slate-100 group">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" 
+                                        onerror="this.src='https://placehold.co/400x320/002B7F/FFFFFF?text=Who+We+Are'"
+                                        alt="Tim Diskusi flexi.co" 
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    >
+                                </div>
+                                <div class="interactive-card rounded-2xl bg-blue-gradient p-6 text-white shadow-md">
+                                    <p class="font-heading font-extrabold text-2xl text-white">Sejak 2021</p>
+                                    <p class="text-xs text-white/90 mt-1.5 leading-relaxed">
+                                        Membantu UMKM dan korporasi Indonesia membangun identitas digital yang kredibel.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-y-4 pt-8">
+                                <div class="interactive-card theme-card rounded-2xl bg-[#F4F8FF] border border-blue-200 p-6 text-[#06152D] shadow-sm">
+                                    <p class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">100% In-House</p>
+                                    <p class="theme-text text-xs text-slate-600 mt-1.5 leading-relaxed">
+                                        Dikerjakan langsung oleh tim UI/UX Designer &amp; Web Engineer internal kami.
+                                    </p>
+                                </div>
+                                <div class="rounded-2xl overflow-hidden border border-blue-100 shadow-sm h-56 bg-slate-100 group">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" 
+                                        onerror="this.src='https://placehold.co/400x320/0052FF/FFFFFF?text=Studio+Kerja'"
+                                        alt="Pengembangan Kode flexi.co" 
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Who We Are Copy -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#0052FF]">Who We Are • Tentang flexi.co</span>
+
+                            <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] leading-tight">
+                                Studio Web Modern yang Mengutamakan Kualitas Desain, Kecepatan &amp; Transparansi
+                            </h2>
+
+                            <p class="theme-text font-body text-slate-600 text-sm sm:text-base leading-relaxed">
+                                flexi.co hadir untuk memastikan setiap bisnis memiliki website yang rapi, cepat diakses, dan mampu meningkatkan kepercayaan pelanggan sejak pandangan pertama.
+                            </p>
+
+                            <p class="theme-text font-body text-slate-600 text-sm sm:text-base leading-relaxed">
+                                Kami melengkapi layanan kami dengan Sistem Pelacakan Progres Real-Time agar setiap klien dapat memantau langsung apakah proyek mereka berstatus Not Yet, Almost Done, atau Done kapan saja.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+                                <div class="interactive-card theme-card p-5 rounded-xl bg-[#F4F8FF] border border-blue-100">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-gradient text-white flex items-center justify-center mb-3 shadow-sm">
+                                        <i data-lucide="zap" class="w-5 h-5"></i>
+                                    </div>
+                                    <h3 class="theme-heading font-heading font-bold text-sm text-[#06152D]">Performa Cepat</h3>
+                                    <p class="theme-text text-xs text-slate-500 mt-1">Struktur kode ringan agar halaman terbuka instan.</p>
+                                </div>
+                                <div class="interactive-card theme-card p-5 rounded-xl bg-[#F4F8FF] border border-blue-100">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-gradient text-white flex items-center justify-center mb-3 shadow-sm">
+                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                    </div>
+                                    <h3 class="theme-heading font-heading font-bold text-sm text-[#06152D]">Progres Transparan</h3>
+                                    <p class="theme-text text-xs text-slate-500 mt-1">Pantau tahapan pengerjaan langsung dari akun Anda.</p>
+                                </div>
+                                <div class="interactive-card theme-card p-5 rounded-xl bg-[#F4F8FF] border border-blue-100">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-gradient text-white flex items-center justify-center mb-3 shadow-sm">
+                                        <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                                    </div>
+                                    <h3 class="theme-heading font-heading font-bold text-sm text-[#06152D]">Garansi 6 Bulan</h3>
+                                    <p class="theme-text text-xs text-slate-500 mt-1">Pendampingan dan maintenance gratis 6 bulan penuh.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                SECTION 3: PAKET HARGA RESMI
+            ====================================================== -->
+            <section id="paket-harga" class="full-bleed-section tall-section bg-soft-blue-gradient border-b border-blue-200/70">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-14">
+                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                            Pilihan Paket Pembuatan Website
+                        </h2>
+                        <p class="theme-text font-body text-slate-600 mt-3 text-sm sm:text-base">
+                            Investasi transparan sesuai kebutuhan bisnis Anda, lengkap dengan Gratis 6 Bulan Maintenance.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch w-full">
+
+                        <!-- CARD 1: PAKET STARTER -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border border-blue-200/80 p-8 sm:p-10 shadow-sm flex flex-col justify-between min-h-[480px]">
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-[#EBF3FF] border border-blue-200 text-[#002B7F] text-[11px] font-bold uppercase tracking-wider mb-4">
+                                    STARTER
+                                </div>
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    Paket Starter
+                                </h3>
+                                <p class="theme-text font-body text-slate-500 text-sm mt-1">
+                                    Cocok untuk kebutuhan personal &amp; porto individu.
+                                </p>
+
+                                <div class="mt-6">
+                                    <p class="theme-text text-slate-400 text-xs font-medium">Mulai Dari</p>
+                                    <p class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-1">
+                                        Rp 2.000.000
+                                    </p>
+                                </div>
+
+                                <div class="theme-subbox mt-6 p-4 rounded-xl bg-[#F4F8FF] border border-blue-200/80">
+                                    <div class="flex items-center gap-2 text-[#0052FF] font-bold text-xs sm:text-sm">
+                                        <i data-lucide="gift" class="w-4 h-4 shrink-0"></i>
+                                        <span>Gratis 6 Bulan Maintenance</span>
+                                    </div>
+                                    <p class="theme-text text-slate-600 text-xs mt-1">
+                                        Tahun berikutnya: Rp 1.000.000 / tahun
+                                    </p>
+                                </div>
+
+                                <ul class="mt-6 space-y-3.5 text-sm theme-heading text-[#06152D] font-medium">
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>1 Halaman Landing Page</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Tampilan Responsif HP &amp; Laptop</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Tombol Direct Kontak / WA</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 pt-2">
+                                <button type="button" onclick="openProjectModal('Paket Starter')" class="btn-animated w-full py-4 px-6 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-sm">
+                                    Pilih Starter
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- CARD 2: PAKET PROFESIONAL (REKOMENDASI UMKM) -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border-2 border-[#0052FF] p-8 sm:p-10 shadow-lg relative flex flex-col justify-between min-h-[480px]">
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-gradient text-white text-[11px] font-bold uppercase tracking-wider px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+                                REKOMENDASI UMKM
+                            </div>
+
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-blue-gradient text-white text-[11px] font-bold uppercase tracking-wider mb-4">
+                                    PROFESIONAL
+                                </div>
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    Paket Profesional
+                                </h3>
+                                <p class="theme-text font-body text-slate-500 text-sm mt-1">
+                                    Cocok untuk UMKM &amp; Usaha berkembang.
+                                </p>
+
+                                <div class="mt-6">
+                                    <p class="theme-text text-slate-400 text-xs font-medium">Mulai Dari</p>
+                                    <p class="font-heading font-extrabold text-3xl sm:text-4xl text-[#0052FF] mt-1">
+                                        Rp 5.000.000
+                                    </p>
+                                </div>
+
+                                <div class="theme-subbox mt-6 p-4 rounded-xl bg-[#EBF3FF]/80 border border-blue-300">
+                                    <div class="flex items-center gap-2 text-[#0052FF] font-bold text-xs sm:text-sm">
+                                        <i data-lucide="gift" class="w-4 h-4 shrink-0"></i>
+                                        <span>Gratis 6 Bulan Maintenance</span>
+                                    </div>
+                                    <p class="theme-text text-slate-600 text-xs mt-1">
+                                        Tahun berikutnya: Rp 1.500.000 / tahun
+                                    </p>
+                                </div>
+
+                                <ul class="mt-6 space-y-3.5 text-sm theme-heading text-[#06152D] font-medium">
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Hingga 5-7 Halaman Website</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>CMS Edit Konten Mandiri</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Optimasi SEO &amp; Kecepatan</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 pt-2">
+                                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated w-full py-4 px-6 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-md">
+                                    Pilih Profesional
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- CARD 3: PAKET BISNIS -->
+                        <article class="interactive-card theme-card group bg-white rounded-2xl border border-blue-200/80 p-8 sm:p-10 shadow-sm flex flex-col justify-between min-h-[480px]">
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-[#EBF3FF] border border-blue-200 text-[#002B7F] text-[11px] font-bold uppercase tracking-wider mb-4">
+                                    BISNIS
+                                </div>
+                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                    Paket Bisnis
+                                </h3>
+                                <p class="theme-text font-body text-slate-500 text-sm mt-1">
+                                    Cocok untuk website bisnis &amp; E-Commerce.
+                                </p>
+
+                                <div class="mt-6">
+                                    <p class="theme-text text-slate-400 text-xs font-medium">Start From (Negotiable)</p>
+                                    <p class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-1">
+                                        Rp 8.000.000+
+                                    </p>
+                                </div>
+
+                                <div class="theme-subbox mt-6 p-4 rounded-xl bg-[#F4F8FF] border border-blue-200/80">
+                                    <div class="flex items-center gap-2 text-[#0052FF] font-bold text-xs sm:text-sm">
+                                        <i data-lucide="gift" class="w-4 h-4 shrink-0"></i>
+                                        <span>Gratis 6 Bulan Maintenance</span>
+                                    </div>
+                                    <p class="theme-text text-slate-600 text-xs mt-1">
+                                        Tahun berikutnya: Rp 2.000.000 / tahun
+                                    </p>
+                                </div>
+
+                                <ul class="mt-6 space-y-3.5 text-sm theme-heading text-[#06152D] font-medium">
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Fitur Custom &amp; Database</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Integrasi Payment Gateway</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i data-lucide="check" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
+                                        <span>Negosiasi Sesuai Kebutuhan</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 pt-2">
+                                <button type="button" onclick="openProjectModal('Paket Bisnis')" class="btn-animated w-full py-4 px-6 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-sm">
+                                    Pilih Paket Bisnis
+                                </button>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                SECTION 4: CARA KERJA & PANTAU PROGRES
+            ====================================================== -->
+            <section id="cara-kerja" class="full-bleed-section tall-section theme-surface bg-white border-b border-blue-200/70">
+                <div class="w-full m-0 px-4 sm:px-8 space-y-12">
+                    
+                    <div class="text-center max-w-2xl mx-auto">
+                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                            Alur Pengerjaan Website
+                        </h2>
+                        <p class="theme-text font-body text-slate-600 text-sm sm:text-base mt-2">
+                            Empat langkah terstruktur dari pendaftaran hingga website Anda siap online.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="interactive-card theme-card p-8 rounded-2xl bg-[#F4F8FF] border border-blue-200/80 shadow-sm">
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-gradient text-white text-sm font-bold shadow-sm">01</span>
+                            <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Buat Akun &amp; Login</h3>
+                            <p class="theme-text font-body text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                                Daftar akun perusahaan atau masuk ke portal klien untuk memulai.
+                            </p>
+                        </div>
+                        <div class="interactive-card theme-card p-8 rounded-2xl bg-[#F4F8FF] border border-blue-200/80 shadow-sm">
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-gradient text-white text-sm font-bold shadow-sm">02</span>
+                            <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Kirim Konsep Website</h3>
+                            <p class="theme-text font-body text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                                Pilih paket dan tuliskan konsep website Anda melalui formulir proyek.
+                            </p>
+                        </div>
+                        <div class="interactive-card theme-card p-8 rounded-2xl bg-[#F4F8FF] border border-blue-200/80 shadow-sm">
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-gradient text-white text-sm font-bold shadow-sm">03</span>
+                            <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Pantau Status Progres</h3>
+                            <p class="theme-text font-body text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                                Cek status pengerjaan website Anda (Not Yet, Almost Done, atau Done).
+                            </p>
+                        </div>
+                        <div class="interactive-card theme-card p-8 rounded-2xl bg-[#F4F8FF] border border-blue-200/80 shadow-sm">
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-gradient text-white text-sm font-bold shadow-sm">04</span>
+                            <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Rilis &amp; Maintenance</h3>
+                            <p class="theme-text font-body text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                                Website siap online disertai layanan gratis 6 bulan maintenance penuh.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Private Company Progress Box on Home -->
+                    <div id="home-private-tracker-box"></div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                SECTION 5: PERTANYAAN UMUM (8 SOAL FAQ INTERAKTIF)
+            ====================================================== -->
+            <section id="faq" class="full-bleed-section tall-section bg-soft-blue-gradient">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-14">
+                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                            Pertanyaan yang Sering Diajukan
+                        </h2>
+                        <p class="theme-text font-body text-slate-600 text-sm sm:text-base mt-2">
+                            Klik pada pertanyaan untuk melihat penjelasan lengkap mengenai layanan flexi.co.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
+                        
+                        <!-- Soal 1 -->
+                        <div id="faq-card-1" class="faq-card theme-card faq-active rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(1)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">01</span>
+                                    <span>Berapa lama waktu pengerjaan website di flexi.co?</span>
+                                </span>
+                                <i id="faq-icon-1" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-1" class="faq-content-wrapper faq-open">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Paket Starter selesai dalam 3–5 hari kerja, Paket Profesional sekitar 7–10 hari kerja, dan Paket Bisnis berkisar 14–21 hari kerja.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 2 -->
+                        <div id="faq-card-2" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(2)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">02</span>
+                                    <span>Apa saja yang termasuk dalam Gratis 6 Bulan Maintenance?</span>
+                                </span>
+                                <i id="faq-icon-2" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-2" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Mencakup pemantauan keamanan, perbaikan bug teknis, backup berkala, serta penjagaan performa agar website selalu cepat diakses.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 3 -->
+                        <div id="faq-card-3" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(3)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">03</span>
+                                    <span>Bagaimana cara memantau status pengerjaan website saya?</span>
+                                </span>
+                                <i id="faq-icon-3" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-3" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Login menggunakan akun perusahaan Anda lalu buka menu Proyek Saya untuk melihat status pengerjaan (Not Yet, In Progress, Almost Done, atau Done).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 4 -->
+                        <div id="faq-card-4" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(4)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">04</span>
+                                    <span>Apakah perusahaan lain bisa melihat proyek website saya?</span>
+                                </span>
+                                <i id="faq-icon-4" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-4" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Tidak bisa. Setiap akun perusahaan terisolasi secara privat dan hanya menampilkan proyek milik akun tersebut.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 5 -->
+                        <div id="faq-card-5" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(5)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">05</span>
+                                    <span>Apakah saya bisa mengedit teks dan foto sendiri setelah rilis?</span>
+                                </span>
+                                <i id="faq-icon-5" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-5" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Bisa. Pada Paket Profesional dan Paket Bisnis sudah disediakan CMS mandiri untuk mengubah konten tanpa coding.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 6 -->
+                        <div id="faq-card-6" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(6)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">06</span>
+                                    <span>Apakah tampilan website sudah otomatis rapi di HP dan tablet?</span>
+                                </span>
+                                <i id="faq-icon-6" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-6" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Ya, seluruh paket dirancang dengan standar Responsive Mobile-First sehingga proporsional di semua ukuran layar.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 7 -->
+                        <div id="faq-card-7" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(7)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">07</span>
+                                    <span>Berapa biaya perpanjangan tahunan setelah 6 bulan gratis maintenance?</span>
+                                </span>
+                                <i id="faq-icon-7" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-7" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Rp 1.000.000/tahun untuk Paket Starter, Rp 1.500.000/tahun untuk Paket Profesional, dan Rp 2.000.000/tahun untuk Paket Bisnis.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soal 8 -->
+                        <div id="faq-card-8" class="faq-card theme-card rounded-2xl border border-blue-200 bg-white overflow-hidden">
+                            <button type="button" onclick="toggleFaqItem(8)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base theme-heading text-[#06152D] hover:text-[#0052FF] transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-gradient text-white text-xs font-bold flex items-center justify-center shrink-0">08</span>
+                                    <span>Apakah website bisa diintegrasikan dengan WhatsApp dan Payment Gateway?</span>
+                                </span>
+                                <i id="faq-icon-8" data-lucide="chevron-down" class="faq-chevron w-4 h-4 text-[#0052FF] shrink-0"></i>
+                            </button>
+                            <div id="faq-ans-8" class="faq-content-wrapper">
+                                <div class="faq-content-inner">
+                                    <div class="theme-subbox theme-text px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100 bg-[#F4F8FF]/50">
+                                        Semua paket mendukung tombol direct WhatsApp, dan integrasi Payment Gateway otomatis tersedia lengkap pada Paket Bisnis.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- =====================================================
+            VIEW 3: PORTAL DASHBOARD PERUSAHAAN ("/dashboard")
+        ====================================================== -->
+        <div id="view-dashboard" class="hidden page-transition min-h-[86vh] bg-soft-blue-gradient py-12 full-bleed-section">
+            <div class="w-full m-0 px-4 sm:px-8">
+                <div id="client-dashboard-content"></div>
+            </div>
+        </div>
+
+        <!-- =====================================================
+            VIEW 4: ADMIN PORTAL RAHASIA ("#/flx982xKq71mZv40pLr5")
+        ====================================================== -->
+        <section id="view-admin" aria-label="Portal Administrator Flexi.co" class="hidden page-transition min-h-screen bg-[#06152D] text-white full-bleed-section">
+            
+            <!-- SUB-VIEW 4A: LOGIN ADMIN DENGAN PROTEKSI BRUTE FORCE 30 DETIK -->
+            <div id="admin-login-screen" class="min-h-screen flex items-center justify-center px-4 py-12">
+                <div id="admin-login-card" class="w-full max-w-md bg-[#0B1E3D] border border-blue-800/70 rounded-2xl p-7 sm:p-9 shadow-2xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="px-3 py-1 rounded-full bg-blue-gradient text-white text-[11px] font-bold">
+                            INTERNAL ADMIN CONSOLE
+                        </span>
+                        <button type="button" onclick="navigateToRoute('/')" class="text-xs text-blue-300 hover:text-white flex items-center gap-1">
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                            <span>Beranda</span>
+                        </button>
+                    </div>
+
+                    <h1 class="font-heading font-extrabold text-2xl text-white">Otorisasi Admin flexi.co</h1>
+                    <p class="text-xs text-blue-200/80 mt-1 mb-6">
+                        Masukkan password administrator untuk membuka panel manajemen proyek dan akun klien.
+                    </p>
+
+                    <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label for="admin-password-input" class="block text-xs font-semibold text-blue-200">Password Admin</label>
+                                <span id="admin-attempt-badge" class="text-[11px] text-blue-300">Proteksi 30 Detik Aktif</span>
+                            </div>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="admin-password-input" 
+                                    required
+                                    placeholder="Masukkan password admin..." 
+                                    class="w-full pl-4 pr-11 py-3 rounded-xl bg-[#06152D] border border-blue-700 focus:border-[#0096FF] text-sm text-white focus:outline-none"
+                                >
+                                <button type="button" onclick="toggleAdminPasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-blue-300 hover:text-white p-1">
+                                    <i id="password-eye-icon" data-lucide="eye" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="admin-login-error" class="hidden p-3.5 rounded-xl bg-blue-950/90 border border-blue-400 text-blue-100 text-xs leading-relaxed">
+                            <span id="admin-login-error-text">Password tidak sesuai.</span>
+                        </div>
+
+                        <button type="submit" id="admin-login-submit-btn" class="btn-animated w-full py-3.5 px-6 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-lg">
+                            Masuk ke Panel Admin
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SUB-VIEW 4B: UNLOCKED ADMIN CONSOLE -->
+            <div id="admin-dashboard-screen" class="hidden pb-14 bg-[#F4F8FF] text-[#06152D] min-h-screen full-bleed-section">
+                
+                <!-- Top Sticky Admin Bar -->
+                <div class="sticky-navbar bg-[#06152D] text-white px-3 sm:px-5 py-4 border-b border-blue-900">
+                    <div class="w-full flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick="navigateToRoute('/')" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5">
+                                <i data-lucide="arrow-left" class="w-4 h-4 text-blue-300"></i>
+                                <span>Kembali ke Beranda</span>
+                            </button>
+                            <span class="text-xs text-blue-200 font-medium hidden sm:inline">
+                                Panel Admin • flexi.co
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" onclick="switchAdminMainTab('projects')" id="adm-tab-projects" class="px-4 py-2 rounded-xl bg-blue-gradient text-white text-xs font-bold">
+                                Proyek Klien
+                            </button>
+                            <button type="button" onclick="switchAdminMainTab('accounts')" id="adm-tab-accounts" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-blue-100 text-xs font-semibold">
+                                Akun Terdaftar (<span id="adm-users-count-badge">0</span>)
+                            </button>
+                            <button type="button" onclick="handleAdminLogout()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-blue-200 text-xs font-semibold">
+                                Keluar Admin
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full m-0 px-3 sm:px-5 pt-20">
+                    
+                    <!-- Clean Admin Summary Cards -->
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+                        <div class="interactive-card bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
+                            <p class="text-xs font-medium text-slate-500">Proyek Aktif</p>
+                            <p id="kpi-total" class="font-heading font-extrabold text-2xl sm:text-3xl text-[#06152D] mt-1">0</p>
+                        </div>
+                        <div class="interactive-card bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
+                            <p class="text-xs font-medium text-slate-500">Not Yet</p>
+                            <p id="kpi-not-yet" class="font-heading font-extrabold text-2xl sm:text-3xl text-[#06152D] mt-1">0</p>
+                        </div>
+                        <div class="interactive-card bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
+                            <p class="text-xs font-medium text-slate-500">Almost Done / Proses</p>
+                            <p id="kpi-almost-done" class="font-heading font-extrabold text-2xl sm:text-3xl text-[#06152D] mt-1">0</p>
+                        </div>
+                        <div class="interactive-card bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
+                            <p class="text-xs font-medium text-slate-500">Done (Selesai)</p>
+                            <p id="kpi-done" class="font-heading font-extrabold text-2xl sm:text-3xl text-[#06152D] mt-1">0</p>
+                        </div>
+                        <div class="interactive-card bg-blue-gradient p-5 rounded-2xl text-white shadow-sm col-span-2 lg:col-span-1">
+                            <p class="text-xs font-bold text-white/90">Total Nilai Proyek</p>
+                            <p id="kpi-revenue" class="font-heading font-extrabold text-xl sm:text-2xl text-white mt-1">Rp 0</p>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN TAB 1: DAFTAR PROYEK -->
+                    <div id="admin-panel-projects-view" class="space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-blue-100 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-sm">
+                            <div class="flex flex-wrap items-center gap-1.5 bg-[#F4F8FF] p-1.5 rounded-xl">
+                                <button type="button" onclick="setAdminFilter('all')" id="filter-btn-all" class="px-3.5 py-2 rounded-lg text-xs font-bold bg-blue-gradient text-white">Semua Aktif</button>
+                                <button type="button" onclick="setAdminFilter('not_yet')" id="filter-btn-not_yet" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D]">Not Yet</button>
+                                <button type="button" onclick="setAdminFilter('in_progress')" id="filter-btn-in_progress" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D]">In Progress</button>
+                                <button type="button" onclick="setAdminFilter('almost_done')" id="filter-btn-almost_done" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D]">Almost Done</button>
+                                <button type="button" onclick="setAdminFilter('done')" id="filter-btn-done" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D]">Done</button>
+                                <button type="button" onclick="setAdminFilter('removed')" id="filter-btn-removed" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#002B7F]">Di-Remove (<span id="kpi-removed">0</span>)</button>
+                            </div>
+
+                            <div class="relative w-full lg:w-72">
+                                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                                <input 
+                                    type="text" 
+                                    id="admin-search-input" 
+                                    oninput="renderAdminProjects()" 
+                                    placeholder="Cari proyek atau perusahaan..." 
+                                    class="w-full pl-10 pr-4 py-2 rounded-xl bg-[#F4F8FF] border border-blue-100 text-xs sm:text-sm focus:bg-white focus:border-[#0052FF] focus:outline-none"
+                                >
+                            </div>
+                        </div>
+
+                        <div id="admin-projects-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- ADMIN TAB 2: DAFTAR AKUN PERUSAHAAN -->
+                    <div id="admin-panel-accounts-view" class="hidden">
+                        <div class="bg-white rounded-2xl border border-blue-100 overflow-hidden shadow-sm">
+                            <div class="p-6 border-b border-blue-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div>
+                                    <h2 class="font-heading font-bold text-lg text-[#06152D]">Daftar Akun Perusahaan</h2>
+                                    <p class="text-xs text-slate-500 mt-0.5">
+                                        Termasuk 2 akun bawaan (flexi.co &amp; PT Cipta Kreasi Mandiri) serta seluruh akun baru yang mendaftar.
+                                    </p>
+                                </div>
+                                <button type="button" onclick="openAuthModal('signup')" class="btn-animated px-4 py-2 rounded-xl bg-blue-gradient text-white font-bold text-xs self-start sm:self-auto">
+                                    + Buat Akun Baru
+                                </button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                    <thead>
+                                        <tr class="bg-[#F4F8FF] text-[#06152D] text-xs uppercase border-b border-blue-100">
+                                            <th class="p-4">ID</th>
+                                            <th class="p-4">Perusahaan / Brand</th>
+                                            <th class="p-4">Nama PIC</th>
+                                            <th class="p-4">Email</th>
+                                            <th class="p-4">WhatsApp</th>
+                                            <th class="p-4">Proyek</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-accounts-table-body" class="divide-y divide-blue-50"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ==========================================================
+        MODAL 1: AJUKAN IDE & BUAT WEBSITE BARU
+    =========================================================== -->
+    <div id="project-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <dialog id="project-modal-dialog" open class="relative w-full max-w-xl bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-8">
+            
+            <div class="bg-blue-gradient px-6 py-4 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="font-heading font-bold text-base sm:text-lg text-white">Formulir Pembuatan Website</h3>
+                    <p class="text-xs text-white/85">flexi.co Web Development Studio</p>
+                </div>
+                <button type="button" onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <form id="project-form-view" onsubmit="handleProjectSubmit(event)" class="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+                <div>
+                    <label class="block text-xs font-bold text-[#06152D] mb-2">Pilih Paket Website *</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="package_tier" value="Paket Starter" class="peer sr-only" onchange="handleDraftInput()">
+                            <div class="p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#EBF3FF] transition-all">
+                                <p class="font-bold text-xs text-[#06152D]">Paket Starter</p>
+                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 2.000.000</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="package_tier" value="Paket Profesional" class="peer sr-only" checked onchange="handleDraftInput()">
+                            <div class="p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#EBF3FF] transition-all">
+                                <p class="font-bold text-xs text-[#06152D]">Paket Profesional</p>
+                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 5.000.000</p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="package_tier" value="Paket Bisnis" class="peer sr-only" onchange="handleDraftInput()">
+                            <div class="p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#EBF3FF] transition-all">
+                                <p class="font-bold text-xs text-[#06152D]">Paket Bisnis</p>
+                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 8.000.000+</p>
+                            </div>
+                        </label>
+                    </div>
+                    <p id="modal-package-summary" class="text-xs text-[#06152D] bg-[#F4F8FF] border border-blue-100 rounded-xl px-3.5 py-2 mt-2">
+                        Termasuk Gratis 6 Bulan Maintenance + Hingga 5-7 Halaman &amp; CMS Mandiri.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="input-client-name" class="block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
+                        <input type="text" id="input-client-name" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="input-brand-name" class="block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan / Brand *</label>
+                        <input type="text" id="input-brand-name" required placeholder="Nama Brand / PT" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="input-client-email" class="block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan *</label>
+                        <input type="email" id="input-client-email" required placeholder="nama@perusahaan.com" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="input-client-wa" class="block text-xs font-semibold text-[#06152D] mb-1">Nomor WhatsApp *</label>
+                        <input type="tel" id="input-client-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="input-client-brief" class="block text-xs font-semibold text-[#06152D] mb-1">
+                        Konsep &amp; Kebutuhan Website *
+                    </label>
+                    <textarea 
+                        id="input-client-brief" 
+                        rows="3" 
+                        required 
+                        placeholder="Ceritakan konsep website atau fitur yang Anda inginkan..." 
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-animated w-full py-3.5 px-6 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-md">
+                    Kirim &amp; Simpan Proyek
+                </button>
+            </form>
+
+            <!-- Success View -->
+            <div id="project-success-view" class="hidden p-6 sm:p-8 text-center space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-[#EBF3FF] text-[#0052FF] flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-7 h-7"></i>
+                </div>
+                <h4 class="font-heading font-extrabold text-xl text-[#06152D]">Proyek Website Berhasil Dibuat</h4>
+                <div class="p-3.5 rounded-xl bg-[#F4F8FF] border border-blue-200 flex items-center justify-between max-w-xs mx-auto">
+                    <span id="success-tracking-code" class="font-bold text-base text-[#06152D]">FLX-2026-889</span>
+                    <button type="button" onclick="copyTrackingCode()" class="px-3 py-1 rounded-lg bg-blue-gradient text-white text-xs font-bold">
+                        <span id="copy-btn-label">Salin ID</span>
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button type="button" onclick="closeProjectModal(); navigateToRoute('/dashboard');" class="btn-animated py-3 px-4 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm">
+                        Lihat Proyek Saya
+                    </button>
+                    <button type="button" onclick="closeProjectModal()" class="py-3 px-4 rounded-xl bg-slate-100 text-[#06152D] font-bold text-xs sm:text-sm">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+    <!-- ==========================================================
+        MODAL 2: LOGIN & DAFTAR AKUN PERUSAHAAN
+    =========================================================== -->
+    <div id="auth-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <dialog open class="relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-8">
+            
+            <div class="bg-blue-gradient px-6 py-4 text-white flex items-center justify-between">
+                <div>
+                    <h3 id="auth-modal-title" class="font-heading font-bold text-base text-white">Masuk Akun Perusahaan</h3>
+                    <p class="text-[11px] text-white/85">Portal Klien flexi.co</p>
+                </div>
+                <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="grid grid-cols-2 bg-[#F4F8FF] p-1.5 m-6 mb-2 rounded-xl border border-blue-100">
+                <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg font-bold text-xs sm:text-sm bg-blue-gradient text-white shadow-sm transition-all">
+                    Masuk (Login)
+                </button>
+                <button type="button" id="tab-btn-signup" onclick="switchAuthTab('signup')" class="py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all">
+                    Daftar Akun
+                </button>
+            </div>
+
+            <!-- FORM A: LOGIN PERUSAHAAN -->
+            <form id="client-login-form" onsubmit="handleClientLogin(event)" class="p-6 pt-3 space-y-4">
+                <div id="signup-redirect-success-banner" class="hidden p-3 rounded-xl bg-[#EBF3FF] border border-[#0052FF] text-[#06152D] text-xs font-medium">
+                    ✓ Akun sudah dibuat! Silakan masuk menggunakan email dan password akun Anda.
+                </div>
+
+                <div>
+                    <label for="login-email" class="block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan</label>
+                    <input type="email" id="login-email" required placeholder="halo@flexi.co" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                </div>
+
+                <div>
+                    <label for="login-password" class="block text-xs font-semibold text-[#06152D] mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="login-password" required placeholder="Masukkan password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        <button type="button" onclick="togglePasswordField('login-password', 'eye-login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#06152D] p-1">
+                            <i id="eye-login-password" data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="client-login-error" class="hidden p-3 rounded-xl bg-[#EBF3FF] border border-blue-400 text-[#06152D] text-xs font-medium">
+                    Email atau password tidak sesuai.
+                </div>
+
+                <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-md">
+                    Masuk
+                </button>
+            </form>
+
+            <!-- FORM B: DAFTAR AKUN PERUSAHAAN BARU -->
+            <form id="client-signup-form" onsubmit="handleClientSignupAccount(event)" class="hidden p-6 pt-3 space-y-3.5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="reg-name" class="block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
+                        <input type="text" id="reg-name" required placeholder="Nama Lengkap" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="reg-company" class="block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan *</label>
+                        <input type="text" id="reg-company" required placeholder="PT / Brand Anda" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="reg-email" class="block text-xs font-semibold text-[#06152D] mb-1">Email *</label>
+                        <input type="email" id="reg-email" required placeholder="email@perusahaan.com" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="reg-wa" class="block text-xs font-semibold text-[#06152D] mb-1">No. WhatsApp *</label>
+                        <input type="tel" id="reg-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="reg-password" class="block text-xs font-semibold text-[#06152D] mb-1">Password *</label>
+                    <div class="relative">
+                        <input type="password" id="reg-password" required minlength="4" placeholder="Buat password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        <button type="button" onclick="togglePasswordField('reg-password', 'eye-reg-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#06152D] p-1">
+                            <i id="eye-reg-password" data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="reg-password-confirm" class="block text-xs font-semibold text-[#06152D] mb-1">Tulis Ulang Password *</label>
+                    <div class="relative">
+                        <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Ketik ulang password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        <button type="button" onclick="togglePasswordField('reg-password-confirm', 'eye-reg-password-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#06152D] p-1">
+                            <i id="eye-reg-password-confirm" data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="client-signup-error" class="hidden p-3 rounded-xl bg-[#EBF3FF] border border-blue-400 text-[#06152D] text-xs font-medium"></div>
+
+                <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-blue-gradient text-white font-bold text-sm shadow-md">
+                    Buat Akun Perusahaan
+                </button>
+            </form>
+
+        </dialog>
+    </div>
+
+    <!-- ==========================================================
+        MODAL 3: KONFIRMASI REMOVE PROYEK KHUSUS ADMIN
+    =========================================================== -->
+    <div id="admin-remove-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <dialog open class="relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-6">
+            <h3 class="font-heading font-bold text-lg text-[#06152D]">Remove Proyek dari Admin?</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                Proyek <span id="remove-modal-project-name" class="font-bold text-[#06152D]">Nama Proyek</span> akan dihapus dari daftar aktif Admin, tetapi klien tetap bisa melihat proyeknya.
+            </p>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+                <button type="button" onclick="closeAdminRemoveModal()" class="py-2.5 px-4 rounded-xl bg-slate-100 text-[#06152D] font-bold text-xs">Batal</button>
+                <button type="button" id="confirm-admin-remove-btn" class="py-2.5 px-4 rounded-xl bg-blue-gradient text-white font-bold text-xs">Ya, Remove</button>
+            </div>
+        </dialog>
+    </div>
+
+    <!-- ==========================================
+        NOTIFIKASI POJOK KANAN BAWAH (TOAST)
+    =========================================== -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden">
+        <div class="bg-[#06152D] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-blue-500/40 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-blue-gradient text-white flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <div>
+                <p id="toast-title" class="font-heading font-bold text-sm text-white">Akun login</p>
+                <p id="toast-message" class="text-xs text-white/85">Berhasil masuk ke sistem.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+        FOOTER FULL WIDTH (IKON KOTak LAYERS MODERN)
+    =========================================== -->
+    <footer id="public-site-footer" class="full-bleed-section bg-[#06152D] text-white py-12 border-t border-blue-900 m-0">
+        <div class="w-full m-0 px-4 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-blue-900/80">
+                <div class="md:col-span-2 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-gradient flex items-center justify-center text-white shadow-md shrink-0">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-white">flexi.co</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-white/80 max-w-md leading-relaxed">
+                        Jasa pembuatan website modern, cepat, dan responsif dengan garansi gratis 6 bulan maintenance.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-3">Paket Harga</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-white/80">
+                        <li><button type="button" onclick="openProjectModal('Paket Starter')" class="hover:text-blue-300">Paket Starter (Rp 2.000.000)</button></li>
+                        <li><button type="button" onclick="openProjectModal('Paket Profesional')" class="hover:text-blue-300">Paket Profesional (Rp 5.000.000)</button></li>
+                        <li><button type="button" onclick="openProjectModal('Paket Bisnis')" class="hover:text-blue-300">Paket Bisnis (Rp 8.000.000+)</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-3">Menu</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-white/80">
+                        <li><button type="button" onclick="navigateToRoute('/')" class="hover:text-blue-300">Beranda</button></li>
+                        <li><button type="button" onclick="navigateToSection('layanan')" class="hover:text-blue-300">Layanan</button></li>
+                        <li><button type="button" onclick="navigateToRoute('/dashboard')" class="hover:text-blue-300">Proyek Saya</button></li>
+                        <li><button type="button" onclick="openAuthModal('login')" class="hover:text-blue-300">Masuk / Daftar</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/70 gap-4">
+                <p>&copy; 2026 flexi.co Web Studio. All rights reserved.</p>
+                <p>Desain Responsif &amp; Modern</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- File JavaScript Murni -->
+    <script src="app.js"></script>
+</body>
+</html>

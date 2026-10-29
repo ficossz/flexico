@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+--flexi-navy: #06152D;
+--flexi-deep: #002B7F;
+--flexi-blue: #0052FF;
+--flexi-blue-hover: #003ECF;
+--flexi-sky: #0096FF;
+--flexi-ice: #EBF3FF;
+--flexi-tint: #F4F8FF;
+--bg-primary: #F4F8FF;
+--bg-secondary: #FFFFFF;
+--text-primary: #06152D;
+--text-secondary: #475569;
+--card-bg: #FFFFFF;
+--card-border: #CFE2FF;
+}
+
+/* =========================================================
+TEMA MODE GELAP (DARK MODE)
+========================================================= */
+html.dark {
+--bg-primary: #050E1D;
+--bg-secondary: #08152B;
+--text-primary: #F0F6FF;
+--text-secondary: #94A3B8;
+--card-bg: #0B1B36;
+--card-border: #1E3A6D;
+}
+
+html,
+body,
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif !important;
+}
+
+html {
+scroll-behavior: smooth;
+scroll-padding-top: 80px;
+margin: 0;
+padding: 0;
+width: 100%;
+}
+
+body {
+margin: 0 !important;
+padding: 0 !important;
+width: 100% !important;
+max-width: 100% !important;
+min-height: 100vh;
+background-color: var(--bg-primary);
+color: var(--text-primary);
+overflow-x: hidden;
+font-family: 'Poppins', sans-serif !important;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-heading,
+.font-body {
+font-family: 'Poppins', sans-serif !important;
+}
+
+/* =========================================================
+FULL WIDTH & TALL SECTION HELPERS
+========================================================= */
+.full-bleed-section {
+width: 100% !important;
+max-width: 100% !important;
+margin-left: 0 !important;
+margin-right: 0 !important;
+}
+
+.tall-section {
+min-height: 86vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding-top: 6rem;
+padding-bottom: 6rem;
+}
+
+/* =========================================================
+STICKY / FIXED NAVBAR
+========================================================= */
+.sticky-navbar {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+width: 100%;
+margin: 0;
+z-index: 50;
+transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* =========================================================
+PALET WARNA GRADIEN BIRU MODERN & ELEGAN
+========================================================= */
+.bg-blue-gradient {
+background: linear-gradient(135deg, #002B7F 0%, #0052FF 52%, #0096FF 100%) !important;
+color: #FFFFFF !important;
+}
+
+.bg-soft-blue-gradient {
+background: linear-gradient(135deg, #DCEBFF 0%, #EDF5FF 48%, #FFFFFF 100%);
+}
+
+.bg-hero-blue-mesh {
+background-color: #F4F8FF;
+background-image:
+radial-gradient(at 12% 18%, rgba(0, 82, 255, 0.16) 0px, transparent 48%),
+radial-gradient(at 88% 22%, rgba(0, 150, 255, 0.15) 0px, transparent 48%),
+radial-gradient(at 50% 85%, rgba(0, 43, 127, 0.08) 0px, transparent 55%),
+linear-gradient(180deg, #E2EFFF 0%, #F4F8FF 60%, #FFFFFF 100%);
+}
+
+html.dark .bg-hero-blue-mesh {
+background-color: #050E1D;
+background-image:
+radial-gradient(at 15% 20%, rgba(0, 82, 255, 0.28) 0px, transparent 55%),
+radial-gradient(at 85% 20%, rgba(0, 150, 255, 0.20) 0px, transparent 55%),
+linear-gradient(180deg, #07162C 0%, #050E1D 100%);
+}
+
+html.dark .bg-soft-blue-gradient {
+background: linear-gradient(135deg, #081832 0%, #061226 55%, #050E1D 100%);
+}
+
+html.dark #public-site-header {
+background-color: rgba(7, 22, 44, 0.92) !important;
+border-color: #1E3A6D !important;
+}
+
+html.dark #mobile-menu {
+background-color: #08152B !important;
+border-color: #1E3A6D !important;
+}
+
+html.dark .theme-surface {
+background-color: #08152B !important;
+border-color: #1E3A6D !important;
+}
+
+html.dark .theme-card {
+background-color: #0B1B36 !important;
+border-color: #1E3A6D !important;
+color: #F0F6FF !important;
+}
+
+html.dark .theme-subbox {
+background-color: #071326 !important;
+border-color: #1E3A6D !important;
+}
+
+html.dark .theme-heading {
+color: #F0F6FF !important;
+}
+
+html.dark .theme-text {
+color: #94A3B8 !important;
+}
+
+html.dark #nav-pill-container {
+background-color: #0B1B36 !important;
+border-color: #1E3A6D !important;
+}
+
+html.dark .nav-pill-item {
+color: #CBD5E1 !important;
+}
+
+/* =========================================================
+ANIMASI KARTU & TOMBOL MODERN (CLEAN & ELEGAN)
+========================================================= */
+.interactive-card {
+transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+border-color 0.32s ease,
+background-color 0.32s ease;
+}
+
+.interactive-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 22px 44px -12px rgba(0, 82, 255, 0.22);
+border-color: #0052FF !important;
+}
+
+.btn-animated {
+transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+box-shadow 0.25s ease,
+filter 0.25s ease,
+background-color 0.25s ease,
+border-color 0.25s ease;
+}
+
+.btn-animated:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 26px -6px rgba(0, 82, 255, 0.32);
+filter: brightness(1.05);
+}
+
+.btn-animated:active {
+transform: translateY(0);
+}
+
+/* =========================================================
+ANIMASI ACCORDION FAQ
+========================================================= */
+.faq-card {
+transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+
+.faq-card:hover {
+border-color: #60A5FA;
+transform: translateY(-2px);
+box-shadow: 0 10px 25px -8px rgba(0, 82, 255, 0.14);
+}
+
+.faq-card.faq-active {
+border-color: var(--flexi-blue) !important;
+box-shadow: 0 14px 30px -10px rgba(0, 82, 255, 0.20);
+}
+
+.faq-content-wrapper {
+display: grid;
+grid-template-rows: 0fr;
+opacity: 0;
+transition: grid-template-rows 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+opacity 0.28s ease;
+}
+
+.faq-content-wrapper.faq-open {
+grid-template-rows: 1fr;
+opacity: 1;
+}
+
+.faq-content-inner {
+overflow: hidden;
+}
+
+.faq-chevron {
+transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-card.faq-active .faq-chevron {
+transform: rotate(180deg);
+}
+
+/* =========================================================
+ANIMASI MARQUEE KONTEN FITUR & TEKNOLOGI
+========================================================= */
+.feature-marquee-viewport {
+position: relative;
+width: 100%;
+overflow: hidden;
+}
+
+.feature-marquee-track {
+width: max-content;
+animation: smoothMarqueeLeftRight 22s ease-in-out infinite alternate;
+will-change: transform;
+}
+
+.feature-marquee-track:hover {
+animation-play-state: paused;
+}
+
+@keyframes smoothMarqueeLeftRight {
+0% {
+transform: translate3d(-18%, 0, 0);
+}
+100% {
+transform: translate3d(0%, 0, 0);
+}
+}
+
+/* =========================================================
+NAVBAR SLIDING PILL (ELEGAN & RAPI)
+========================================================= */
+#nav-sliding-pill {
+position: absolute;
+top: 5px;
+left: 0;
+height: calc(100% - 10px);
+background: linear-gradient(135deg, #DCEBFF 0%, #CFE2FF 100%);
+border: 1px solid #93C5FD;
+border-radius: 8px;
+transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+z-index: 1;
+pointer-events: none;
+}
+
+html.dark #nav-sliding-pill {
+background: linear-gradient(135deg, #173264 0%, #1E3A8A 100%);
+border-color: #3B82F6;
+}
+
+.nav-pill-item {
+position: relative;
+z-index: 2;
+white-space: nowrap;
+}
+
+.nav-pill-item:hover {
+color: #0052FF !important;
+}
+
+html.dark .nav-pill-item:hover {
+color: #60A5FA !important;
+}
+
+.nav-pill-active {
+color: #002B7F !important;
+font-weight: 700 !important;
+}
+
+html.dark .nav-pill-active {
+color: #93C5FD !important;
+}
+
+.progress-bar-blue {
+background: linear-gradient(90deg, #002B7F 0%, #0052FF 50%, #0096FF 100%);
+background-size: 200% 100%;
+animation: blueShimmer 2.2s linear infinite;
+}
+
+@keyframes blueShimmer {
+0% {
+background-position: 100% 0;
+}
+100% {
+background-position: -100% 0;
+}
+}
+
+.page-transition {
+animation: fadeSlideIn 0.32s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+from {
+opacity: 0;
+transform: translateY(8px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: var(--flexi-ice);
+}
+
+::-webkit-scrollbar-thumb {
+background: #93C5FD;
+border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: var(--flexi-blue);
+}
