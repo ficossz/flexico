@@ -1,7 +1,3 @@
-// ============================================================================
-// FILE: app.js — Aplikasi Utama flexi.co (Murni JS & Bebas Error)
-// ============================================================================
-
 const SECRET_ADMIN_SLUG = 'flx982xKq71mZv40pLr5';
 const SECRET_ADMIN_ROUTE = '/' + SECRET_ADMIN_SLUG;
 const ADMIN_PASSWORDS = ['admin123', 'flexi2026'];
@@ -16,14 +12,227 @@ const STORAGE_KEYS = {
     THEME: 'flexi_theme_mode_v1'
 };
 
-// 2 AKUN HARDCODE SESUAI PERMINTAAN
+const PORTFOLIO_ARTICLES = {
+    bitemart: {
+        title: "BiteMart — Aplikasi Pesan-Antar Kuliner Eropa",
+        category: "Food Delivery App • Kuliner Eropa",
+        domain: "https://bitemart.eu",
+        badgeLabel: "Food Delivery",
+        client: "BiteMart Culinary Group",
+        year: "2026",
+        packageUsed: "Paket Bisnis",
+        summary: "BiteMart adalah aplikasi web pesan-antar makanan bergaya seperti GrabFood yang dirancang khusus untuk kurasi restoran dan hidangan khas Eropa.",
+        articleParagraphs: [
+            "BiteMart hadir menjawab kebutuhan pecinta kuliner Eropa yang menginginkan kemudahan memesan hidangan autentik—mulai dari artisan pizza Italia yang dipanggang pada suhu 450°C, croissant & pastry Prancis, pasta segar, hingga steak kontinental langsung dari smartphone maupun laptop.",
+            "Tim flexi.co membangun arsitektur pemesanan real-time yang menghubungkan pelanggan, dapur mitra restoran Eropa, dan kurir pengantaran dalam satu antarmuka horizontal yang bersih, cepat, dan mudah digunakan."
+        ],
+        features: [
+            "Katalog Restoran & Menu Eropa Terkurasi",
+            "Pelacakan Status Pesanan & Kurir Real-Time",
+            "Keranjang Pintar & Multi-Metode Pembayaran",
+            "Dashboard Mitra Restoran & Manajemen Menu"
+        ]
+    },
+    nusanet: {
+        title: "NusaNet — Layanan Internet Fiber Optik & Digital",
+        category: "Fiber Optic ISP & Telco Digital",
+        domain: "https://nusanet.id",
+        badgeLabel: "ISP & Telco",
+        client: "PT NusaNet Solusi Digital",
+        year: "2026",
+        packageUsed: "Paket Bisnis",
+        summary: "NusaNet adalah platform web layanan koneksi internet fiber optik ultra cepat (hingga 1 Gbps True Unlimited tanpa FUP) serta pembelian produk digital untuk rumah dan bisnis.",
+        articleParagraphs: [
+            "Website NusaNet dirancang dengan antarmuka bersih dan modern untuk memudahkan pelanggan memilih paket langganan internet fiber optik 100% simetris, mengecek jangkauan lokasi jaringan, serta melakukan pembelian pulsa dan paket data secara instan.",
+            "Kami menonjolkan informasi teknis utama seperti kecepatan maksimal hingga 1 Gbps, kuota 100% Unlimited tanpa FUP, serta jaminan 99.9% SLA uptime jaringan dalam tata letak kartu yang sangat jelas dan nyaman dibaca di berbagai ukuran layar."
+        ],
+        features: [
+            "Katalog Paket Fiber Optik 1 Gbps True Unlimited",
+            "Fitur Cek Jangkauan Lokasi & Pendaftaran Online",
+            "Layanan Pembelian Pulsa & Paket Data Instan",
+            "Informasi SLA 99.9% & Dukungan Pelanggan 24 Jam"
+        ]
+    }
+};
+
+function renderHardcodedPortfolioMockup(projectKey) {
+    if (projectKey === 'bitemart') {
+        return `
+            <div class="live-mockup-canvas bg-[#FDFBF7] text-stone-900 select-none overflow-hidden font-sans">
+                <div class="px-4 py-2.5 bg-[#1C1917] text-stone-200 flex items-center justify-between text-[10px]">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded bg-[#D97706] text-white font-extrabold text-[9px] tracking-wider uppercase">BiteMart EU</span>
+                        <span class="text-stone-300 truncate">📍 Via Torino 42, Milano • <strong class="text-amber-400">18 Mins</strong></span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <span class="hidden sm:inline text-stone-400">Promo: <strong class="text-white">EUROTASTE</strong></span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[9px]">2 Items • €24.40</span>
+                    </div>
+                </div>
+
+                <div class="p-3.5 sm:p-4 grid grid-cols-12 gap-3.5 items-stretch bg-[#FDFBF7]">
+                    <div class="hidden sm:flex sm:col-span-3 flex-col justify-between rounded-xl bg-[#F5F0E6] border border-stone-200/80 p-2.5 text-left">
+                        <div class="space-y-1">
+                            <p class="text-[8px] font-extrabold uppercase tracking-wider text-stone-400 px-1.5">European Kitchens</p>
+                            <div class="px-2 py-1.5 rounded-lg bg-[#1C1917] text-amber-300 font-bold text-[10px] flex items-center justify-between">
+                                <span>🍕 Napoli Pizza</span>
+                                <span>14</span>
+                            </div>
+                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                                <span>🥐 Paris Bakery</span>
+                                <span class="text-stone-400">9</span>
+                            </div>
+                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                                <span>🍝 Roma Pasta</span>
+                                <span class="text-stone-400">11</span>
+                            </div>
+                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                                <span>🥩 Vienna Grill</span>
+                                <span class="text-stone-400">7</span>
+                            </div>
+                        </div>
+                        <div class="p-2 rounded-lg bg-amber-500/15 border border-amber-500/30 text-left mt-2">
+                            <p class="text-[8px] font-extrabold uppercase text-amber-800">Free Gelato</p>
+                            <p class="text-[9px] font-semibold text-stone-700 leading-tight mt-0.5">Orders above €20 get artisan pistachio cup.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-9 flex flex-col justify-between space-y-3 text-left">
+                        <div class="rounded-xl bg-gradient-to-r from-[#292524] via-[#44403C] to-[#78350F] text-white p-3.5 flex items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <span class="inline-block px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-extrabold text-[8px] uppercase tracking-wider">Michelin Street Partner</span>
+                                <h4 class="font-heading font-extrabold text-xs sm:text-sm text-white leading-snug">
+                                    Artisan European Cravings, Delivered Hot.
+                                </h4>
+                                <p class="text-[9px] text-stone-300">Wood-fired Neapolitan dough, French butter pastries &amp; fresh handmade tagliatelle.</p>
+                            </div>
+                            <div class="shrink-0 text-right bg-black/30 px-3 py-2 rounded-xl border border-white/10">
+                                <span class="block text-[8px] uppercase text-amber-300 font-bold">Avg. Speed</span>
+                                <span class="font-extrabold text-sm text-white">18m</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2.5">
+                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-50 text-red-700">Napoli</span>
+                                    <span class="text-[9px] font-extrabold text-amber-600">★ 4.9</span>
+                                </div>
+                                <div class="my-2">
+                                    <p class="font-bold text-[10px] text-stone-900 truncate">Truffle Burrata Pizza</p>
+                                    <p class="text-[8px] text-stone-400">450°C Oak Fired</p>
+                                </div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
+                                    <span class="font-extrabold text-[10px] text-stone-900">€13.50</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                </div>
+                            </div>
+
+                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-800">Paris</span>
+                                    <span class="text-[9px] font-extrabold text-amber-600">★ 4.8</span>
+                                </div>
+                                <div class="my-2">
+                                    <p class="font-bold text-[10px] text-stone-900 truncate">Almond Croissant Box</p>
+                                    <p class="text-[8px] text-stone-400">Charentes Butter</p>
+                                </div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
+                                    <span class="font-extrabold text-[10px] text-stone-900">€8.90</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                </div>
+                            </div>
+
+                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Roma</span>
+                                    <span class="text-[9px] font-extrabold text-amber-600">★ 5.0</span>
+                                </div>
+                                <div class="my-2">
+                                    <p class="font-bold text-[10px] text-stone-900 truncate">Carbonara Guanciale</p>
+                                    <p class="text-[8px] text-stone-400">Pecorino Romano</p>
+                                </div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
+                                    <span class="font-extrabold text-[10px] text-stone-900">€11.90</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl bg-[#1C1917] text-white px-3.5 py-2 flex items-center justify-between text-[10px]">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                <span class="font-semibold text-stone-200">Courier Marco R. is picking up your wood-fired order</span>
+                            </div>
+                            <span class="font-extrabold text-amber-400 shrink-0">Track Map →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="live-mockup-canvas bg-white text-slate-900 select-none overflow-hidden">
+            <div class="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-white">
+                <div class="flex items-center gap-2">
+                    <span class="w-7 h-7 rounded-lg bg-[#E11D48] text-white font-extrabold text-xs flex items-center justify-center">N</span>
+                    <span class="font-extrabold text-sm text-slate-900">Nusa<span class="text-[#E11D48]">Net</span></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-[#E11D48] text-white font-bold text-[10px]">
+                        Langganan Sekarang
+                    </span>
+                    <span class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 text-xs">
+                        ≡
+                    </span>
+                </div>
+            </div>
+            <div class="p-5 sm:p-6 space-y-4 text-left bg-white">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-semibold text-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-[#E11D48]"></span>
+                    <span>Jaringan Fiber Optik Ultra Cepat 100% Simetris</span>
+                </div>
+                <h4 class="font-heading font-extrabold text-lg sm:text-xl text-slate-900 leading-tight">
+                    Koneksi Internet Tanpa Batas untuk <span class="text-[#E11D48]">Rumah &amp; Bisnis Anda.</span>
+                </h4>
+                <p class="text-[11px] text-slate-500 leading-relaxed">
+                    Nikmati kecepatan hingga <strong class="text-slate-800">1 Gbps True Unlimited</strong> tanpa kuota FUP. Bebas hambatan untuk streaming 4K, gaming latency rendah, dan kerja jarak jauh.
+                </p>
+                <div class="grid grid-cols-3 gap-2.5 pt-1">
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                        <p class="text-[9px] text-slate-500">Kecepatan Maksimal</p>
+                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">Hingga 1 Gbps</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                        <p class="text-[9px] text-slate-500">Batas Kuota (FUP)</p>
+                        <p class="font-extrabold text-xs sm:text-sm text-[#E11D48] mt-0.5">100% Unlimited</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                        <p class="text-[9px] text-slate-500">Uptime Jaringan</p>
+                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">99.9% SLA</p>
+                    </div>
+                </div>
+                <div class="pt-1 flex flex-wrap items-center gap-2.5">
+                    <span class="px-4 py-2 rounded-xl bg-[#E11D48] text-white font-bold text-[11px]">
+                        Pilih Paket Sekarang
+                    </span>
+                    <span class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-[11px]">
+                        Cek Jangkauan Lokasi
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 const HARDCODED_USERS = [
     {
         id: "USR-101",
         name: "Tim Internal Flexi",
         companyName: "flexi.co",
         email: "halo@flexi.co",
-        whatsapp: "0812-8800-1122",
+        whatsapp: "+62 813 7456 2098",
         password: "flexi123",
         createdAt: "18 Okt 2026"
     },
@@ -38,7 +247,6 @@ const HARDCODED_USERS = [
     }
 ];
 
-// DATA PROYEK AWAL UNTUK MASING-MASING AKUN HARDCODE
 const HARDCODED_PROJECTS = [
     {
         id: "FLX-2026-101",
@@ -46,10 +254,10 @@ const HARDCODED_PROJECTS = [
         clientName: "Tim Internal Flexi",
         brandName: "flexi.co",
         email: "halo@flexi.co",
-        whatsapp: "0812-8800-1122",
+        whatsapp: "+62 813 7456 2098",
         packageTier: "Paket Profesional",
         priceValue: 5000000,
-        priceText: "Rp 5.000.000",
+        priceText: "Rp 5.000.000+ (Negotiable)",
         renewalText: "Rp 1.500.000 / tahun",
         brief: "Pembaruan landing page studio flexi.co dengan sistem portal klien terintegrasi dan kecepatan tinggi.",
         status: "almost_done",
@@ -68,7 +276,7 @@ const HARDCODED_PROJECTS = [
         whatsapp: "0811-9988-7766",
         packageTier: "Paket Bisnis",
         priceValue: 8000000,
-        priceText: "Rp 8.000.000+",
+        priceText: "Rp 8.000.000+ (Negotiable)",
         renewalText: "Rp 2.000.000 / tahun",
         brief: "Website profil korporasi & katalog produk industri terintegrasi dengan database dan pembayaran otomatis.",
         status: "done",
@@ -83,21 +291,21 @@ const HARDCODED_PROJECTS = [
 const PACKAGE_META = {
     "Paket Starter": {
         priceValue: 2000000,
-        priceText: "Rp 2.000.000",
+        priceText: "Rp 2.000.000+ (Negotiable)",
         renewalText: "Rp 1.000.000 / tahun",
-        summary: "Termasuk Gratis 6 Bulan Maintenance + 1 Halaman Landing Page Responsif & Tombol Direct Kontak / WA."
+        summary: "Gratis Domain .COM/.NET/.ORG, Penyimpanan 500MB, 5 Page Standard, Free SSL, SEO Onpage & Gratis 6 Bulan Maintenance."
     },
     "Paket Profesional": {
         priceValue: 5000000,
-        priceText: "Rp 5.000.000",
+        priceText: "Rp 5.000.000+ (Negotiable)",
         renewalText: "Rp 1.500.000 / tahun",
-        summary: "Termasuk Gratis 6 Bulan Maintenance + Hingga 5-7 Halaman Website, CMS Mandiri & Optimasi SEO."
+        summary: "Gratis Domain .COM/.NET/.ORG, Penyimpanan 2GB, 5 Page Standard + Blog, Free SSL, SEO Onpage & Gratis 6 Bulan Maintenance."
     },
     "Paket Bisnis": {
         priceValue: 8000000,
-        priceText: "Rp 8.000.000+",
+        priceText: "Rp 8.000.000+ (Negotiable)",
         renewalText: "Rp 2.000.000 / tahun",
-        summary: "Termasuk Gratis 6 Bulan Maintenance + Fitur Custom & Database, Integrasi Payment Gateway."
+        summary: "Gratis Domain .COM/.NET/.ORG, Penyimpanan 5GB, 16 Paket Full Fitur, 1 Email Bisnis, Google Console & Analytic + 6 Bulan Maintenance."
     }
 };
 
@@ -105,7 +313,7 @@ const STATUS_META = {
     not_yet: {
         label: "Not Yet (Belum Dimulai)",
         shortLabel: "NOT YET • 10%",
-        badgeClass: "bg-[#EBF3FF] text-[#002B7F] border-blue-200",
+        badgeClass: "bg-[#E6F0FF] text-[#002B7F] border-blue-200",
         defaultProgress: 10,
         stepIndex: 1,
         defaultNote: "Pendaftaran proyek telah diterima. Tim kami sedang mempersiapkan jadwal pengerjaan."
@@ -121,7 +329,7 @@ const STATUS_META = {
     almost_done: {
         label: "Almost Done (Hampir Selesai)",
         shortLabel: "ALMOST DONE • 85%",
-        badgeClass: "bg-[#CFE2FF] text-[#06152D] border-[#0052FF]",
+        badgeClass: "bg-[#C7DCFF] text-[#06152D] border-[#0052FF]",
         defaultProgress: 85,
         stepIndex: 3,
         defaultNote: "Website Anda hampir selesai (Almost Done)! Saat ini sedang tahap pengecekan akhir & optimasi."
@@ -129,14 +337,13 @@ const STATUS_META = {
     done: {
         label: "Done (Selesai & Live)",
         shortLabel: "DONE • 100%",
-        badgeClass: "bg-blue-gradient text-white border-blue-400",
+        badgeClass: "bg-solid-blue text-white border-blue-500",
         defaultProgress: 100,
         stepIndex: 4,
         defaultNote: "Selamat! Website perusahaan Anda telah 100% Selesai (Done) dan siap digunakan."
     }
 };
 
-// State Aplikasi Global
 window.usersData = [];
 window.projectsData = [];
 window.currentClientUser = null;
@@ -151,16 +358,16 @@ window.adminFailedAttempts = 0;
 window.adminLockoutTimer = null;
 let toastTimer = null;
 
-// ---------------------------------------------------------
-// 1. FITUR MODE GELAP & TERANG (DARK / LIGHT MODE)
-// ---------------------------------------------------------
 function initThemeMode() {
     try {
         const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
-        const isDark = savedTheme === 'dark';
-        document.documentElement.classList.toggle('dark', isDark);
-        updateThemeToggleUI(isDark);
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     } catch (e) {}
+    updateThemeToggleUI();
 }
 
 window.toggleDarkMode = function() {
@@ -168,22 +375,152 @@ window.toggleDarkMode = function() {
     try {
         localStorage.setItem(STORAGE_KEYS.THEME, isDark ? 'dark' : 'light');
     } catch (e) {}
-    updateThemeToggleUI(isDark);
+    updateThemeToggleUI();
 };
 
-function updateThemeToggleUI(isDark) {
-    const icon = document.getElementById('theme-toggle-icon');
-    const mobIcon = document.getElementById('mobile-theme-icon');
-    const label = document.getElementById('theme-toggle-label');
-    if (icon) icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-    if (mobIcon) mobIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-    if (label) label.textContent = isDark ? 'Terang' : 'Gelap';
+function updateThemeToggleUI() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const labelEl = document.getElementById('theme-toggle-label');
+    const iconEl = document.getElementById('theme-toggle-icon');
+
+    if (labelEl) labelEl.textContent = isDark ? 'Terang' : 'Gelap';
+    if (iconEl) iconEl.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
     if (window.lucide) window.lucide.createIcons();
 }
 
-// ---------------------------------------------------------
-// 2. INISIALISASI DATA HARDCODE + LOCALSTORAGE
-// ---------------------------------------------------------
+function initScrollReveal() {
+    const revealEls = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealEls.length) return;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach((el) => observer.observe(el));
+    } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+    }
+}
+
+window.openPortfolioArticleModal = function(projectKey) {
+    const article = PORTFOLIO_ARTICLES[projectKey];
+    if (!article) return;
+
+    const modalBackdrop = document.getElementById('portfolio-article-modal-backdrop');
+    const contentBox = document.getElementById('portfolio-article-modal-content');
+    if (!modalBackdrop || !contentBox) return;
+
+    contentBox.innerHTML = `
+        <div class="flex flex-col md:flex-row w-full items-stretch">
+            <div class="relative w-full md:w-6/12 lg:w-7/12 bg-[#F2F7FF] theme-subbox p-4 sm:p-6 flex flex-col justify-center border-b md:border-b-0 md:border-r border-blue-200 shrink-0">
+                <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-md w-full">
+                    <div class="portfolio-browser-bar px-4 py-2.5 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-[#002B7F] truncate">${escapeHtml(article.domain)}</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[10px] font-bold uppercase tracking-wider">
+                            ${escapeHtml(article.badgeLabel)}
+                        </span>
+                    </div>
+                    ${renderHardcodedPortfolioMockup(projectKey)}
+                </div>
+                <button 
+                    type="button" 
+                    onclick="closePortfolioArticleModal()" 
+                    aria-label="Tutup Artikel"
+                    class="md:hidden absolute top-6 right-6 w-9 h-9 rounded-xl bg-[#06152D]/85 hover:bg-[#0052FF] text-white flex items-center justify-center transition-colors shadow-md"
+                >
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <article class="w-full md:w-6/12 lg:w-5/12 p-6 sm:p-8 flex flex-col justify-between space-y-5 max-h-[75vh] md:max-h-[85vh] overflow-y-auto">
+                <div class="space-y-4">
+                    <div class="flex items-start justify-between gap-4 border-b border-blue-100 pb-4">
+                        <div class="space-y-1.5">
+                            <span class="inline-block px-3 py-1 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[11px] font-bold uppercase tracking-wider">
+                                ${escapeHtml(article.category)}
+                            </span>
+                            <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D] leading-snug">
+                                ${escapeHtml(article.title)}
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 theme-text font-medium">
+                                <span>Klien: <strong class="text-[#0052FF]">${escapeHtml(article.client)}</strong></span>
+                                <span>•</span>
+                                <span>Tahun: ${escapeHtml(article.year)}</span>
+                                <span>•</span>
+                                <span>${escapeHtml(article.packageUsed)}</span>
+                            </div>
+                        </div>
+                        <button 
+                            type="button" 
+                            onclick="closePortfolioArticleModal()" 
+                            aria-label="Tutup Artikel"
+                            class="hidden md:flex w-9 h-9 rounded-xl bg-[#E6F0FF] hover:bg-[#0052FF] text-[#06152D] hover:text-white items-center justify-center shrink-0 transition-colors"
+                        >
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <p class="theme-heading font-semibold text-xs sm:text-sm text-[#06152D] leading-relaxed">
+                        ${escapeHtml(article.summary)}
+                    </p>
+
+                    <div class="space-y-2.5 theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        ${article.articleParagraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+                    </div>
+
+                    <div class="theme-subbox p-4 rounded-xl bg-[#F2F7FF] border border-blue-200">
+                        <h4 class="theme-heading font-heading font-bold text-xs text-[#06152D] mb-2.5">
+                            Fitur Utama yang Dibangun:
+                        </h4>
+                        <div class="grid grid-cols-1 gap-2">
+                            ${article.features.map(f => `
+                                <div class="flex items-center gap-2 text-xs theme-heading text-[#06152D] font-medium">
+                                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#0052FF] shrink-0"></i>
+                                    <span>${escapeHtml(f)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-blue-100 flex flex-col sm:flex-row items-center justify-end gap-2.5">
+                    <button 
+                        type="button" 
+                        onclick="closePortfolioArticleModal()" 
+                        class="theme-subbox theme-heading w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] font-bold text-xs"
+                    >
+                        Tutup Artikel
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="closePortfolioArticleModal(); openProjectModal('${escapeHtml(article.packageUsed)}');" 
+                        class="btn-animated w-full sm:w-auto px-5 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs flex items-center justify-center"
+                    >
+                        <span>Buat Website Serupa</span>
+                    </button>
+                </div>
+            </article>
+        </div>
+    `;
+
+    modalBackdrop.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+};
+
+window.closePortfolioArticleModal = function() {
+    document.getElementById('portfolio-article-modal-backdrop')?.classList.add('hidden');
+};
+
 function initAppData() {
     try {
         const rawUsers = localStorage.getItem(STORAGE_KEYS.USERS);
@@ -254,9 +591,6 @@ function getMyCompanyProjects() {
     );
 }
 
-// ---------------------------------------------------------
-// 3. SISTEM ROUTING & SCROLL-SPY NAVBAR
-// ---------------------------------------------------------
 function detectRouteFromBrowserLocation() {
     const path = (window.location.pathname || '');
     const hash = (window.location.hash || '');
@@ -294,7 +628,7 @@ window.navigateToRoute = function(routePath, skipPushState = false) {
     }
 
     document.getElementById('mobile-menu')?.classList.add('hidden');
-    ['project-modal-backdrop', 'auth-modal-backdrop', 'admin-remove-modal-backdrop'].forEach(id => {
+    ['project-modal-backdrop', 'auth-modal-backdrop', 'admin-remove-modal-backdrop', 'portfolio-article-modal-backdrop'].forEach(id => {
         document.getElementById(id)?.classList.add('hidden');
     });
 
@@ -364,7 +698,10 @@ window.navigateToRoute = function(routePath, skipPushState = false) {
                 viewHome.style.display = 'block';
             }
             renderHomePrivateSections();
-            requestAnimationFrame(() => updateSlidingPillPosition(window.activeScrollSection || 'beranda'));
+            requestAnimationFrame(() => {
+                updateSlidingPillPosition(window.activeScrollSection || 'beranda');
+                initScrollReveal();
+            });
         }
     }
 
@@ -420,7 +757,7 @@ function updateSlidingPillPosition(activeKey) {
 
 window.addEventListener('scroll', () => {
     if (window.currentRoute !== '/' || window.isProgrammaticScroll) return;
-    const sections = ['beranda', 'layanan', 'tentang-kami', 'paket-harga', 'cara-kerja', 'faq'];
+    const sections = ['beranda', 'layanan', 'tentang-kami', 'portofolio', 'paket-harga', 'cara-kerja', 'faq'];
     let current = 'beranda';
     const scrollPos = window.scrollY + 220;
 
@@ -449,7 +786,6 @@ window.addEventListener('hashchange', () => {
     }
 });
 
-// Shortcut ketik URL rahasia admin langsung di keyboard
 let secretKeyBuffer = '';
 window.addEventListener('keydown', (e) => {
     const tag = (e.target?.tagName || '').toLowerCase();
@@ -463,9 +799,6 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// ---------------------------------------------------------
-// 4. INTERAKSI ACCORDION 8 SOAL FAQ
-// ---------------------------------------------------------
 window.toggleFaqItem = function(index) {
     for (let i = 1; i <= 8; i++) {
         const card = document.getElementById(`faq-card-${i}`);
@@ -483,9 +816,6 @@ window.toggleFaqItem = function(index) {
     }
 };
 
-// ---------------------------------------------------------
-// 5. AUTENTIKASI KLIEN (DAFTAR -> ARAHKAN KE LOGIN & TAMPILKAN TOAST)
-// ---------------------------------------------------------
 window.togglePasswordField = function(inputId, iconId) {
     const inputEl = document.getElementById(inputId);
     const iconEl = document.getElementById(iconId);
@@ -526,14 +856,14 @@ window.switchAuthTab = function(tab) {
         document.getElementById('signup-redirect-success-banner')?.classList.add('hidden');
         loginForm?.classList.add('hidden');
         signupForm?.classList.remove('hidden');
-        if (btnSignup) btnSignup.className = "py-2 rounded-lg font-bold text-xs sm:text-sm bg-blue-gradient text-white shadow-sm transition-all";
-        if (btnLogin) btnLogin.className = "py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all";
+        if (btnSignup) btnSignup.className = "py-2 rounded-lg font-bold text-xs sm:text-sm bg-solid-blue text-white transition-all";
+        if (btnLogin) btnLogin.className = "theme-heading py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all";
         if (titleEl) titleEl.textContent = "Daftar Akun Perusahaan";
     } else {
         signupForm?.classList.add('hidden');
         loginForm?.classList.remove('hidden');
-        if (btnLogin) btnLogin.className = "py-2 rounded-lg font-bold text-xs sm:text-sm bg-blue-gradient text-white shadow-sm transition-all";
-        if (btnSignup) btnSignup.className = "py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all";
+        if (btnLogin) btnLogin.className = "py-2 rounded-lg font-bold text-xs sm:text-sm bg-solid-blue text-white transition-all";
+        if (btnSignup) btnSignup.className = "theme-heading py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all";
         if (titleEl) titleEl.textContent = "Masuk Akun Perusahaan";
     }
 };
@@ -577,7 +907,6 @@ window.handleClientSignupAccount = function(e) {
     window.usersData.push(newUser);
     saveDatabaseState();
 
-    // Reset form pendaftaran & arahkan ke tab Login
     document.getElementById('client-signup-form')?.reset();
     switchAuthTab('login');
 
@@ -590,8 +919,6 @@ window.handleClientSignupAccount = function(e) {
     }
 
     document.getElementById('signup-redirect-success-banner')?.classList.remove('hidden');
-
-    // Tampilkan pemberitahuan di kanan bawah: "Akun sudah dibuat"
     showToast("Akun sudah dibuat", `Silakan login menggunakan akun ${companyName} Anda.`);
 };
 
@@ -615,7 +942,6 @@ window.handleClientLogin = function(e) {
     setCurrentClientUser(matchedUser);
     closeAuthModal();
 
-    // Tampilkan pemberitahuan di kanan bawah: "Akun login"
     showToast("Akun login", `Selamat datang kembali, ${matchedUser.companyName}.`);
     navigateToRoute('/dashboard');
 };
@@ -628,9 +954,6 @@ window.handleClientLogout = function() {
     showToast("Sesi Berakhir", "Anda telah keluar dari akun perusahaan.");
 };
 
-// ---------------------------------------------------------
-// 6. FORMULIR PEMBUATAN PROYEK WEBSITE BARU
-// ---------------------------------------------------------
 window.handleDraftInput = function() {
     const selectedPkg = document.querySelector('input[name="package_tier"]:checked')?.value || 'Paket Profesional';
     const meta = PACKAGE_META[selectedPkg] || PACKAGE_META['Paket Profesional'];
@@ -751,9 +1074,6 @@ window.copyTrackingCode = function() {
     }
 };
 
-// ---------------------------------------------------------
-// 7. RENDER TAMPILAN NAVBAR, BERANDA & PORTAL KLIEN
-// ---------------------------------------------------------
 function renderNavbarAuthUI() {
     const outDesktop = document.getElementById('nav-auth-logged-out');
     const inDesktop = document.getElementById('nav-auth-logged-in');
@@ -764,9 +1084,9 @@ function renderNavbarAuthUI() {
     if (window.currentClientUser) {
         const myProjects = getMyCompanyProjects();
         outDesktop?.classList.add('hidden');
-        outDesktop?.classList.remove('flex');
+        outDesktop?.classList.remove('sm:flex');
         inDesktop?.classList.remove('hidden');
-        inDesktop?.classList.add('flex');
+        inDesktop?.classList.add('sm:flex');
 
         outMobile?.classList.add('hidden');
         inMobile?.classList.remove('hidden');
@@ -797,9 +1117,9 @@ function renderNavbarAuthUI() {
         }
     } else {
         outDesktop?.classList.remove('hidden');
-        outDesktop?.classList.add('flex');
+        outDesktop?.classList.add('sm:flex');
         inDesktop?.classList.add('hidden');
-        inDesktop?.classList.remove('flex');
+        inDesktop?.classList.remove('sm:flex');
 
         outMobile?.classList.remove('hidden');
         inMobile?.classList.add('hidden');
@@ -823,8 +1143,8 @@ function renderProjectStatusCardHTML(proj) {
     ];
 
     return `
-        <article class="theme-card bg-white rounded-2xl border border-blue-200 shadow-sm overflow-hidden">
-            <div class="bg-[#EBF3FF] dark:bg-[#08152B] px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-200">
+        <article class="theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden">
+            <div class="theme-subbox bg-[#E6F0FF] px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-200">
                 <div>
                     <span class="text-xs text-[#0052FF] font-semibold">${escapeHtml(proj.id)} • ${escapeHtml(proj.packageTier)}</span>
                     <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-0.5">${escapeHtml(proj.brandName)}</h3>
@@ -840,7 +1160,7 @@ function renderProjectStatusCardHTML(proj) {
                         <span class="theme-heading font-semibold text-[#06152D]">Status: <strong class="text-[#0052FF]">${sMeta.label}</strong></span>
                         <span class="theme-heading font-bold text-[#06152D]">${proj.progress}%</span>
                     </div>
-                    <div class="w-full h-3 bg-[#EBF3FF] rounded-full overflow-hidden p-0.5">
+                    <div class="w-full h-3 bg-[#E6F0FF] rounded-full overflow-hidden p-0.5">
                         <div class="h-full rounded-full progress-bar-blue transition-all duration-500" style="width: ${proj.progress}%"></div>
                     </div>
                 </div>
@@ -849,7 +1169,7 @@ function renderProjectStatusCardHTML(proj) {
                     ${steps.map(step => {
                         const isActiveOrDone = step.idx <= sMeta.stepIndex;
                         return `
-                            <div class="theme-subbox p-3 rounded-xl border ${isActiveOrDone ? 'bg-[#EBF3FF] border-[#0052FF] text-[#06152D]' : 'bg-slate-50 border-slate-200 text-slate-400'}">
+                            <div class="theme-subbox p-3 rounded-xl border ${isActiveOrDone ? 'bg-[#E6F0FF] border-[#0052FF] text-[#06152D]' : 'bg-slate-50 border-slate-200 text-slate-400'}">
                                 <p class="theme-heading font-bold text-xs">${step.idx}. ${step.title}</p>
                                 <p class="theme-text text-[11px] opacity-80 mt-0.5">${step.desc}</p>
                             </div>
@@ -857,7 +1177,7 @@ function renderProjectStatusCardHTML(proj) {
                     }).join('')}
                 </div>
 
-                <div class="theme-subbox p-4 rounded-xl bg-[#F4F8FF] border border-blue-100 text-xs sm:text-sm space-y-1.5">
+                <div class="theme-subbox p-4 rounded-xl bg-[#F2F7FF] border border-blue-100 text-xs sm:text-sm space-y-1.5">
                     <p class="font-semibold text-[#0052FF]">Catatan Progres Tim Admin:</p>
                     <p class="theme-heading text-[#06152D]">"${escapeHtml(proj.adminNote)}"</p>
                     <p class="theme-text text-xs text-slate-500 pt-1">Konsep Klien: ${escapeHtml(proj.brief)}</p>
@@ -868,84 +1188,29 @@ function renderProjectStatusCardHTML(proj) {
 }
 
 function renderHomePrivateSections() {
-    const heroWidget = document.getElementById('hero-portal-widget');
     const homeTrackerBox = document.getElementById('home-private-tracker-box');
     const myProjects = getMyCompanyProjects();
 
     if (window.currentClientUser) {
-        const latestProj = myProjects[0];
-        if (heroWidget) {
-            if (latestProj) {
-                const sMeta = STATUS_META[latestProj.status] || STATUS_META.not_yet;
-                heroWidget.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <span class="text-[11px] font-bold uppercase text-[#0052FF]">PROYEK AKTIF (${escapeHtml(window.currentClientUser.companyName)})</span>
-                            <h3 class="theme-heading font-heading font-bold text-base text-[#06152D] mt-0.5">${escapeHtml(latestProj.brandName)} — ${sMeta.label} (${latestProj.progress}%)</h3>
-                            <p class="theme-text text-xs text-slate-600 mt-1">"${escapeHtml(latestProj.adminNote)}"</p>
-                        </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <button type="button" onclick="navigateToRoute('/dashboard')" class="btn-animated px-4 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs">
-                                Buka Proyek Saya (${myProjects.length})
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                heroWidget.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <p class="theme-heading font-heading font-bold text-sm text-[#06152D]">Halo, ${escapeHtml(window.currentClientUser.companyName)}!</p>
-                            <p class="theme-text text-xs text-slate-600">Belum ada proyek website yang diajukan pada akun Anda.</p>
-                        </div>
-                        <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated px-4 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs">
-                            + Buat Proyek Baru
-                        </button>
-                    </div>
-                `;
-            }
-        }
-
         if (homeTrackerBox) {
             homeTrackerBox.innerHTML = myProjects.length > 0
                 ? renderProjectStatusCardHTML(myProjects[0])
-                : `<div class="theme-card bg-[#F4F8FF] rounded-2xl border border-blue-200 p-8 text-center">
+                : `<div class="theme-card bg-white rounded-2xl border border-blue-200 p-8 text-center">
                         <p class="theme-heading font-heading font-bold text-base text-[#06152D]">Belum Ada Proyek di Akun ${escapeHtml(window.currentClientUser.companyName)}</p>
-                        <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated mt-3 px-5 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs">+ Ajukan Proyek</button>
+                        <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated mt-3 px-5 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs">+ Ajukan Proyek</button>
                    </div>`;
         }
     } else {
-        if (heroWidget) {
-            heroWidget.innerHTML = `
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-bold text-[#0052FF]">Portal Klien &amp; Cek Progres Website</span>
-                        <p class="theme-text text-xs text-slate-600 mt-0.5">
-                            Masuk ke akun perusahaan Anda untuk memantau apakah proyek website Anda berstatus Not Yet, Almost Done, atau Done.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0">
-                        <button type="button" onclick="openAuthModal('login')" class="btn-animated px-4 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs">
-                            Masuk Akun
-                        </button>
-                        <button type="button" onclick="openAuthModal('signup')" class="btn-animated px-4 py-2.5 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-xs border border-blue-200">
-                            Daftar Akun
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
         if (homeTrackerBox) {
             homeTrackerBox.innerHTML = `
-                <div class="theme-card bg-[#F4F8FF] rounded-2xl border border-blue-200 p-8 text-center max-w-2xl mx-auto">
+                <div class="theme-card bg-white rounded-2xl border border-blue-200 p-8 text-center max-w-2xl mx-auto">
                     <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D]">Pantau Progres Pengerjaan Website Anda</h3>
                     <p class="theme-text text-xs sm:text-sm text-slate-600 mt-1 mb-5">
                         Setiap perusahaan hanya dapat melihat progres website miliknya sendiri. Silakan masuk atau daftar akun perusahaan terlebih dahulu.
                     </p>
                     <div class="flex justify-center gap-3">
-                        <button type="button" onclick="openAuthModal('login')" class="btn-animated px-5 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm">Masuk Akun</button>
-                        <button type="button" onclick="openAuthModal('signup')" class="btn-animated px-5 py-2.5 rounded-xl bg-white text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">Daftar Akun</button>
+                        <button type="button" onclick="openAuthModal('login')" class="btn-animated px-5 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm">Masuk Akun</button>
+                        <button type="button" onclick="openAuthModal('signup')" class="btn-animated theme-subbox theme-heading px-5 py-2.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">Daftar Akun</button>
                     </div>
                 </div>
             `;
@@ -960,14 +1225,14 @@ window.renderClientDashboardPage = function() {
 
     if (!window.currentClientUser) {
         container.innerHTML = `
-            <div class="theme-card bg-white rounded-2xl border border-blue-100 p-10 text-center max-w-lg mx-auto shadow-sm">
+            <div class="theme-card bg-white rounded-2xl border border-blue-200 p-10 text-center max-w-lg mx-auto">
                 <h1 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">Portal Klien Perusahaan</h1>
                 <p class="theme-text text-slate-600 text-xs sm:text-sm mt-2">
                     Silakan masuk menggunakan akun perusahaan Anda untuk memantau seluruh progres website Anda.
                 </p>
                 <div class="mt-6 flex justify-center gap-3">
-                    <button type="button" onclick="openAuthModal('login')" class="btn-animated px-6 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm">Masuk</button>
-                    <button type="button" onclick="openAuthModal('signup')" class="btn-animated px-6 py-2.5 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-bold text-xs sm:text-sm border border-blue-200">Daftar Akun</button>
+                    <button type="button" onclick="openAuthModal('login')" class="btn-animated px-6 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm">Masuk</button>
+                    <button type="button" onclick="openAuthModal('signup')" class="btn-animated theme-subbox theme-heading px-6 py-2.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] font-bold text-xs sm:text-sm border border-blue-200">Daftar Akun</button>
                 </div>
             </div>
         `;
@@ -976,19 +1241,19 @@ window.renderClientDashboardPage = function() {
 
     const myProjects = getMyCompanyProjects();
     container.innerHTML = `
-        <div class="theme-card bg-white rounded-2xl border border-blue-200 p-6 sm:p-8 shadow-sm mb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="theme-card bg-white rounded-2xl border border-blue-200 p-6 sm:p-8 mb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider bg-[#EBF3FF] text-[#002B7F] px-3 py-1 rounded-full">Portal Perusahaan</span>
+                <span class="theme-subbox text-[11px] font-bold uppercase tracking-wider bg-[#E6F0FF] text-[#0052FF] px-3 py-1 rounded-full">Portal Perusahaan</span>
                 <h1 class="theme-heading font-heading font-extrabold text-2xl sm:text-3xl text-[#06152D] mt-2">${escapeHtml(window.currentClientUser.companyName)}</h1>
                 <p class="theme-text text-slate-600 text-xs sm:text-sm mt-0.5">
                     PIC: ${escapeHtml(window.currentClientUser.name)} (${escapeHtml(window.currentClientUser.email)}) • ${myProjects.length} Proyek
                 </p>
             </div>
             <div class="flex flex-wrap gap-2.5">
-                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated px-4 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs sm:text-sm">
+                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated px-4 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm">
                     + Proyek Baru
                 </button>
-                <button type="button" onclick="navigateToRoute('/')" class="btn-animated px-4 py-2.5 rounded-xl bg-[#EBF3FF] text-[#002B7F] font-semibold text-xs sm:text-sm">
+                <button type="button" onclick="navigateToRoute('/')" class="btn-animated theme-subbox theme-heading px-4 py-2.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] font-semibold text-xs sm:text-sm">
                     Beranda
                 </button>
             </div>
@@ -996,9 +1261,9 @@ window.renderClientDashboardPage = function() {
         <div class="space-y-6">
             ${myProjects.length > 0
                 ? myProjects.map(p => renderProjectStatusCardHTML(p)).join('')
-                : `<div class="theme-card bg-white rounded-2xl border border-blue-100 p-10 text-center">
+                : `<div class="theme-card bg-white rounded-2xl border border-blue-200 p-10 text-center">
                         <p class="theme-heading font-heading font-bold text-base text-[#06152D]">Belum ada proyek website.</p>
-                        <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated mt-4 px-5 py-2.5 rounded-xl bg-blue-gradient text-white font-bold text-xs">+ Buat Proyek Pertama</button>
+                        <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated mt-4 px-5 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs">+ Buat Proyek Pertama</button>
                    </div>`
             }
         </div>
@@ -1006,9 +1271,6 @@ window.renderClientDashboardPage = function() {
     if (window.lucide) window.lucide.createIcons();
 };
 
-// ---------------------------------------------------------
-// 8. ADMIN PANEL RAHASIA + PROTEKSI BRUTE-FORCE 30 DETIK
-// ---------------------------------------------------------
 function getAdminLockoutUntil() {
     try {
         return Number(localStorage.getItem(STORAGE_KEYS.ADMIN_LOCKOUT) || 0);
@@ -1106,7 +1368,7 @@ window.switchAdminMainTab = function(tabName) {
     aView?.classList.add('hidden');
 
     const inactive = "px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-blue-100 text-xs font-semibold";
-    const active = "px-4 py-2 rounded-xl bg-blue-gradient text-white text-xs font-bold";
+    const active = "px-4 py-2 rounded-xl bg-solid-blue text-white text-xs font-bold";
 
     if (bProj) bProj.className = inactive;
     if (bAcc) bAcc.className = inactive;
@@ -1131,13 +1393,13 @@ window.renderAdminAccountsTable = function() {
     tbody.innerHTML = window.usersData.map(u => {
         const count = window.projectsData.filter(p => p.userId === u.id || (p.email && p.email.toLowerCase() === u.email.toLowerCase())).length;
         return `
-            <tr class="hover:bg-[#F4F8FF]">
+            <tr class="hover:bg-[#F2F7FF]">
                 <td class="p-4 font-bold text-[#0052FF]">${escapeHtml(u.id)}</td>
                 <td class="p-4 font-bold text-[#06152D]">${escapeHtml(u.companyName)}</td>
                 <td class="p-4 text-slate-700">${escapeHtml(u.name)}</td>
                 <td class="p-4 text-[#0052FF]">${escapeHtml(u.email)}</td>
                 <td class="p-4 text-slate-600">${escapeHtml(u.whatsapp)}</td>
-                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-[#EBF3FF] text-[#002B7F] font-bold text-xs">${count} Proyek</span></td>
+                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-[#E6F0FF] text-[#002B7F] font-bold text-xs">${count} Proyek</span></td>
             </tr>
         `;
     }).join('');
@@ -1149,7 +1411,7 @@ window.setAdminFilter = function(filterKey) {
         const btn = document.getElementById(`filter-btn-${k}`);
         if (!btn) return;
         btn.className = (k === filterKey)
-            ? "px-3.5 py-2 rounded-lg text-xs font-bold bg-blue-gradient text-white"
+            ? "px-3.5 py-2 rounded-lg text-xs font-bold bg-solid-blue text-white"
             : "px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50";
     });
     renderAdminProjects();
@@ -1232,7 +1494,7 @@ window.renderAdminProjects = function() {
     if (elRemoved) elRemoved.textContent = removedProjects.length;
 
     const totalRev = window.projectsData.reduce((acc, p) => acc + (Number(p.priceValue) || 0), 0);
-    if (elRev) elRev.textContent = "Rp " + totalRev.toLocaleString('id-ID');
+    if (elRev) elRev.textContent = "Rp " + totalRev.toLocaleString('id-ID') + "+";
     if (badgeUsers) badgeUsers.textContent = window.usersData.length;
 
     const searchVal = (document.getElementById('admin-search-input')?.value || '').trim().toLowerCase();
@@ -1265,12 +1527,12 @@ window.renderAdminProjects = function() {
     listContainer.innerHTML = filtered.map(proj => {
         const sMeta = STATUS_META[proj.status] || STATUS_META.not_yet;
         return `
-            <article class="bg-white rounded-2xl border border-blue-200 p-6 shadow-sm">
+            <article class="bg-white rounded-2xl border border-blue-200 p-6">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-blue-100">
                     <div>
                         <div class="flex flex-wrap items-center gap-2">
                             <span class="font-bold text-xs px-2.5 py-1 rounded bg-[#06152D] text-white">${escapeHtml(proj.id)}</span>
-                            <span class="px-2.5 py-1 rounded bg-[#EBF3FF] text-[#002B7F] font-bold text-xs">${escapeHtml(proj.packageTier)} (${escapeHtml(proj.priceText)})</span>
+                            <span class="px-2.5 py-1 rounded bg-[#E6F0FF] text-[#002B7F] font-bold text-xs">${escapeHtml(proj.packageTier)} (${escapeHtml(proj.priceText)})</span>
                             <span class="text-xs text-slate-400">• ${escapeHtml(proj.createdAt)}</span>
                         </div>
                         <h3 class="font-heading font-bold text-lg text-[#06152D] mt-1.5">
@@ -1283,7 +1545,7 @@ window.renderAdminProjects = function() {
                             ${sMeta.label} (${proj.progress}%)
                         </span>
                         ${proj.removedFromAdmin
-                            ? `<button type="button" onclick="restoreProjectToAdmin('${proj.id}')" class="px-3 py-1.5 rounded-xl bg-[#EBF3FF] text-[#002B7F] text-xs font-bold">Kembalikan</button>`
+                            ? `<button type="button" onclick="restoreProjectToAdmin('${proj.id}')" class="px-3 py-1.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] text-xs font-bold">Kembalikan</button>`
                             : `<button type="button" onclick="openAdminRemoveModal('${proj.id}')" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-[#06152D] text-xs font-semibold">Remove Proyek</button>`
                         }
                     </div>
@@ -1297,10 +1559,10 @@ window.renderAdminProjects = function() {
                     <div class="lg:col-span-5 space-y-2.5">
                         <label class="block text-xs font-bold text-[#06152D]">Ubah Status Progres:</label>
                         <div class="grid grid-cols-2 gap-2">
-                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'not_yet')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'not_yet' ? 'bg-blue-gradient text-white border-transparent' : 'bg-[#F4F8FF] text-[#06152D] border-blue-200'}">Not Yet (10%)</button>
-                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'in_progress')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'in_progress' ? 'bg-blue-gradient text-white border-transparent' : 'bg-[#F4F8FF] text-[#06152D] border-blue-200'}">In Progress (50%)</button>
-                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'almost_done')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'almost_done' ? 'bg-blue-gradient text-white border-transparent' : 'bg-[#F4F8FF] text-[#06152D] border-blue-200'}">Almost Done (85%)</button>
-                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'done')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'done' ? 'bg-blue-gradient text-white border-transparent' : 'bg-[#F4F8FF] text-[#06152D] border-blue-200'}">Done (100%)</button>
+                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'not_yet')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'not_yet' ? 'bg-solid-blue text-white border-transparent' : 'bg-[#F2F7FF] text-[#06152D] border-blue-200'}">Not Yet (10%)</button>
+                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'in_progress')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'in_progress' ? 'bg-solid-blue text-white border-transparent' : 'bg-[#F2F7FF] text-[#06152D] border-blue-200'}">In Progress (50%)</button>
+                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'almost_done')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'almost_done' ? 'bg-solid-blue text-white border-transparent' : 'bg-[#F2F7FF] text-[#06152D] border-blue-200'}">Almost Done (85%)</button>
+                            <button type="button" onclick="quickChangeProjectStatus('${proj.id}', 'done')" class="px-3 py-2 rounded-xl text-xs font-bold border ${proj.status === 'done' ? 'bg-solid-blue text-white border-transparent' : 'bg-[#F2F7FF] text-[#06152D] border-blue-200'}">Done (100%)</button>
                         </div>
                         <div class="pt-1">
                             <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
@@ -1313,9 +1575,9 @@ window.renderAdminProjects = function() {
 
                     <div class="lg:col-span-7 space-y-2">
                         <label for="admin-note-${proj.id}" class="block text-xs font-bold text-[#06152D]">Catatan Progres untuk Klien:</label>
-                        <textarea id="admin-note-${proj.id}" rows="2" class="w-full px-3.5 py-2 rounded-xl bg-[#F4F8FF] border border-blue-200 text-xs sm:text-sm text-[#06152D] focus:bg-white focus:border-[#0052FF] focus:outline-none">${escapeHtml(proj.adminNote)}</textarea>
+                        <textarea id="admin-note-${proj.id}" rows="2" class="w-full px-3.5 py-2 rounded-xl bg-[#F2F7FF] border border-blue-200 text-xs sm:text-sm text-[#06152D] focus:bg-white focus:border-[#0052FF] focus:outline-none">${escapeHtml(proj.adminNote)}</textarea>
                         <div class="flex justify-end">
-                            <button type="button" onclick="saveAdminCustomDetails('${proj.id}')" class="px-4 py-2 rounded-xl bg-blue-gradient text-white text-xs font-bold">
+                            <button type="button" onclick="saveAdminCustomDetails('${proj.id}')" class="btn-animated px-4 py-2 rounded-xl bg-solid-blue text-white text-xs font-bold">
                                 Simpan Perubahan
                             </button>
                         </div>
@@ -1327,9 +1589,6 @@ window.renderAdminProjects = function() {
     if (window.lucide) window.lucide.createIcons();
 };
 
-// ---------------------------------------------------------
-// 9. UTILITAS UMUM & INISIALISASI SAAT HALAMAN DIMUAT
-// ---------------------------------------------------------
 window.toggleMobileMenu = function() {
     document.getElementById('mobile-menu')?.classList.toggle('hidden');
 };
@@ -1366,7 +1625,7 @@ function escapeHtml(str) {
         .replace(/'/g, "&#039;");
 }
 
-['project-modal-backdrop', 'auth-modal-backdrop', 'admin-remove-modal-backdrop'].forEach(id => {
+['project-modal-backdrop', 'auth-modal-backdrop', 'admin-remove-modal-backdrop', 'portfolio-article-modal-backdrop'].forEach(id => {
     document.getElementById(id)?.addEventListener('click', (e) => {
         if (e.target.id === id) document.getElementById(id)?.classList.add('hidden');
     });
@@ -1378,4 +1637,5 @@ window.addEventListener('DOMContentLoaded', () => {
     const initialRoute = detectRouteFromBrowserLocation();
     navigateToRoute(initialRoute, true);
     refreshAllUI();
+    initScrollReveal();
 });
