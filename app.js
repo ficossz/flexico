@@ -12,219 +12,639 @@ const STORAGE_KEYS = {
     THEME: 'flexi_theme_mode_v1'
 };
 
+const PORTFOLIO_KEYS = ['bitemart', 'nusanet', 'aurelia', 'medikaplus', 'kopisenja'];
+window.currentPortfolioIndex = 0;
+window.currentPortfolioPopupKey = 'bitemart';
+window.currentPortfolioViewport = 'desktop';
+
 const PORTFOLIO_ARTICLES = {
     bitemart: {
-        title: "BiteMart — Aplikasi Pesan-Antar Kuliner Eropa",
-        category: "Food Delivery App • Kuliner Eropa",
+        key: "bitemart",
+        title: "BiteMart",
         domain: "https://bitemart.eu",
-        badgeLabel: "Food Delivery",
-        client: "BiteMart Culinary Group",
-        year: "2026",
-        packageUsed: "Paket Bisnis",
-        summary: "BiteMart adalah aplikasi web pesan-antar makanan bergaya seperti GrabFood yang dirancang khusus untuk kurasi restoran dan hidangan khas Eropa.",
-        articleParagraphs: [
-            "BiteMart hadir menjawab kebutuhan pecinta kuliner Eropa yang menginginkan kemudahan memesan hidangan autentik—mulai dari artisan pizza Italia yang dipanggang pada suhu 450°C, croissant & pastry Prancis, pasta segar, hingga steak kontinental langsung dari smartphone maupun laptop.",
-            "Tim flexi.co membangun arsitektur pemesanan real-time yang menghubungkan pelanggan, dapur mitra restoran Eropa, dan kurir pengantaran dalam satu antarmuka horizontal yang bersih, cepat, dan mudah digunakan."
-        ],
-        features: [
-            "Katalog Restoran & Menu Eropa Terkurasi",
-            "Pelacakan Status Pesanan & Kurir Real-Time",
-            "Keranjang Pintar & Multi-Metode Pembayaran",
-            "Dashboard Mitra Restoran & Manajemen Menu"
-        ]
+        badgeLabel: "Food Delivery"
     },
     nusanet: {
-        title: "NusaNet — Layanan Internet Fiber Optik & Digital",
-        category: "Fiber Optic ISP & Telco Digital",
+        key: "nusanet",
+        title: "NusaNet",
         domain: "https://nusanet.id",
-        badgeLabel: "ISP & Telco",
-        client: "PT NusaNet Solusi Digital",
-        year: "2026",
-        packageUsed: "Paket Bisnis",
-        summary: "NusaNet adalah platform web layanan koneksi internet fiber optik ultra cepat (hingga 1 Gbps True Unlimited tanpa FUP) serta pembelian produk digital untuk rumah dan bisnis.",
-        articleParagraphs: [
-            "Website NusaNet dirancang dengan antarmuka bersih dan modern untuk memudahkan pelanggan memilih paket langganan internet fiber optik 100% simetris, mengecek jangkauan lokasi jaringan, serta melakukan pembelian pulsa dan paket data secara instan.",
-            "Kami menonjolkan informasi teknis utama seperti kecepatan maksimal hingga 1 Gbps, kuota 100% Unlimited tanpa FUP, serta jaminan 99.9% SLA uptime jaringan dalam tata letak kartu yang sangat jelas dan nyaman dibaca di berbagai ukuran layar."
-        ],
-        features: [
-            "Katalog Paket Fiber Optik 1 Gbps True Unlimited",
-            "Fitur Cek Jangkauan Lokasi & Pendaftaran Online",
-            "Layanan Pembelian Pulsa & Paket Data Instan",
-            "Informasi SLA 99.9% & Dukungan Pelanggan 24 Jam"
-        ]
+        badgeLabel: "ISP & Telco"
+    },
+    aurelia: {
+        key: "aurelia",
+        title: "Aurelia Suites",
+        domain: "https://aureliasuites.com",
+        badgeLabel: "Luxury Resort"
+    },
+    medikaplus: {
+        key: "medikaplus",
+        title: "MedikaPlus",
+        domain: "https://medikaplus.co.id",
+        badgeLabel: "Healthcare"
+    },
+    kopisenja: {
+        key: "kopisenja",
+        title: "Kopi Senja",
+        domain: "https://kopisenjaroastery.id",
+        badgeLabel: "E-Commerce"
     }
 };
 
-function renderHardcodedPortfolioMockup(projectKey) {
+function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
     if (projectKey === 'bitemart') {
         return `
             <div class="live-mockup-canvas bg-[#FDFBF7] text-stone-900 select-none overflow-hidden font-sans">
-                <div class="px-4 py-2.5 bg-[#1C1917] text-stone-200 flex items-center justify-between text-[10px]">
-                    <div class="flex items-center gap-2">
-                        <span class="px-2 py-0.5 rounded bg-[#D97706] text-white font-extrabold text-[9px] tracking-wider uppercase">BiteMart EU</span>
-                        <span class="text-stone-300 truncate">📍 Via Torino 42, Milano • <strong class="text-amber-400">18 Mins</strong></span>
+                <div class="px-3.5 sm:px-5 py-2.5 bg-[#1C1917] text-stone-200 flex items-center justify-between gap-2 text-[10px] sm:text-xs">
+                    <div class="flex items-center gap-2 min-w-0">
+                        <span class="px-2 py-0.5 rounded bg-[#D97706] text-white font-extrabold text-[9px] tracking-wider uppercase shrink-0">BiteMart EU</span>
+                        <span class="text-stone-300 truncate">📍 Via Torino 42, Milano • <strong class="text-amber-400">18m</strong></span>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
-                        <span class="hidden sm:inline text-stone-400">Promo: <strong class="text-white">EUROTASTE</strong></span>
-                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[9px]">2 Items • €24.40</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[9px] sm:text-[10px]">2 Items • €24.40</span>
                     </div>
                 </div>
 
-                <div class="p-3.5 sm:p-4 grid grid-cols-12 gap-3.5 items-stretch bg-[#FDFBF7]">
-                    <div class="hidden sm:flex sm:col-span-3 flex-col justify-between rounded-xl bg-[#F5F0E6] border border-stone-200/80 p-2.5 text-left">
-                        <div class="space-y-1">
-                            <p class="text-[8px] font-extrabold uppercase tracking-wider text-stone-400 px-1.5">European Kitchens</p>
-                            <div class="px-2 py-1.5 rounded-lg bg-[#1C1917] text-amber-300 font-bold text-[10px] flex items-center justify-between">
+                <div class="p-3.5 sm:p-5 grid grid-cols-12 gap-3.5 items-stretch bg-[#FDFBF7]">
+                    <div class="pm-hide-mobile hidden sm:flex sm:col-span-3 flex-col justify-between rounded-xl bg-[#F5F0E6] border border-stone-200/80 p-3 text-left">
+                        <div class="space-y-1.5">
+                            <p class="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 px-1.5">European Kitchens</p>
+                            <div class="px-2.5 py-1.5 rounded-lg bg-[#1C1917] text-amber-300 font-bold text-[10px] flex items-center justify-between">
                                 <span>🍕 Napoli Pizza</span>
                                 <span>14</span>
                             </div>
-                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                            <div class="px-2.5 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
                                 <span>🥐 Paris Bakery</span>
                                 <span class="text-stone-400">9</span>
                             </div>
-                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                            <div class="px-2.5 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
                                 <span>🍝 Roma Pasta</span>
                                 <span class="text-stone-400">11</span>
                             </div>
-                            <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
+                            <div class="px-2.5 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
                                 <span>🥩 Vienna Grill</span>
                                 <span class="text-stone-400">7</span>
                             </div>
                         </div>
-                        <div class="p-2 rounded-lg bg-amber-500/15 border border-amber-500/30 text-left mt-2">
-                            <p class="text-[8px] font-extrabold uppercase text-amber-800">Free Gelato</p>
+                        <div class="p-2.5 rounded-lg bg-amber-500/15 border border-amber-500/30 text-left mt-3">
+                            <p class="text-[9px] font-extrabold uppercase text-amber-800">Free Gelato</p>
                             <p class="text-[9px] font-semibold text-stone-700 leading-tight mt-0.5">Orders above €20 get artisan pistachio cup.</p>
                         </div>
                     </div>
 
-                    <div class="col-span-12 sm:col-span-9 flex flex-col justify-between space-y-3 text-left">
-                        <div class="rounded-xl bg-gradient-to-r from-[#292524] via-[#44403C] to-[#78350F] text-white p-3.5 flex items-center justify-between gap-3">
+                    <div class="pm-col-full-mobile col-span-12 sm:col-span-9 flex flex-col justify-between space-y-3 text-left">
+                        <div class="pm-flex-col-mobile rounded-xl bg-[#292524] text-white p-3.5 sm:p-4 flex items-center justify-between gap-3">
                             <div class="space-y-1">
-                                <span class="inline-block px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-extrabold text-[8px] uppercase tracking-wider">Michelin Street Partner</span>
-                                <h4 class="font-heading font-extrabold text-xs sm:text-sm text-white leading-snug">
+                                <span class="inline-block px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-extrabold text-[8px] sm:text-[9px] uppercase tracking-wider">Michelin Street Partner</span>
+                                <h4 class="font-heading font-extrabold text-xs sm:text-base text-white leading-snug">
                                     Artisan European Cravings, Delivered Hot.
                                 </h4>
-                                <p class="text-[9px] text-stone-300">Wood-fired Neapolitan dough, French butter pastries &amp; fresh handmade tagliatelle.</p>
+                                <p class="text-[10px] text-stone-300">Wood-fired Neapolitan dough, French butter pastries &amp; fresh handmade tagliatelle.</p>
                             </div>
                             <div class="shrink-0 text-right bg-black/30 px-3 py-2 rounded-xl border border-white/10">
-                                <span class="block text-[8px] uppercase text-amber-300 font-bold">Avg. Speed</span>
-                                <span class="font-extrabold text-sm text-white">18m</span>
+                                <span class="block text-[8px] uppercase text-amber-300 font-bold">Delivery</span>
+                                <span class="font-extrabold text-xs sm:text-sm text-white">18 Mins</span>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-2.5">
-                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                        <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <div class="rounded-xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between">
                                 <div class="flex items-center justify-between">
                                     <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-50 text-red-700">Napoli</span>
                                     <span class="text-[9px] font-extrabold text-amber-600">★ 4.9</span>
                                 </div>
-                                <div class="my-2">
-                                    <p class="font-bold text-[10px] text-stone-900 truncate">Truffle Burrata Pizza</p>
-                                    <p class="text-[8px] text-stone-400">450°C Oak Fired</p>
+                                <div class="my-1.5">
+                                    <p class="font-bold text-[11px] text-stone-900">Truffle Burrata Pizza</p>
+                                    <p class="text-[9px] text-stone-400">450°C Oak Fired</p>
                                 </div>
                                 <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                    <span class="font-extrabold text-[10px] text-stone-900">€13.50</span>
-                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                    <span class="font-extrabold text-[11px] text-stone-900">€13.50</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[9px] font-bold">+ Add</span>
                                 </div>
                             </div>
 
-                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                            <div class="rounded-xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between">
                                 <div class="flex items-center justify-between">
                                     <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-800">Paris</span>
                                     <span class="text-[9px] font-extrabold text-amber-600">★ 4.8</span>
                                 </div>
-                                <div class="my-2">
-                                    <p class="font-bold text-[10px] text-stone-900 truncate">Almond Croissant Box</p>
-                                    <p class="text-[8px] text-stone-400">Charentes Butter</p>
+                                <div class="my-1.5">
+                                    <p class="font-bold text-[11px] text-stone-900">Almond Croissant Box</p>
+                                    <p class="text-[9px] text-stone-400">Charentes Butter</p>
                                 </div>
                                 <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                    <span class="font-extrabold text-[10px] text-stone-900">€8.90</span>
-                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                    <span class="font-extrabold text-[11px] text-stone-900">€8.90</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[9px] font-bold">+ Add</span>
                                 </div>
                             </div>
 
-                            <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
+                            <div class="rounded-xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between">
                                 <div class="flex items-center justify-between">
                                     <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Roma</span>
                                     <span class="text-[9px] font-extrabold text-amber-600">★ 5.0</span>
                                 </div>
-                                <div class="my-2">
-                                    <p class="font-bold text-[10px] text-stone-900 truncate">Carbonara Guanciale</p>
-                                    <p class="text-[8px] text-stone-400">Pecorino Romano</p>
+                                <div class="my-1.5">
+                                    <p class="font-bold text-[11px] text-stone-900">Carbonara Guanciale</p>
+                                    <p class="text-[9px] text-stone-400">Pecorino Romano</p>
                                 </div>
                                 <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                    <span class="font-extrabold text-[10px] text-stone-900">€11.90</span>
-                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
+                                    <span class="font-extrabold text-[11px] text-stone-900">€11.90</span>
+                                    <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[9px] font-bold">+ Add</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="rounded-xl bg-[#1C1917] text-white px-3.5 py-2 flex items-center justify-between text-[10px]">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                                <span class="font-semibold text-stone-200">Courier Marco R. is picking up your wood-fired order</span>
+                        <div class="rounded-xl bg-[#1C1917] text-white px-3.5 py-2.5 flex items-center justify-between gap-2 text-[10px]">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+                                <span class="font-semibold text-stone-200 truncate">Courier Marco R. picking up order at Via Torino</span>
                             </div>
-                            <span class="font-extrabold text-amber-400 shrink-0">Track Map →</span>
+                            <span class="font-extrabold text-amber-400 shrink-0">Live GPS →</span>
                         </div>
                     </div>
                 </div>
+
+                ${isFullPopup ? `
+                <div class="px-4 sm:px-6 pb-6 pt-3 border-t border-stone-200/80 bg-[#F5F0E6] text-left space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h5 class="font-heading font-extrabold text-xs sm:text-sm text-stone-900 uppercase tracking-wider">Featured European Partner Kitchens</h5>
+                        <span class="text-[11px] font-bold text-amber-700">41 Kitchens Open Now</span>
+                    </div>
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-4 gap-3">
+                        <div class="bg-white p-3.5 rounded-xl border border-stone-200">
+                            <span class="text-[9px] font-bold uppercase text-red-700 bg-red-50 px-2 py-0.5 rounded">Neapolitan</span>
+                            <p class="font-bold text-xs text-stone-900 mt-2">L'Antica Pizzeria Da Michele</p>
+                            <p class="text-[10px] text-stone-500 mt-0.5">Wood-fired Margherita &amp; Marinara • 15–20 mins</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-stone-200">
+                            <span class="text-[9px] font-bold uppercase text-amber-800 bg-amber-50 px-2 py-0.5 rounded">Patisserie</span>
+                            <p class="font-bold text-xs text-stone-900 mt-2">Maison Kayser Artisan</p>
+                            <p class="text-[10px] text-stone-500 mt-0.5">Croissants, Pain au Chocolat &amp; Tartes • 12–18 mins</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-stone-200">
+                            <span class="text-[9px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Trattoria</span>
+                            <p class="font-bold text-xs text-stone-900 mt-2">Osteria Romana Autentica</p>
+                            <p class="text-[10px] text-stone-500 mt-0.5">Fresh Tonnarelli Cacio e Pepe • 20–25 mins</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-stone-200">
+                            <span class="text-[9px] font-bold uppercase text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Gelateria</span>
+                            <p class="font-bold text-xs text-stone-900 mt-2">Gelato Giolitti Bronte</p>
+                            <p class="text-[10px] text-stone-500 mt-0.5">Sicilian Pistachio &amp; Hazelnut Tubs • 10–15 mins</p>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    if (projectKey === 'nusanet') {
+        return `
+            <div class="live-mockup-canvas bg-white text-slate-900 select-none overflow-hidden">
+                <div class="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-white">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-[#E11D48] text-white font-extrabold text-xs flex items-center justify-center">N</span>
+                        <span class="font-extrabold text-sm text-slate-900">Nusa<span class="text-[#E11D48]">Net</span></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-[#E11D48] text-white font-bold text-[10px]">
+                            Langganan Sekarang
+                        </span>
+                        <span class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 text-xs">
+                            ≡
+                        </span>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6 space-y-3.5 sm:space-y-4 text-left bg-white">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-semibold text-slate-700">
+                        <span class="w-2 h-2 rounded-full bg-[#E11D48] shrink-0"></span>
+                        <span>Jaringan Fiber Optik Ultra Cepat 100% Simetris</span>
+                    </div>
+                    <h4 class="font-heading font-extrabold text-base sm:text-xl text-slate-900 leading-tight">
+                        Koneksi Internet Tanpa Batas untuk <span class="text-[#E11D48]">Rumah &amp; Bisnis Anda.</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        Nikmati kecepatan hingga <strong class="text-slate-800">1 Gbps True Unlimited</strong> tanpa kuota FUP. Bebas hambatan untuk streaming 4K, gaming latency rendah, dan kerja jarak jauh.
+                    </p>
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-[9px] text-slate-500">Kecepatan Maksimal</p>
+                            <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">Hingga 1 Gbps</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-[9px] text-slate-500">Batas Kuota (FUP)</p>
+                            <p class="font-extrabold text-xs sm:text-sm text-[#E11D48] mt-0.5">100% Unlimited</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-[9px] text-slate-500">Uptime Jaringan</p>
+                            <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">99.9% SLA</p>
+                        </div>
+                    </div>
+                    <div class="pt-1 flex flex-wrap items-center gap-2">
+                        <span class="px-4 py-2 rounded-xl bg-[#E11D48] text-white font-bold text-[11px]">
+                            Pilih Paket Sekarang
+                        </span>
+                        <span class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-[11px]">
+                            Cek Jangkauan Lokasi
+                        </span>
+                    </div>
+                </div>
+                ${isFullPopup ? `
+                <div class="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 text-left space-y-3">
+                    <h5 class="font-heading font-extrabold text-xs sm:text-sm text-slate-900">Pilihan Paket Fiber Optik &amp; Top-Up Digital</h5>
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase">Home Fiber 150</span>
+                            <p class="font-extrabold text-base text-slate-900 mt-1">150 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
+                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 299.000</p>
+                            <p class="text-[10px] text-slate-500 mt-1">Gratis Router WiFi 6 Dual-Band &amp; Instalasi</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border-2 border-[#E11D48]">
+                            <span class="text-[10px] font-bold text-[#E11D48] uppercase">Gamer Pro 500</span>
+                            <p class="font-extrabold text-base text-slate-900 mt-1">500 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
+                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 499.000</p>
+                            <p class="text-[10px] text-slate-500 mt-1">IP Public Static + Prioritas Routing Gaming</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase">Dedicated 1 Gbps</span>
+                            <p class="font-extrabold text-base text-slate-900 mt-1">1.000 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
+                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 899.000</p>
+                            <p class="text-[10px] text-slate-500 mt-1">SLA 99.9% + Dukungan Teknisi Prioritas 24/7</p>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    if (projectKey === 'aurelia') {
+        return `
+            <div class="live-mockup-canvas bg-[#0C1917] text-[#F5EFE6] select-none overflow-hidden">
+                <div class="px-4 sm:px-5 py-3 border-b border-emerald-900/60 flex items-center justify-between bg-[#091311]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-[#D4AF37] text-[#091311] font-extrabold text-[10px] flex items-center justify-center">A</span>
+                        <span class="font-heading font-bold tracking-widest text-xs sm:text-sm text-[#F5EFE6] uppercase">Aurelia Suites</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] text-emerald-200/80">
+                        <span class="pm-hide-mobile hidden sm:inline">Villas</span>
+                        <span class="pm-hide-mobile hidden sm:inline">Dining</span>
+                        <span class="px-3 py-1 rounded-full bg-[#D4AF37] text-[#091311] font-extrabold text-[10px]">Book Stay</span>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6 space-y-4 text-left bg-[#0C1917]">
+                    <div class="pm-flex-col-mobile flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                        <div class="space-y-1.5">
+                            <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-[#D4AF37]">Uluwatu Cliffside Sanctuary • Bali</span>
+                            <h4 class="font-heading font-extrabold text-base sm:text-xl text-white leading-snug">
+                                Private Infinity Pool Villas Overlooking the Indian Ocean.
+                            </h4>
+                        </div>
+                        <div class="shrink-0 bg-[#132623] border border-emerald-800/70 px-3 py-2 rounded-xl text-right">
+                            <span class="block text-[8px] uppercase text-emerald-300">Direct Rate</span>
+                            <span class="font-extrabold text-xs sm:text-sm text-[#D4AF37]">$320 / Night</span>
+                        </div>
+                    </div>
+
+                    <div class="pm-stack-mobile grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#132623] border border-emerald-800/60 text-[10px]">
+                        <div class="px-2 py-1 border-r border-emerald-800/50">
+                            <p class="text-[8px] text-emerald-300/70 uppercase">Check-In</p>
+                            <p class="font-bold text-white mt-0.5">14 Nov 2026</p>
+                        </div>
+                        <div class="px-2 py-1 border-r border-emerald-800/50">
+                            <p class="text-[8px] text-emerald-300/70 uppercase">Check-Out</p>
+                            <p class="font-bold text-white mt-0.5">18 Nov 2026</p>
+                        </div>
+                        <div class="px-2 py-1 flex items-center justify-between">
+                            <div>
+                                <p class="text-[8px] text-emerald-300/70 uppercase">Guests</p>
+                                <p class="font-bold text-white mt-0.5">2 Adults</p>
+                            </div>
+                            <span class="px-2.5 py-1.5 rounded-lg bg-[#D4AF37] text-[#091311] font-extrabold text-[9px]">Search</span>
+                        </div>
+                    </div>
+
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div class="p-3 rounded-xl bg-[#132623]/90 border border-emerald-800/50 flex items-center justify-between">
+                            <div>
+                                <span class="text-[8px] uppercase font-bold text-[#D4AF37]">180 m² • Ocean Front</span>
+                                <p class="font-bold text-xs text-white mt-0.5">Sunset Cliff Pool Villa</p>
+                                <p class="text-[9px] text-emerald-200/70">Floating Breakfast &amp; Private Butler</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-white/10 text-white font-bold text-[10px]">Available</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-[#132623]/90 border border-emerald-800/50 flex items-center justify-between">
+                            <div>
+                                <span class="text-[8px] uppercase font-bold text-[#D4AF37]">260 m² • Two Bedroom</span>
+                                <p class="font-bold text-xs text-white mt-0.5">Royal Sanctuary Residence</p>
+                                <p class="text-[9px] text-emerald-200/70">Heated Infinity Pool &amp; Spa Pavilion</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-white/10 text-white font-bold text-[10px]">2 Left</span>
+                        </div>
+                    </div>
+                </div>
+                ${isFullPopup ? `
+                <div class="p-4 sm:p-6 bg-[#091311] border-t border-emerald-900/60 text-left space-y-3">
+                    <h5 class="font-heading font-bold text-xs sm:text-sm text-[#D4AF37] uppercase tracking-wider">Complimentary Resort Privileges</h5>
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3.5 rounded-xl bg-[#132623] border border-emerald-800/50">
+                            <p class="font-bold text-white">Chauffeur Airport Transfer</p>
+                            <p class="text-[10px] text-emerald-200/75 mt-1">Private luxury SUV pickup &amp; drop-off from Ngurah Rai Airport.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-[#132623] border border-emerald-800/50">
+                            <p class="font-bold text-white">Cliffside Sunset High Tea</p>
+                            <p class="text-[10px] text-emerald-200/75 mt-1">Daily artisan Balinese &amp; French pastries served at 4:30 PM.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-[#132623] border border-emerald-800/50">
+                            <p class="font-bold text-white">60-Min Holistic Balinese Spa</p>
+                            <p class="text-[10px] text-emerald-200/75 mt-1">Included for minimum 3-night direct booking via website.</p>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    if (projectKey === 'medikaplus') {
+        return `
+            <div class="live-mockup-canvas bg-[#F0FDFA] text-slate-900 select-none overflow-hidden">
+                <div class="px-4 sm:px-5 py-3 bg-white border-b border-teal-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-[#0D9488] text-white font-extrabold text-xs flex items-center justify-center">+</span>
+                        <span class="font-extrabold text-sm text-slate-900">Medika<span class="text-[#0D9488]">Plus</span></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="pm-hide-mobile hidden sm:inline-block px-2.5 py-1 rounded-md bg-teal-50 text-[#0D9488] font-bold text-[10px]">IGD 24 Jam: 1500-889</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-[#0D9488] text-white font-bold text-[10px]">Buat Janji Temu</span>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-5 space-y-3.5 text-left">
+                    <div class="pm-flex-col-mobile bg-white p-4 rounded-2xl border border-teal-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="space-y-1">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-teal-50 text-[#0D9488] font-bold text-[9px] uppercase">Tanpa Antre di RS</span>
+                            <h4 class="font-heading font-extrabold text-sm sm:text-lg text-slate-900 leading-snug">
+                                Konsultasi Dokter Spesialis &amp; Booking Lab Online
+                            </h4>
+                            <p class="text-[10px] text-slate-500">Pilih jadwal dokter, dapatkan nomor antrean real-time, dan akses hasil rekam medis digital.</p>
+                        </div>
+                        <div class="shrink-0 bg-[#0D9488] text-white px-3.5 py-2.5 rounded-xl text-center">
+                            <span class="block text-[9px] uppercase opacity-85">Dokter Siaga</span>
+                            <span class="font-extrabold text-sm">48 Spesialis</span>
+                        </div>
+                    </div>
+
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <div class="bg-white p-3 rounded-xl border border-teal-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[8px] font-bold uppercase px-2 py-0.5 rounded bg-teal-50 text-[#0D9488]">Kardiologi</span>
+                                <p class="font-bold text-xs text-slate-900 mt-1.5">dr. Hendra Wijaya, Sp.JP</p>
+                                <p class="text-[9px] text-slate-500">Senin - Jumat • 09:00 - 14:00</p>
+                            </div>
+                            <span class="mt-2.5 inline-block text-center py-1 rounded-lg bg-[#0D9488] text-white font-bold text-[9px]">Pilih Jadwal</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-teal-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[8px] font-bold uppercase px-2 py-0.5 rounded bg-teal-50 text-[#0D9488]">Spesialis Anak</span>
+                                <p class="font-bold text-xs text-slate-900 mt-1.5">dr. Clara Santoso, Sp.A</p>
+                                <p class="text-[9px] text-slate-500">Setiap Hari • 10:00 - 16:00</p>
+                            </div>
+                            <span class="mt-2.5 inline-block text-center py-1 rounded-lg bg-[#0D9488] text-white font-bold text-[9px]">Pilih Jadwal</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-teal-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[8px] font-bold uppercase px-2 py-0.5 rounded bg-teal-50 text-[#0D9488]">Dermatologi</span>
+                                <p class="font-bold text-xs text-slate-900 mt-1.5">dr. Nadia Putri, Sp.KK</p>
+                                <p class="text-[9px] text-slate-500">Selasa - Sabtu • 13:00 - 19:00</p>
+                            </div>
+                            <span class="mt-2.5 inline-block text-center py-1 rounded-lg bg-[#0D9488] text-white font-bold text-[9px]">Pilih Jadwal</span>
+                        </div>
+                    </div>
+                </div>
+
+                ${isFullPopup ? `
+                <div class="p-4 sm:p-6 bg-white border-t border-teal-100 text-left space-y-3">
+                    <h5 class="font-heading font-extrabold text-xs sm:text-sm text-slate-900">Layanan Unggulan Klinik MedikaPlus</h5>
+                    <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3.5 rounded-xl bg-[#F0FDFA] border border-teal-100">
+                            <p class="font-bold text-[#0D9488]">Medical Check-Up Eksekutif</p>
+                            <p class="text-[10px] text-slate-600 mt-1">Pemeriksaan darah lengkap, EKG, dan rontgen dengan hasil digital di hari yang sama.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-[#F0FDFA] border border-teal-100">
+                            <p class="font-bold text-[#0D9488]">Telekonsultasi Video HD</p>
+                            <p class="text-[10px] text-slate-600 mt-1">Tanya jawab langsung dengan dokter dari rumah disertai pengiriman obat kurir instan.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-[#F0FDFA] border border-teal-100">
+                            <p class="font-bold text-[#0D9488]">Integrasi Asuransi &amp; BPJS</p>
+                            <p class="text-[10px] text-slate-600 mt-1">Verifikasi klaim cashless otomatis untuk lebih dari 35 rekanan asuransi kesehatan.</p>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
             </div>
         `;
     }
 
     return `
-        <div class="live-mockup-canvas bg-white text-slate-900 select-none overflow-hidden">
-            <div class="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-white">
+        <div class="live-mockup-canvas bg-[#FAF6F0] text-[#2C1E16] select-none overflow-hidden">
+            <div class="px-4 sm:px-5 py-3 bg-[#2C1E16] text-[#FAF6F0] flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <span class="w-7 h-7 rounded-lg bg-[#E11D48] text-white font-extrabold text-xs flex items-center justify-center">N</span>
-                    <span class="font-extrabold text-sm text-slate-900">Nusa<span class="text-[#E11D48]">Net</span></span>
+                    <span class="px-2 py-0.5 rounded bg-[#C87D55] text-white font-extrabold text-[10px]">KS</span>
+                    <span class="font-heading font-bold text-xs sm:text-sm tracking-tight">Kopi Senja Roastery</span>
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="px-3 py-1.5 rounded-lg bg-[#E11D48] text-white font-bold text-[10px]">
-                        Langganan Sekarang
-                    </span>
-                    <span class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 text-xs">
-                        ≡
-                    </span>
+                <div class="flex items-center gap-2 text-[10px]">
+                    <span class="px-2.5 py-1 rounded-full bg-[#C87D55] text-white font-bold">Cart (3) • Rp 285k</span>
                 </div>
             </div>
-            <div class="p-5 sm:p-6 space-y-4 text-left bg-white">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-semibold text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-[#E11D48]"></span>
-                    <span>Jaringan Fiber Optik Ultra Cepat 100% Simetris</span>
-                </div>
-                <h4 class="font-heading font-extrabold text-lg sm:text-xl text-slate-900 leading-tight">
-                    Koneksi Internet Tanpa Batas untuk <span class="text-[#E11D48]">Rumah &amp; Bisnis Anda.</span>
-                </h4>
-                <p class="text-[11px] text-slate-500 leading-relaxed">
-                    Nikmati kecepatan hingga <strong class="text-slate-800">1 Gbps True Unlimited</strong> tanpa kuota FUP. Bebas hambatan untuk streaming 4K, gaming latency rendah, dan kerja jarak jauh.
-                </p>
-                <div class="grid grid-cols-3 gap-2.5 pt-1">
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                        <p class="text-[9px] text-slate-500">Kecepatan Maksimal</p>
-                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">Hingga 1 Gbps</p>
+
+            <div class="p-4 sm:p-5 space-y-3.5 text-left">
+                <div class="pm-flex-col-mobile rounded-2xl bg-[#3E2723] text-[#FAF6F0] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="inline-block px-2 py-0.5 rounded bg-[#C87D55] text-white font-bold text-[8px] uppercase tracking-wider">Small-Batch Micro Roastery</span>
+                        <h4 class="font-heading font-extrabold text-sm sm:text-lg text-white leading-snug">
+                            Biji Kopi Single-Origin Nusantara, Disangrai Segar Setiap Hari.
+                        </h4>
+                        <p class="text-[10px] text-amber-100/80">Pilih tingkat gilingan (Whole Bean, Espresso, V60, French Press) sesuai alat seduh Anda.</p>
                     </div>
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                        <p class="text-[9px] text-slate-500">Batas Kuota (FUP)</p>
-                        <p class="font-extrabold text-xs sm:text-sm text-[#E11D48] mt-0.5">100% Unlimited</p>
-                    </div>
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                        <p class="text-[9px] text-slate-500">Uptime Jaringan</p>
-                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">99.9% SLA</p>
-                    </div>
-                </div>
-                <div class="pt-1 flex flex-wrap items-center gap-2.5">
-                    <span class="px-4 py-2 rounded-xl bg-[#E11D48] text-white font-bold text-[11px]">
-                        Pilih Paket Sekarang
+                    <span class="shrink-0 px-3.5 py-2 rounded-xl bg-[#C87D55] text-white font-extrabold text-[10px]">
+                        Langganan Kopi
                     </span>
-                    <span class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-[11px]">
-                        Cek Jangkauan Lokasi
-                    </span>
+                </div>
+
+                <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[8px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">Aceh Gayo</span>
+                                <span class="text-[9px] font-bold text-amber-700">250g</span>
+                            </div>
+                            <p class="font-bold text-xs text-[#2C1E16] mt-1.5">Gayo Wine Natural</p>
+                            <p class="text-[9px] text-stone-500">Notes: Berry, Dark Choco, Winey</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 mt-2 border-t border-stone-100">
+                            <span class="font-extrabold text-[11px] text-[#2C1E16]">Rp 95.000</span>
+                            <span class="px-2 py-0.5 rounded bg-[#2C1E16] text-white text-[9px] font-bold">+ Beli</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[8px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">Flores</span>
+                                <span class="text-[9px] font-bold text-amber-700">250g</span>
+                            </div>
+                            <p class="font-bold text-xs text-[#2C1E16] mt-1.5">Flores Bajawa Full Wash</p>
+                            <p class="text-[9px] text-stone-500">Notes: Caramel, Nutty, Sweet</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 mt-2 border-t border-stone-100">
+                            <span class="font-extrabold text-[11px] text-[#2C1E16]">Rp 88.000</span>
+                            <span class="px-2 py-0.5 rounded bg-[#2C1E16] text-white text-[9px] font-bold">+ Beli</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[8px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">Bali</span>
+                                <span class="text-[9px] font-bold text-amber-700">250g</span>
+                            </div>
+                            <p class="font-bold text-xs text-[#2C1E16] mt-1.5">Kintamani Citrus Honey</p>
+                            <p class="text-[9px] text-stone-500">Notes: Orange Peel, Brown Sugar</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 mt-2 border-t border-stone-100">
+                            <span class="font-extrabold text-[11px] text-[#2C1E16]">Rp 92.000</span>
+                            <span class="px-2 py-0.5 rounded bg-[#2C1E16] text-white text-[9px] font-bold">+ Beli</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            ${isFullPopup ? `
+            <div class="p-4 sm:p-6 bg-[#F3ECE1] border-t border-amber-900/15 text-left space-y-3">
+                <h5 class="font-heading font-extrabold text-xs sm:text-sm text-[#2C1E16]">Kustomisasi Gilingan &amp; Paket Langganan Bulanan</h5>
+                <div class="pm-2col-mobile grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15">
+                        <p class="font-bold text-xs text-[#2C1E16]">Biji Utuh</p>
+                        <p class="text-[10px] text-stone-500 mt-0.5">Simpan kesegaran maksimal</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15">
+                        <p class="font-bold text-xs text-[#2C1E16]">Giling Halus</p>
+                        <p class="text-[10px] text-stone-500 mt-0.5">Espresso &amp; Moka Pot</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15">
+                        <p class="font-bold text-xs text-[#2C1E16]">Giling Sedang</p>
+                        <p class="text-[10px] text-stone-500 mt-0.5">V60, Kalita &amp; AeroPress</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-amber-900/15">
+                        <p class="font-bold text-xs text-[#2C1E16]">Giling Kasar</p>
+                        <p class="text-[10px] text-stone-500 mt-0.5">French Press &amp; Cold Brew</p>
+                    </div>
+                </div>
+            </div>
+            ` : ''}
         </div>
     `;
 }
+
+function getPortfolioPerView() {
+    return window.innerWidth >= 1024 ? 2 : 1;
+}
+
+window.renderPortfolioCarousel = function() {
+    const gridEl = document.getElementById('portfolio-showcase-grid');
+    const dotsEl = document.getElementById('portfolio-dots-indicator');
+    const counterEl = document.getElementById('portfolio-slide-counter');
+    if (!gridEl) return;
+
+    const perView = getPortfolioPerView();
+    const total = PORTFOLIO_KEYS.length;
+
+    if (window.currentPortfolioIndex >= total) window.currentPortfolioIndex = 0;
+    if (window.currentPortfolioIndex < 0) window.currentPortfolioIndex = total - 1;
+
+    const visibleKeys = [];
+    for (let i = 0; i < perView; i++) {
+        visibleKeys.push(PORTFOLIO_KEYS[(window.currentPortfolioIndex + i) % total]);
+    }
+
+    gridEl.innerHTML = visibleKeys.map((key) => {
+        const item = PORTFOLIO_ARTICLES[key];
+        return `
+            <article 
+                onclick="openPortfolioArticleModal('${item.key}')" 
+                class="portfolio-card theme-card rounded-3xl border border-blue-200 overflow-hidden bg-[#F2F7FF] flex flex-col justify-between shadow-sm page-transition"
+            >
+                <div class="p-3 sm:p-5">
+                    <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-sm">
+                        <div class="portfolio-browser-bar px-3.5 sm:px-4 py-2.5 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
+                            </div>
+                            <span class="text-[11px] font-semibold text-[#002B7F] truncate">${escapeHtml(item.domain)}</span>
+                            <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[10px] font-bold uppercase tracking-wider shrink-0">
+                                ${escapeHtml(item.badgeLabel)}
+                            </span>
+                        </div>
+                        ${renderHardcodedPortfolioMockup(item.key, false)}
+                    </div>
+                </div>
+
+                <div class="px-5 sm:px-6 pb-5 pt-1 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <h3 class="theme-heading font-heading font-extrabold text-lg sm:text-xl text-[#06152D] truncate">
+                            ${escapeHtml(item.title)}
+                        </h3>
+                        <span class="px-2.5 py-0.5 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[10px] font-bold shrink-0">
+                            Desktop &amp; Mobile View
+                        </span>
+                    </div>
+                    <span class="btn-animated shrink-0 px-4 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs shadow-sm">
+                        Buka Web
+                    </span>
+                </div>
+            </article>
+        `;
+    }).join('');
+
+    if (dotsEl) {
+        dotsEl.innerHTML = PORTFOLIO_KEYS.map((key, idx) => {
+            const isActive = idx === window.currentPortfolioIndex;
+            return `
+                <button 
+                    type="button" 
+                    onclick="goToPortfolioSlide(${idx})"
+                    aria-label="Slide Portofolio ${idx + 1}"
+                    class="h-2.5 rounded-full transition-all ${isActive ? 'w-8 bg-[#0052FF]' : 'w-2.5 bg-blue-200 hover:bg-blue-400'}"
+                ></button>
+            `;
+        }).join('');
+    }
+
+    if (counterEl) {
+        if (perView === 2) {
+            const firstNum = window.currentPortfolioIndex + 1;
+            const secondNum = ((window.currentPortfolioIndex + 1) % total) + 1;
+            counterEl.textContent = `Menampilkan ${firstNum} & ${secondNum} dari ${total} Portofolio`;
+        } else {
+            counterEl.textContent = `Menampilkan ${window.currentPortfolioIndex + 1} dari ${total} Portofolio`;
+        }
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+};
+
+window.slidePortfolio = function(step) {
+    const total = PORTFOLIO_KEYS.length;
+    window.currentPortfolioIndex = (window.currentPortfolioIndex + step + total) % total;
+    renderPortfolioCarousel();
+};
+
+window.goToPortfolioSlide = function(index) {
+    window.currentPortfolioIndex = index;
+    renderPortfolioCarousel();
+};
 
 const HARDCODED_USERS = [
     {
@@ -411,110 +831,86 @@ window.openPortfolioArticleModal = function(projectKey) {
     const article = PORTFOLIO_ARTICLES[projectKey];
     if (!article) return;
 
+    window.currentPortfolioPopupKey = projectKey;
+    window.currentPortfolioViewport = 'desktop';
+
     const modalBackdrop = document.getElementById('portfolio-article-modal-backdrop');
     const contentBox = document.getElementById('portfolio-article-modal-content');
     if (!modalBackdrop || !contentBox) return;
 
     contentBox.innerHTML = `
-        <div class="flex flex-col md:flex-row w-full items-stretch">
-            <div class="relative w-full md:w-6/12 lg:w-7/12 bg-[#F2F7FF] theme-subbox p-4 sm:p-6 flex flex-col justify-center border-b md:border-b-0 md:border-r border-blue-200 shrink-0">
-                <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-md w-full">
-                    <div class="portfolio-browser-bar px-4 py-2.5 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
-                        </div>
-                        <span class="text-[11px] font-semibold text-[#002B7F] truncate">${escapeHtml(article.domain)}</span>
-                        <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[10px] font-bold uppercase tracking-wider">
-                            ${escapeHtml(article.badgeLabel)}
-                        </span>
-                    </div>
-                    ${renderHardcodedPortfolioMockup(projectKey)}
+        <div class="shrink-0 bg-[#06152D] text-white px-3.5 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-2 border-b border-blue-900">
+            <div class="flex items-center gap-2 min-w-0">
+                <div class="hidden sm:flex items-center gap-1.5 shrink-0">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
                 </div>
+                <span class="px-3 py-1 rounded-lg bg-[#0A1D37] text-blue-200 text-xs font-semibold truncate border border-blue-800">
+                    ${escapeHtml(article.domain)}
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 bg-[#0A1D37] p-1 rounded-xl border border-blue-800">
                 <button 
                     type="button" 
-                    onclick="closePortfolioArticleModal()" 
-                    aria-label="Tutup Artikel"
-                    class="md:hidden absolute top-6 right-6 w-9 h-9 rounded-xl bg-[#06152D]/85 hover:bg-[#0052FF] text-white flex items-center justify-center transition-colors shadow-md"
+                    id="popup-btn-desktop"
+                    onclick="setPortfolioPopupViewport('desktop')" 
+                    class="px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all"
                 >
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
+                    <span>Desktop View</span>
+                </button>
+                <button 
+                    type="button" 
+                    id="popup-btn-mobile"
+                    onclick="setPortfolioPopupViewport('mobile')" 
+                    class="px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all"
+                >
+                    <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+                    <span>Mobile View</span>
                 </button>
             </div>
 
-            <article class="w-full md:w-6/12 lg:w-5/12 p-6 sm:p-8 flex flex-col justify-between space-y-5 max-h-[75vh] md:max-h-[85vh] overflow-y-auto">
-                <div class="space-y-4">
-                    <div class="flex items-start justify-between gap-4 border-b border-blue-100 pb-4">
-                        <div class="space-y-1.5">
-                            <span class="inline-block px-3 py-1 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[11px] font-bold uppercase tracking-wider">
-                                ${escapeHtml(article.category)}
-                            </span>
-                            <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D] leading-snug">
-                                ${escapeHtml(article.title)}
-                            </h3>
-                            <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 theme-text font-medium">
-                                <span>Klien: <strong class="text-[#0052FF]">${escapeHtml(article.client)}</strong></span>
-                                <span>•</span>
-                                <span>Tahun: ${escapeHtml(article.year)}</span>
-                                <span>•</span>
-                                <span>${escapeHtml(article.packageUsed)}</span>
-                            </div>
-                        </div>
-                        <button 
-                            type="button" 
-                            onclick="closePortfolioArticleModal()" 
-                            aria-label="Tutup Artikel"
-                            class="hidden md:flex w-9 h-9 rounded-xl bg-[#E6F0FF] hover:bg-[#0052FF] text-[#06152D] hover:text-white items-center justify-center shrink-0 transition-colors"
-                        >
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                        </button>
-                    </div>
+            <button 
+                type="button" 
+                onclick="closePortfolioArticleModal()" 
+                aria-label="Tutup Halaman"
+                class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center gap-1.5 shrink-0"
+            >
+                <span>Tutup</span>
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
 
-                    <p class="theme-heading font-semibold text-xs sm:text-sm text-[#06152D] leading-relaxed">
-                        ${escapeHtml(article.summary)}
-                    </p>
-
-                    <div class="space-y-2.5 theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        ${article.articleParagraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
-                    </div>
-
-                    <div class="theme-subbox p-4 rounded-xl bg-[#F2F7FF] border border-blue-200">
-                        <h4 class="theme-heading font-heading font-bold text-xs text-[#06152D] mb-2.5">
-                            Fitur Utama yang Dibangun:
-                        </h4>
-                        <div class="grid grid-cols-1 gap-2">
-                            ${article.features.map(f => `
-                                <div class="flex items-center gap-2 text-xs theme-heading text-[#06152D] font-medium">
-                                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#0052FF] shrink-0"></i>
-                                    <span>${escapeHtml(f)}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 border-t border-blue-100 flex flex-col sm:flex-row items-center justify-end gap-2.5">
-                    <button 
-                        type="button" 
-                        onclick="closePortfolioArticleModal()" 
-                        class="theme-subbox theme-heading w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#E6F0FF] text-[#002B7F] font-bold text-xs"
-                    >
-                        Tutup Artikel
-                    </button>
-                    <button 
-                        type="button" 
-                        onclick="closePortfolioArticleModal(); openProjectModal('${escapeHtml(article.packageUsed)}');" 
-                        class="btn-animated w-full sm:w-auto px-5 py-2.5 rounded-xl bg-solid-blue text-white font-bold text-xs flex items-center justify-center"
-                    >
-                        <span>Buat Website Serupa</span>
-                    </button>
-                </div>
-            </article>
+        <div class="flex-1 w-full bg-[#E6F0FF] dark:bg-[#0A1D37] overflow-hidden flex items-center justify-center">
+            <div id="portfolio-live-stage" class="portfolio-live-stage modal-smooth-scroll">
+                ${renderHardcodedPortfolioMockup(projectKey, true)}
+            </div>
         </div>
     `;
 
     modalBackdrop.classList.remove('hidden');
     if (window.lucide) window.lucide.createIcons();
+};
+
+window.setPortfolioPopupViewport = function(mode) {
+    window.currentPortfolioViewport = mode;
+    const stageEl = document.getElementById('portfolio-live-stage');
+    const btnDesktop = document.getElementById('popup-btn-desktop');
+    const btnMobile = document.getElementById('popup-btn-mobile');
+    if (!stageEl) return;
+
+    if (mode === 'mobile') {
+        stageEl.classList.add('is-mobile-preview');
+        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all";
+        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all";
+    } else {
+        stageEl.classList.remove('is-mobile-preview');
+        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all";
+        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all";
+    }
+    stageEl.scrollTop = 0;
 };
 
 window.closePortfolioArticleModal = function() {
@@ -647,7 +1043,7 @@ window.navigateToRoute = function(routePath, skipPushState = false) {
     });
 
     if (target === SECRET_ADMIN_ROUTE) {
-        mainContentWrapper?.classList.remove('pt-[76px]');
+        mainContentWrapper?.classList.remove('pt-[72px]', 'sm:pt-[76px]');
         if (publicHeader) {
             publicHeader.classList.add('hidden');
             publicHeader.style.display = 'none';
@@ -675,7 +1071,7 @@ window.navigateToRoute = function(routePath, skipPushState = false) {
             setTimeout(() => document.getElementById('admin-password-input')?.focus(), 100);
         }
     } else {
-        mainContentWrapper?.classList.add('pt-[76px]');
+        mainContentWrapper?.classList.add('pt-[72px]', 'sm:pt-[76px]');
         if (publicHeader) {
             publicHeader.classList.remove('hidden');
             publicHeader.style.display = '';
@@ -698,6 +1094,7 @@ window.navigateToRoute = function(routePath, skipPushState = false) {
                 viewHome.style.display = 'block';
             }
             renderHomePrivateSections();
+            renderPortfolioCarousel();
             requestAnimationFrame(() => {
                 updateSlidingPillPosition(window.activeScrollSection || 'beranda');
                 initScrollReveal();
@@ -774,9 +1171,16 @@ window.addEventListener('scroll', () => {
     }
 }, { passive: true });
 
+let lastPortfolioPerView = getPortfolioPerView();
 window.addEventListener('resize', () => {
     const key = window.currentRoute === '/dashboard' ? 'dashboard' : (window.activeScrollSection || 'beranda');
     updateSlidingPillPosition(key);
+
+    const currentPerView = getPortfolioPerView();
+    if (currentPerView !== lastPortfolioPerView) {
+        lastPortfolioPerView = currentPerView;
+        renderPortfolioCarousel();
+    }
 });
 
 window.addEventListener('hashchange', () => {
@@ -833,7 +1237,9 @@ window.togglePasswordField = function(inputId, iconId) {
 
 window.openAuthModal = function(tab = 'login') {
     document.getElementById('signup-redirect-success-banner')?.classList.add('hidden');
-    document.getElementById('auth-modal-backdrop')?.classList.remove('hidden');
+    const backdrop = document.getElementById('auth-modal-backdrop');
+    backdrop?.classList.remove('hidden');
+    if (backdrop) backdrop.scrollTop = 0;
     switchAuthTab(tab);
     if (window.lucide) window.lucide.createIcons();
 };
@@ -987,6 +1393,8 @@ window.openProjectModal = function(preselectedPackage) {
     }
 
     backdrop?.classList.remove('hidden');
+    if (backdrop) backdrop.scrollTop = 0;
+    if (formView) formView.scrollTop = 0;
     if (window.lucide) window.lucide.createIcons();
 };
 
@@ -1595,7 +2003,10 @@ window.toggleMobileMenu = function() {
 
 function refreshAllUI() {
     renderNavbarAuthUI();
-    if (window.currentRoute === '/') renderHomePrivateSections();
+    if (window.currentRoute === '/') {
+        renderHomePrivateSections();
+        renderPortfolioCarousel();
+    }
     if (window.currentRoute === '/dashboard') renderClientDashboardPage();
     if (window.currentRoute === SECRET_ADMIN_ROUTE && window.isAdminAuthenticated) {
         renderAdminProjects();

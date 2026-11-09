@@ -14,21 +14,21 @@
 <body class="antialiased selection:bg-[#0052FF] selection:text-white min-h-screen flex flex-col w-full m-0 p-0 bg-[#F2F7FF] text-[#06152D]">
 
     <header id="public-site-header" class="sticky-navbar bg-white/95 backdrop-blur-md border-b border-blue-200">
-        <div class="w-full m-0 px-4 sm:px-8">
-            <div class="flex items-center justify-between h-[76px] gap-3">
+        <div class="w-full m-0 px-3 sm:px-8">
+            <div class="flex items-center justify-between h-[72px] sm:h-[76px] gap-2">
                 
-                <a href="#beranda" onclick="navigateToSection('beranda'); return false;" class="flex items-center gap-3 focus:outline-none shrink-0 select-none cursor-pointer">
+                <a href="#beranda" onclick="navigateToSection('beranda'); return false;" class="flex items-center gap-2.5 sm:gap-3 focus:outline-none shrink-0 select-none cursor-pointer">
                     <img 
                         src="logo.png" 
                         onerror="this.onerror=null;this.src='https://placehold.co/120x120/0052FF/FFFFFF?text=FX';"
                         alt="Logo flexi.co" 
-                        class="w-10 h-10 rounded-xl object-cover border border-blue-200 shadow-sm shrink-0"
+                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-blue-200 shadow-sm shrink-0"
                     >
                     <div class="flex flex-col">
-                        <span class="theme-heading font-heading font-extrabold text-xl tracking-tight text-[#06152D] leading-none">
+                        <span class="theme-heading font-heading font-extrabold text-lg sm:text-xl tracking-tight text-[#06152D] leading-none">
                             flexi.co
                         </span>
-                        <span class="text-[10px] font-medium text-[#0052FF] mt-0.5">Great websites, Honest work</span>
+                        <span class="text-[9px] sm:text-[10px] font-medium text-[#0052FF] mt-0.5">Great websites, Honest work</span>
                     </div>
                 </a>
 
@@ -62,12 +62,12 @@
                     </button>
                 </nav>
 
-                <div class="flex items-center gap-2 shrink-0 ml-auto xl:ml-0">
+                <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 ml-auto xl:ml-0">
                     <button
                         type="button"
                         onclick="toggleDarkMode()"
                         aria-label="Ubah Mode Gelap atau Terang"
-                        class="hidden sm:flex w-[96px] h-[38px] rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-xs items-center justify-center gap-1.5 shrink-0 select-none"
+                        class="btn-animated hidden md:flex w-[96px] h-[38px] rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-xs items-center justify-center gap-1.5 shrink-0 select-none"
                     >
                         <i id="theme-toggle-icon" data-lucide="moon" class="w-4 h-4 shrink-0"></i>
                         <span id="theme-toggle-label" class="inline-block w-[46px] text-center">Gelap</span>
@@ -77,14 +77,14 @@
                         <button
                             type="button"
                             onclick="openAuthModal('login')"
-                            class="btn-animated px-4 h-[38px] rounded-xl text-[#002B7F] bg-[#E6F0FF] font-semibold text-xs sm:text-sm border border-blue-200"
+                            class="btn-animated px-3.5 h-[38px] rounded-xl text-[#002B7F] bg-[#E6F0FF] font-semibold text-xs sm:text-sm border border-blue-200"
                         >
                             Masuk
                         </button>
                         <button
                             type="button"
                             onclick="openProjectModal('Paket Profesional')"
-                            class="btn-animated px-4 h-[38px] rounded-xl bg-solid-blue text-white font-semibold text-xs sm:text-sm shadow-sm"
+                            class="btn-animated px-3.5 h-[38px] rounded-xl bg-solid-blue text-white font-semibold text-xs sm:text-sm shadow-sm"
                         >
                             Buat Website
                         </button>
@@ -125,8 +125,8 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-1.5 sm:hidden">
-                        <button type="button" onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 shrink-0">
+                    <div class="flex items-center gap-1.5 xl:hidden">
+                        <button type="button" onclick="toggleDarkMode()" aria-label="Mode Gelap/Terang" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 shrink-0">
                             <i data-lucide="sun-moon" class="w-4 h-4"></i>
                         </button>
                         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" class="w-9 h-9 flex items-center justify-center rounded-xl text-[#06152D] bg-[#E6F0FF] border border-blue-200 shrink-0">
@@ -134,7 +134,7 @@
                         </button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 pl-2 border-l border-blue-200 shrink-0">
+                    <div class="hidden sm:flex items-center gap-1.5 pl-2 border-l border-blue-200 shrink-0">
                         <a 
                             href="https://www.instagram.com/flexicorporated/" 
                             target="_blank" 
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden sm:hidden bg-white border-b border-blue-100 px-4 pt-2 pb-5 space-y-2.5 shadow-lg">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-blue-100 px-4 pt-2 pb-5 space-y-3 shadow-lg max-h-[82vh] overflow-y-auto">
             <nav class="flex flex-col space-y-1 text-sm font-medium text-[#06152D]">
                 <button type="button" onclick="toggleMobileMenu(); navigateToSection('beranda');" class="theme-heading px-3 py-2 rounded-lg hover:bg-blue-50 text-left font-semibold">Beranda</button>
                 <button type="button" onclick="toggleMobileMenu(); navigateToSection('layanan');" class="theme-heading px-3 py-2 rounded-lg hover:bg-blue-50 text-left">Layanan Utama</button>
@@ -183,9 +183,21 @@
                 <button type="button" onclick="toggleMobileMenu(); navigateToRoute('/dashboard');" class="px-3 py-2 rounded-lg bg-[#E6F0FF] text-[#002B7F] font-semibold text-left">Proyek Saya</button>
             </nav>
 
-            <div class="pt-2 border-t border-blue-100 flex items-center justify-between gap-2">
+            <div class="pt-2 border-t border-blue-100 flex flex-wrap items-center justify-between gap-2">
                 <div id="mobile-auth-logged-out" class="flex items-center gap-2">
-                    <button type="button" onclick="toggleMobileMenu(); openAuthModal('login');" class="py-2 px-4 rounded-lg bg-solid-blue text-white font-semibold text-xs">Masuk / Daftar</button>
+                    <button type="button" onclick="toggleMobileMenu(); openAuthModal('login');" class="py-2 px-4 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-xs">Masuk / Daftar</button>
+                    <button type="button" onclick="toggleMobileMenu(); openProjectModal('Paket Profesional');" class="py-2 px-4 rounded-xl bg-solid-blue text-white font-semibold text-xs">Buat Website</button>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <a href="https://www.instagram.com/flexicorporated/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://wa.me/6281374562098" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                    </a>
+                    <a href="mailto:flexicorporated@gmail.com" class="w-9 h-9 rounded-xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
 
@@ -201,7 +213,7 @@
         </div>
     </header>
 
-    <main id="main-content-wrapper" class="flex-grow w-full m-0 p-0 pt-[76px]">
+    <main id="main-content-wrapper" class="flex-grow w-full m-0 p-0 pt-[72px] sm:pt-[76px]">
 
         <div id="view-home" class="block page-transition w-full m-0 p-0">
 
@@ -214,15 +226,15 @@
                 <div class="hero-geo-shape hero-geo-diamond-right"></div>
                 <div class="hero-geo-shape hero-geo-ring-bottom"></div>
 
-                <div class="relative z-10 w-full m-0 px-4 sm:px-8 lg:px-14 py-12">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center reveal-on-scroll">
+                <div class="relative z-10 w-full m-0 px-4 sm:px-8 lg:px-14 py-8 sm:py-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center reveal-on-scroll">
                         
-                        <div class="lg:col-span-5 text-center lg:text-left space-y-6">
+                        <div class="lg:col-span-5 text-center lg:text-left space-y-5 sm:space-y-6">
                             <p class="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#0052FF]">
                                 GRATIS KONSULTASI • SEJAK 2026
                             </p>
 
-                            <h1 class="theme-heading font-heading font-extrabold text-4xl sm:text-5xl xl:text-6xl text-[#06152D] tracking-tight leading-[1.14]">
+                            <h1 class="theme-heading font-heading font-extrabold text-3xl sm:text-5xl xl:text-6xl text-[#06152D] tracking-tight leading-[1.15]">
                                 Great websites, Honest work
                             </h1>
 
@@ -232,7 +244,7 @@
 
                             <div class="w-20 h-1 bg-[#0052FF] mx-auto lg:mx-0 rounded-full"></div>
 
-                            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                            <div class="pt-1 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
                                 <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated w-full sm:w-auto px-8 py-4 rounded-xl bg-solid-blue text-white font-bold text-sm shadow-md">
                                     Mulai Proyek Website
                                 </button>
@@ -242,21 +254,21 @@
                             </div>
                         </div>
 
-                        <div class="lg:col-span-7 relative flex items-center justify-center lg:justify-end pt-4 lg:pt-0">
-                            <div class="relative w-full max-w-[760px] pb-10 pl-4 sm:pl-20">
+                        <div class="lg:col-span-7 relative flex items-center justify-center lg:justify-end pt-2 lg:pt-0 reveal-on-scroll reveal-delay-1">
+                            <div class="relative w-full max-w-[760px] flex flex-col sm:block items-center gap-5 sm:pb-10 sm:pl-20">
                                 
-                                <div class="realistic-laptop-frame rounded-2xl overflow-hidden shadow-2xl border-4 border-[#06152D] bg-[#06152D]">
-                                    <div class="bg-[#0A1D37] px-4 py-2.5 border-b border-blue-900/60 flex items-center justify-between">
-                                        <div class="flex items-center gap-1.5">
+                                <div class="realistic-laptop-frame w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-[#06152D] bg-[#06152D]">
+                                    <div class="bg-[#0A1D37] px-3 sm:px-4 py-2 sm:py-2.5 border-b border-blue-900/60 flex items-center justify-between gap-2">
+                                        <div class="flex items-center gap-1.5 shrink-0">
                                             <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
                                             <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
                                             <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
                                         </div>
-                                        <div class="px-4 py-1 rounded-md bg-[#06152D] border border-blue-900 text-[10px] font-medium text-blue-200 flex items-center gap-1.5">
-                                            <i data-lucide="lock" class="w-3 h-3 text-[#0052FF]"></i>
-                                            <span>https://flexi.co</span>
+                                        <div class="px-3 py-1 rounded-md bg-[#06152D] border border-blue-900 text-[10px] font-medium text-blue-200 flex items-center gap-1.5 truncate">
+                                            <i data-lucide="lock" class="w-3 h-3 text-[#0052FF] shrink-0"></i>
+                                            <span class="truncate">https://flexi.co</span>
                                         </div>
-                                        <span class="text-[10px] font-bold text-blue-300">Desktop 16:10</span>
+                                        <span class="text-[10px] font-bold text-blue-300 shrink-0">Desktop 16:10</span>
                                     </div>
                                     <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#06152D]">
                                         <img 
@@ -264,24 +276,24 @@
                                             alt="Preview Komputer Website flexi.co" 
                                             class="w-full h-full object-cover opacity-55"
                                         >
-                                        <div class="absolute inset-0 bg-[#06152D]/65 flex flex-col justify-center px-8 sm:px-14 text-left">
-                                            <span class="inline-block self-start px-3 py-1 rounded-md bg-[#0052FF] text-white text-[10px] font-bold uppercase tracking-widest mb-3">
+                                        <div class="absolute inset-0 bg-[#06152D]/68 flex flex-col justify-center px-5 sm:px-14 text-left">
+                                            <span class="inline-block self-start px-2.5 py-1 rounded-md bg-[#0052FF] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
                                                 flexi.co Web Studio
                                             </span>
-                                            <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white max-w-lg leading-tight">
+                                            <h2 class="font-heading font-extrabold text-lg sm:text-3xl lg:text-4xl text-white max-w-lg leading-tight">
                                                 Great websites, Honest work
                                             </h2>
-                                            <p class="text-xs sm:text-sm text-blue-100 max-w-md mt-2.5 leading-relaxed">
+                                            <p class="text-[11px] sm:text-sm text-blue-100 max-w-md mt-1.5 sm:mt-2.5 leading-relaxed">
                                                 Arsitektur website modern, cepat di semua perangkat, dan disertai garansi pemeliharaan 6 bulan penuh.
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="h-3.5 bg-[#0A1D37] border-t border-blue-900 flex items-center justify-center">
-                                        <div class="w-20 h-1 rounded-full bg-blue-400/40"></div>
+                                    <div class="h-3 bg-[#0A1D37] border-t border-blue-900 flex items-center justify-center">
+                                        <div class="w-16 sm:w-20 h-1 rounded-full bg-blue-400/40"></div>
                                     </div>
                                 </div>
 
-                                <div class="realistic-phone-frame absolute -bottom-2 left-0 sm:left-2 w-[185px] sm:w-[235px] rounded-[34px] border-[6px] border-[#06152D] bg-[#06152D] shadow-2xl overflow-hidden z-20">
+                                <div class="realistic-phone-frame relative sm:absolute sm:-bottom-2 sm:left-2 w-[230px] sm:w-[225px] mx-auto sm:mx-0 rounded-[32px] border-[5px] sm:border-[6px] border-[#06152D] bg-[#06152D] shadow-2xl overflow-hidden z-20">
                                     <div class="bg-[#06152D] px-3.5 py-2 flex items-center justify-between text-white border-b border-blue-900/60">
                                         <span class="text-[10px] font-bold text-white">9:41</span>
                                         <div class="w-12 h-3 rounded-full bg-[#0A1D37] border border-blue-900/60"></div>
@@ -289,13 +301,13 @@
                                             <i data-lucide="menu" class="w-3 h-3"></i>
                                         </span>
                                     </div>
-                                    <div class="relative aspect-[9/16] w-full bg-[#06152D] overflow-hidden">
+                                    <div class="relative aspect-[9/15] sm:aspect-[9/16] w-full bg-[#06152D] overflow-hidden">
                                         <img 
                                             src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" 
                                             alt="Preview Smartphone Website flexi.co" 
                                             class="w-full h-full object-cover opacity-50"
                                         >
-                                        <div class="absolute inset-0 bg-[#06152D]/78 px-4 pt-5 pb-10 flex flex-col justify-center text-left">
+                                        <div class="absolute inset-0 bg-[#06152D]/78 px-4 py-4 flex flex-col justify-center text-left">
                                             <span class="inline-block self-start px-2.5 py-0.5 rounded bg-[#0052FF]/30 border border-blue-400/40 text-[9px] font-bold uppercase tracking-wider text-blue-200 mb-2">
                                                 Mobile Responsive
                                             </span>
@@ -305,7 +317,7 @@
                                             <p class="text-[10px] text-blue-100 mt-1.5 leading-relaxed">
                                                 Navigasi nyaman dan ringan dibuka dari berbagai layar HP.
                                             </p>
-                                            <span class="mt-3.5 inline-block self-start px-3 py-1 rounded-full bg-[#0052FF] text-white text-[10px] font-bold shadow-sm">
+                                            <span class="mt-3 inline-block self-start px-3 py-1 rounded-full bg-[#0052FF] text-white text-[10px] font-bold shadow-sm">
                                                 flexi.co Mobile
                                             </span>
                                         </div>
@@ -322,7 +334,7 @@
                 </div>
             </section>
 
-            <section class="full-bleed-section py-5 bg-white border-b border-blue-100 m-0">
+            <section class="full-bleed-section theme-section-light py-5 bg-white border-b border-blue-100 m-0 reveal-on-scroll">
                 <div class="w-full m-0 px-0">
                     <div class="marquee-viewport">
                         <div class="marquee-track">
@@ -343,7 +355,7 @@
                 </div>
             </section>
 
-            <section id="layanan" class="full-bleed-section tall-section bg-white border-b border-blue-100">
+            <section id="layanan" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
                 <div class="w-full m-0 px-4 sm:px-8">
                     <div class="text-center max-w-2xl mx-auto mb-12 reveal-on-scroll">
                         <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Layanan Utama</span>
@@ -355,8 +367,8 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-on-scroll">
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll">
                             <div>
                                 <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
                                     <i data-lucide="palette" class="w-6 h-6"></i>
@@ -368,7 +380,7 @@
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-1">
                             <div>
                                 <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
                                     <i data-lucide="zap" class="w-6 h-6"></i>
@@ -380,7 +392,7 @@
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-2">
                             <div>
                                 <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
                                     <i data-lucide="shopping-bag" class="w-6 h-6"></i>
@@ -392,7 +404,7 @@
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-3">
                             <div>
                                 <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
                                     <i data-lucide="shield-check" class="w-6 h-6"></i>
@@ -407,13 +419,13 @@
                 </div>
             </section>
 
-            <section id="tentang-kami" class="full-bleed-section tall-section bg-[#E6F0FF] border-b border-blue-200">
+            <section id="tentang-kami" class="full-bleed-section tall-section theme-section-alt bg-[#E6F0FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center reveal-on-scroll">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                         
-                        <div class="lg:col-span-5">
+                        <div class="lg:col-span-5 reveal-on-scroll">
                             <div class="theme-card bg-white p-4 rounded-2xl border border-blue-200 shadow-sm space-y-4">
-                                <div class="rounded-xl overflow-hidden h-72 sm:h-80 bg-slate-100">
+                                <div class="rounded-xl overflow-hidden h-64 sm:h-80 bg-slate-100">
                                     <img 
                                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" 
                                         alt="Tim Studio flexi.co" 
@@ -422,24 +434,24 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div class="theme-subbox p-4 rounded-xl bg-[#F2F7FF] border border-blue-100">
-                                        <p class="font-heading font-extrabold text-xl text-[#0052FF]">Sejak 2026</p>
+                                        <p class="font-heading font-extrabold text-lg sm:text-xl text-[#0052FF]">Sejak 2026</p>
                                         <p class="theme-text text-xs text-slate-600 mt-0.5">Studio Web Modern</p>
                                     </div>
                                     <div class="p-4 rounded-xl bg-solid-blue text-white">
-                                        <p class="font-heading font-bold text-sm text-white">"Great websites, Honest work"</p>
+                                        <p class="font-heading font-bold text-xs sm:text-sm text-white">"Great websites, Honest work"</p>
                                         <p class="text-[11px] text-white/80 mt-0.5">Prinsip Kerja Kami</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="lg:col-span-7 space-y-5">
+                        <div class="lg:col-span-7 space-y-5 reveal-on-scroll reveal-delay-1">
                             <div class="theme-subbox inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 text-[#0052FF] text-xs font-bold uppercase tracking-wider">
                                 <i data-lucide="users" class="w-3.5 h-3.5"></i>
                                 <span>Who We Are • Tentang Kami</span>
                             </div>
 
-                            <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] leading-tight">
+                            <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] leading-tight">
                                 Partner Digital yang Mengutamakan Kualitas Kode &amp; Kejujuran Kerja.
                             </h2>
 
@@ -474,274 +486,54 @@
                 </div>
             </section>
 
-            <section id="portofolio" class="full-bleed-section tall-section bg-white border-b border-blue-100">
+            <section id="portofolio" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-10 reveal-on-scroll">
-                        <div class="w-16 h-1 bg-[#0052FF] mx-auto mb-4 rounded-full"></div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Karya Pilihan</span>
-                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-1">
-                            Portofolio
-                        </h2>
-                        <p class="theme-text text-slate-600 text-xs sm:text-sm mt-1">
-                            Klik pada kartu proyek untuk membaca artikel studi kasus lengkap.
-                        </p>
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal-on-scroll">
+                        <div>
+                            <div class="w-16 h-1 bg-[#0052FF] mb-3 rounded-full"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Karya Pilihan (5 Portofolio)</span>
+                            <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-1">
+                                Portofolio
+                            </h2>
+                            <p class="theme-text text-slate-600 text-xs sm:text-sm mt-1">
+                                Klik kartu untuk melihat tampilan halaman penuh (Desktop &amp; Mobile View). Gunakan tombol panah untuk menggeser.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-2.5 self-start sm:self-end shrink-0">
+                            <button 
+                                type="button" 
+                                onclick="slidePortfolio(-1)" 
+                                aria-label="Portofolio Sebelumnya"
+                                class="arrow-nav-btn w-11 h-11 rounded-2xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center hover:bg-[#0052FF] hover:text-white shadow-sm"
+                            >
+                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            </button>
+                            <button 
+                                type="button" 
+                                onclick="slidePortfolio(1)" 
+                                aria-label="Portofolio Berikutnya"
+                                class="arrow-nav-btn w-11 h-11 rounded-2xl bg-solid-blue text-white border border-blue-500 flex items-center justify-center shadow-sm"
+                            >
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="w-full reveal-on-scroll">
-                        <div id="portfolio-showcase-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                            
-                            <article 
-                                id="porto-slide-0"
-                                onclick="openPortfolioArticleModal('bitemart')" 
-                                class="portfolio-card theme-card rounded-3xl border border-blue-200 overflow-hidden bg-[#F2F7FF] flex flex-col justify-between shadow-sm"
-                            >
-                                <div class="p-4 sm:p-6 pb-0">
-                                    <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-sm">
-                                        <div class="portfolio-browser-bar px-4 py-2.5 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
-                                            <div class="flex items-center gap-1.5">
-                                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
-                                            </div>
-                                            <span class="text-[11px] font-semibold text-[#002B7F] truncate">https://bitemart.eu</span>
-                                            <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[10px] font-bold uppercase tracking-wider">
-                                                Food Delivery
-                                            </span>
-                                        </div>
+                    <div class="w-full reveal-on-scroll relative overflow-hidden">
+                        <div id="portfolio-showcase-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"></div>
 
-                                        <div class="live-mockup-canvas bg-[#FDFBF7] text-stone-900 select-none overflow-hidden font-sans">
-                                            <div class="px-4 py-2.5 bg-[#1C1917] text-stone-200 flex items-center justify-between text-[10px]">
-                                                <div class="flex items-center gap-2">
-                                                    <span class="px-2 py-0.5 rounded bg-[#D97706] text-white font-extrabold text-[9px] tracking-wider uppercase">BiteMart EU</span>
-                                                    <span class="text-stone-300 truncate">📍 Via Torino 42, Milano • <strong class="text-amber-400">18 Mins</strong></span>
-                                                </div>
-                                                <div class="flex items-center gap-2 shrink-0">
-                                                    <span class="hidden sm:inline text-stone-400">Promo: <strong class="text-white">EUROTASTE</strong></span>
-                                                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[9px]">2 Items • €24.40</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="p-3.5 sm:p-4 grid grid-cols-12 gap-3.5 items-stretch bg-[#FDFBF7]">
-                                                <div class="hidden sm:flex sm:col-span-3 flex-col justify-between rounded-xl bg-[#F5F0E6] border border-stone-200/80 p-2.5 text-left">
-                                                    <div class="space-y-1">
-                                                        <p class="text-[8px] font-extrabold uppercase tracking-wider text-stone-400 px-1.5">European Kitchens</p>
-                                                        <div class="px-2 py-1.5 rounded-lg bg-[#1C1917] text-amber-300 font-bold text-[10px] flex items-center justify-between">
-                                                            <span>🍕 Napoli Pizza</span>
-                                                            <span>14</span>
-                                                        </div>
-                                                        <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
-                                                            <span>🥐 Paris Bakery</span>
-                                                            <span class="text-stone-400">9</span>
-                                                        </div>
-                                                        <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
-                                                            <span>🍝 Roma Pasta</span>
-                                                            <span class="text-stone-400">11</span>
-                                                        </div>
-                                                        <div class="px-2 py-1.5 rounded-lg text-stone-700 font-semibold text-[10px] flex items-center justify-between">
-                                                            <span>🥩 Vienna Grill</span>
-                                                            <span class="text-stone-400">7</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-2 rounded-lg bg-amber-500/15 border border-amber-500/30 text-left mt-2">
-                                                        <p class="text-[8px] font-extrabold uppercase text-amber-800">Free Gelato</p>
-                                                        <p class="text-[9px] font-semibold text-stone-700 leading-tight mt-0.5">Orders above €20 get artisan pistachio cup.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-span-12 sm:col-span-9 flex flex-col justify-between space-y-3 text-left">
-                                                    <div class="rounded-xl bg-gradient-to-r from-[#292524] via-[#44403C] to-[#78350F] text-white p-3.5 flex items-center justify-between gap-3">
-                                                        <div class="space-y-1">
-                                                            <span class="inline-block px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-extrabold text-[8px] uppercase tracking-wider">Michelin Street Partner</span>
-                                                            <h4 class="font-heading font-extrabold text-xs sm:text-sm text-white leading-snug">
-                                                                Artisan European Cravings, Delivered Hot.
-                                                            </h4>
-                                                            <p class="text-[9px] text-stone-300">Wood-fired Neapolitan dough, French butter pastries &amp; fresh handmade tagliatelle.</p>
-                                                        </div>
-                                                        <div class="shrink-0 text-right bg-black/30 px-3 py-2 rounded-xl border border-white/10">
-                                                            <span class="block text-[8px] uppercase text-amber-300 font-bold">Avg. Speed</span>
-                                                            <span class="font-extrabold text-sm text-white">18m</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="grid grid-cols-3 gap-2.5">
-                                                        <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
-                                                            <div class="flex items-center justify-between">
-                                                                <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-red-50 text-red-700">Napoli</span>
-                                                                <span class="text-[9px] font-extrabold text-amber-600">★ 4.9</span>
-                                                            </div>
-                                                            <div class="my-2">
-                                                                <p class="font-bold text-[10px] text-stone-900 truncate">Truffle Burrata Pizza</p>
-                                                                <p class="text-[8px] text-stone-400">450°C Oak Fired</p>
-                                                            </div>
-                                                            <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                                                  <span class="font-extrabold text-[10px] text-stone-900">€13.50</span>
-                                                                <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
-                                                            <div class="flex items-center justify-between">
-                                                                <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-800">Paris</span>
-                                                                <span class="text-[9px] font-extrabold text-amber-600">★ 4.8</span>
-                                                            </div>
-                                                            <div class="my-2">
-                                                                <p class="font-bold text-[10px] text-stone-900 truncate">Almond Croissant Box</p>
-                                                                <p class="text-[8px] text-stone-400">Charentes Butter</p>
-                                                            </div>
-                                                            <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                                                <span class="font-extrabold text-[10px] text-stone-900">€8.90</span>
-                                                                <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="rounded-xl bg-white border border-stone-200 p-2.5 shadow-sm flex flex-col justify-between">
-                                                            <div class="flex items-center justify-between">
-                                                                <span class="text-[8px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Roma</span>
-                                                                <span class="text-[9px] font-extrabold text-amber-600">★ 5.0</span>
-                                                            </div>
-                                                            <div class="my-2">
-                                                                <p class="font-bold text-[10px] text-stone-900 truncate">Carbonara Guanciale</p>
-                                                                <p class="text-[8px] text-stone-400">Pecorino Romano</p>
-                                                            </div>
-                                                            <div class="flex items-center justify-between pt-1.5 border-t border-stone-100">
-                                                                <span class="font-extrabold text-[10px] text-stone-900">€11.90</span>
-                                                                <span class="px-2 py-0.5 rounded bg-[#1C1917] text-white text-[8px] font-bold">+ Add</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="rounded-xl bg-[#1C1917] text-white px-3.5 py-2 flex items-center justify-between text-[10px]">
-                                                        <div class="flex items-center gap-2">
-                                                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                                                            <span class="font-semibold text-stone-200">Courier Marco R. is picking up your wood-fired order</span>
-                                                        </div>
-                                                        <span class="font-extrabold text-amber-400 shrink-0">Track Map →</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                                    <div class="space-y-1.5">
-                                        <span class="inline-block px-3 py-1 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[11px] font-bold uppercase tracking-wider">
-                                            Food Delivery App • Kuliner Eropa
-                                        </span>
-                                        <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D]">
-                                            BiteMart — Kuliner Eropa
-                                        </h3>
-                                        <p class="theme-text text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                            Aplikasi web pesan-antar makanan khas Eropa dengan pelacakan pesanan real-time.
-                                        </p>
-                                    </div>
-                                    <span class="btn-animated shrink-0 self-start sm:self-center px-5 py-3 rounded-xl bg-solid-blue text-white font-bold text-xs shadow-sm">
-                                        Baca Artikel
-                                    </span>
-                                </div>
-                            </article>
-
-                            <article 
-                                id="porto-slide-1"
-                                onclick="openPortfolioArticleModal('nusanet')" 
-                                class="portfolio-card theme-card rounded-3xl border border-blue-200 overflow-hidden bg-[#F2F7FF] flex flex-col justify-between shadow-sm"
-                            >
-                                <div class="p-4 sm:p-6 pb-0">
-                                    <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-sm">
-                                        <div class="portfolio-browser-bar px-4 py-2.5 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
-                                            <div class="flex items-center gap-1.5">
-                                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
-                                            </div>
-                                            <span class="text-[11px] font-semibold text-[#002B7F] truncate">https://nusanet.id</span>
-                                            <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[10px] font-bold uppercase tracking-wider">
-                                                ISP &amp; Telco
-                                            </span>
-                                        </div>
-
-                                        <div class="live-mockup-canvas bg-white text-slate-900 select-none overflow-hidden">
-                                            <div class="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-white">
-                                                <div class="flex items-center gap-2">
-                                                    <span class="w-7 h-7 rounded-lg bg-[#E11D48] text-white font-extrabold text-xs flex items-center justify-center">N</span>
-                                                    <span class="font-extrabold text-sm text-slate-900">Nusa<span class="text-[#E11D48]">Net</span></span>
-                                                </div>
-                                                <div class="flex items-center gap-2">
-                                                    <span class="px-3 py-1.5 rounded-lg bg-[#E11D48] text-white font-bold text-[10px]">
-                                                        Langganan Sekarang
-                                                    </span>
-                                                    <span class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 text-xs">
-                                                        ≡
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="p-5 sm:p-6 space-y-4 text-left bg-white">
-                                                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-semibold text-slate-700">
-                                                    <span class="w-2 h-2 rounded-full bg-[#E11D48]"></span>
-                                                    <span>Jaringan Fiber Optik Ultra Cepat 100% Simetris</span>
-                                                </div>
-
-                                                <h4 class="font-heading font-extrabold text-lg sm:text-xl text-slate-900 leading-tight">
-                                                    Koneksi Internet Tanpa Batas untuk <span class="text-[#E11D48]">Rumah &amp; Bisnis Anda.</span>
-                                                </h4>
-
-                                                <p class="text-[11px] text-slate-500 leading-relaxed max-w-xl">
-                                                    Nikmati kecepatan hingga <strong class="text-slate-800">1 Gbps True Unlimited</strong> tanpa kuota FUP. Bebas hambatan untuk streaming 4K, gaming latency rendah, dan kerja jarak jauh.
-                                                </p>
-
-                                                <div class="grid grid-cols-3 gap-2.5 pt-1">
-                                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                                        <p class="text-[9px] text-slate-500">Kecepatan Maksimal</p>
-                                                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">Hingga 1 Gbps</p>
-                                                    </div>
-                                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                                        <p class="text-[9px] text-slate-500">Batas Kuota (FUP)</p>
-                                                        <p class="font-extrabold text-xs sm:text-sm text-[#E11D48] mt-0.5">100% Unlimited</p>
-                                                    </div>
-                                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                                        <p class="text-[9px] text-slate-500">Uptime Jaringan</p>
-                                                        <p class="font-extrabold text-xs sm:text-sm text-slate-900 mt-0.5">99.9% SLA</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="pt-1 flex flex-wrap items-center gap-2.5">
-                                                    <span class="px-4 py-2 rounded-xl bg-[#E11D48] text-white font-bold text-[11px]">
-                                                        Pilih Paket Sekarang
-                                                    </span>
-                                                    <span class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-[11px]">
-                                                        Cek Jangkauan Lokasi
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                                    <div class="space-y-1.5">
-                                        <span class="inline-block px-3 py-1 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[11px] font-bold uppercase tracking-wider">
-                                            Fiber Optic ISP &amp; Telco Digital
-                                        </span>
-                                        <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D]">
-                                            NusaNet — Internet &amp; Digital
-                                        </h3>
-                                        <p class="theme-text text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                            Platform layanan internet fiber optik 1 Gbps True Unlimited &amp; produk digital untuk rumah dan bisnis.
-                                        </p>
-                                    </div>
-                                    <span class="btn-animated shrink-0 self-start sm:self-center px-5 py-3 rounded-xl bg-solid-blue text-white font-bold text-xs shadow-sm">
-                                        Baca Artikel
-                                    </span>
-                                </div>
-                            </article>
-
+                        <div class="mt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <p id="portfolio-slide-counter" class="theme-text text-xs font-semibold text-slate-500">
+                                Menampilkan 1 &amp; 2 dari 5 Portofolio
+                            </p>
+                            <div id="portfolio-dots-indicator" class="flex items-center gap-2"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="paket-harga" class="full-bleed-section tall-section bg-[#F2F7FF] border-b border-blue-200">
+            <section id="paket-harga" class="full-bleed-section tall-section theme-section-alt bg-[#F2F7FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
                         <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Investasi Transparan &amp; Negotiable</span>
@@ -753,9 +545,9 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch reveal-on-scroll">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
 
-                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm">
+                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm reveal-on-scroll">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-5">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-[#E6F0FF] text-[#0052FF] text-xs font-bold">
@@ -832,7 +624,7 @@
                             </div>
                         </article>
 
-                        <article class="theme-card bg-white rounded-3xl border-2 border-[#0052FF] p-7 sm:p-8 flex flex-col justify-between shadow-lg relative">
+                        <article class="theme-card bg-white rounded-3xl border-2 border-[#0052FF] p-7 sm:p-8 flex flex-col justify-between shadow-lg relative reveal-on-scroll reveal-delay-1">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-5">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-solid-blue text-white text-xs font-bold">
@@ -909,7 +701,7 @@
                             </div>
                         </article>
 
-                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm">
+                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm reveal-on-scroll reveal-delay-2">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-5">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-[#E6F0FF] text-[#0052FF] text-xs font-bold">
@@ -990,10 +782,10 @@
                 </div>
             </section>
 
-            <section id="cara-kerja" class="full-bleed-section tall-section bg-white border-b border-blue-100">
+            <section id="cara-kerja" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
                 <div class="w-full m-0 px-4 sm:px-8 space-y-16">
-                    <div class="reveal-on-scroll">
-                        <div class="max-w-3xl mb-10">
+                    <div>
+                        <div class="max-w-3xl mb-10 reveal-on-scroll">
                             <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Alur Kerja Transparan</span>
                             <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-2">
                                 4 Tahap Pengerjaan Website
@@ -1001,28 +793,28 @@
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll">
                                 <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 01</span>
                                 <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Diskusi &amp; Kesepakatan</h3>
                                 <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                                     Pilih paket dan sampaikan kebutuhan website Anda. Harga dan ruang lingkup fitur dapat dinegosiasikan secara terbuka.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-1">
                                 <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 02</span>
                                 <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Desain &amp; Coding</h3>
                                 <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                                     Tim kami merancang antarmuka yang bersih, responsif, dan membangun fitur sesuai spesifikasi bisnis Anda.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-2">
                                 <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 03</span>
                                 <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Pantau Status Progres</h3>
                                 <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                                     Login ke akun perusahaan Anda untuk memantau apakah proyek berstatus Not Yet, In Progress, Almost Done, atau Done.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-3">
                                 <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 04</span>
                                 <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Rilis &amp; Maintenance</h3>
                                 <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
@@ -1038,7 +830,7 @@
                 </div>
             </section>
 
-            <section id="faq" class="full-bleed-section tall-section bg-[#E6F0FF] border-b border-blue-200">
+            <section id="faq" class="full-bleed-section tall-section theme-section-alt bg-[#E6F0FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
                     <div class="max-w-3xl mb-10 reveal-on-scroll">
                         <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Tanya Jawab (FAQ)</span>
@@ -1049,7 +841,7 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start reveal-on-scroll">
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-1">
-                            <button type="button" onclick="toggleFaqItem(1)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(1)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">1. Apakah semua harga paket masih bisa dinegosiasikan?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1063,7 +855,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-2">
-                            <button type="button" onclick="toggleFaqItem(2)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(2)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">2. Berapa lama estimasi waktu pembuatan website?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1077,7 +869,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-3">
-                            <button type="button" onclick="toggleFaqItem(3)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(3)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">3. Apa saja yang termasuk Gratis 6 Bulan Maintenance?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1091,7 +883,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-4">
-                            <button type="button" onclick="toggleFaqItem(4)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(4)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">4. Bagaimana cara memantau progres pengerjaan website?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1105,7 +897,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-5">
-                            <button type="button" onclick="toggleFaqItem(5)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(5)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">5. Apakah data proyek saya aman dari perusahaan lain?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1119,7 +911,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-6">
-                            <button type="button" onclick="toggleFaqItem(6)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(6)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">6. Apakah saya bisa mengubah isi teks dan gambar sendiri?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1133,7 +925,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-7">
-                            <button type="button" onclick="toggleFaqItem(7)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(7)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">7. Apakah tampilan website sudah responsif di HP dan tablet?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1147,7 +939,7 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-8">
-                            <button type="button" onclick="toggleFaqItem(8)" class="w-full p-5 text-left flex items-center justify-between gap-4">
+                            <button type="button" onclick="toggleFaqItem(8)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
                                 <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">8. Bagaimana sistem pembayaran proyek di flexi.co?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
@@ -1163,7 +955,7 @@
                 </div>
             </section>
 
-            <section id="kontak-kantor" class="full-bleed-section bg-white py-16 border-b border-blue-200">
+            <section id="kontak-kantor" class="full-bleed-section theme-section-light bg-white py-16 border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8 lg:px-14">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start reveal-on-scroll">
                         
@@ -1408,26 +1200,26 @@
 
     </main>
 
-    <div id="portfolio-article-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <dialog open class="theme-card relative w-full max-w-lg md:max-w-4xl lg:max-w-6xl bg-white rounded-3xl border border-blue-200 shadow-2xl p-0 overflow-hidden my-8 page-transition">
-            <div id="portfolio-article-modal-content"></div>
+    <div id="portfolio-article-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+        <dialog id="portfolio-article-modal-dialog" open class="theme-card relative w-full max-w-6xl bg-[#E6F0FF] rounded-2xl sm:rounded-3xl border border-blue-200 shadow-2xl p-0 overflow-hidden m-auto h-[92dvh] flex flex-col page-transition">
+            <div id="portfolio-article-modal-content" class="w-full h-full flex flex-col overflow-hidden"></div>
         </dialog>
     </div>
 
-    <div id="project-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <dialog id="project-modal-dialog" open class="theme-card relative w-full max-w-xl bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-8">
+    <div id="project-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
+        <dialog id="project-modal-dialog" open class="theme-card relative w-full max-w-xl bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-2 sm:my-auto max-h-[92dvh] flex flex-col page-transition">
             
-            <div class="bg-solid-blue px-6 py-4 text-white flex items-center justify-between">
+            <div class="bg-solid-blue px-5 sm:px-6 py-4 text-white flex items-center justify-between shrink-0">
                 <div>
                     <h3 class="font-heading font-bold text-base sm:text-lg text-white">Formulir Pembuatan Website</h3>
                     <p class="text-xs text-white/85">flexi.co — Great websites, Honest work</p>
                 </div>
-                <button type="button" onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white">
+                <button type="button" onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white shrink-0">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
 
-            <form id="project-form-view" onsubmit="handleProjectSubmit(event)" class="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+            <form id="project-form-view" onsubmit="handleProjectSubmit(event)" class="p-5 sm:p-6 space-y-4 overflow-y-auto modal-smooth-scroll">
                 <div>
                     <label class="theme-heading block text-xs font-bold text-[#06152D] mb-2">Pilih Paket Website (Negotiable) *</label>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -1498,7 +1290,7 @@
                 </button>
             </form>
 
-            <div id="project-success-view" class="hidden p-6 sm:p-8 text-center space-y-4">
+            <div id="project-success-view" class="hidden p-6 sm:p-8 text-center space-y-4 overflow-y-auto modal-smooth-scroll">
                 <div class="w-14 h-14 rounded-2xl bg-[#E6F0FF] text-[#0052FF] flex items-center justify-center mx-auto">
                     <i data-lucide="check" class="w-7 h-7"></i>
                 </div>
@@ -1521,112 +1313,114 @@
         </dialog>
     </div>
 
-    <div id="auth-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-8">
+    <div id="auth-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
+        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-2 sm:my-auto max-h-[92dvh] flex flex-col page-transition">
             
-            <div class="bg-solid-blue px-6 py-4 text-white flex items-center justify-between">
+            <div class="bg-solid-blue px-6 py-4 text-white flex items-center justify-between shrink-0">
                 <div>
                     <h3 id="auth-modal-title" class="font-heading font-bold text-base text-white">Masuk Akun Perusahaan</h3>
                     <p class="text-[11px] text-white/85">Portal Klien flexi.co</p>
                 </div>
-                <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white">
+                <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white shrink-0">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
 
-            <div class="theme-subbox grid grid-cols-2 bg-[#F2F7FF] p-1.5 m-6 mb-2 rounded-xl border border-blue-100">
-                <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg font-bold text-xs sm:text-sm bg-solid-blue text-white transition-all">
-                    Masuk (Login)
-                </button>
-                <button type="button" id="tab-btn-signup" onclick="switchAuthTab('signup')" class="theme-heading py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all">
-                    Daftar Akun
-                </button>
+            <div class="overflow-y-auto modal-smooth-scroll">
+                <div class="theme-subbox grid grid-cols-2 bg-[#F2F7FF] p-1.5 m-6 mb-2 rounded-xl border border-blue-100">
+                    <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg font-bold text-xs sm:text-sm bg-solid-blue text-white transition-all">
+                        Masuk (Login)
+                    </button>
+                    <button type="button" id="tab-btn-signup" onclick="switchAuthTab('signup')" class="theme-heading py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all">
+                        Daftar Akun
+                    </button>
+                </div>
+
+                <form id="client-login-form" onsubmit="handleClientLogin(event)" class="p-6 pt-3 space-y-4">
+                    <div id="signup-redirect-success-banner" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-[#0052FF] text-[#06152D] text-xs font-medium">
+                        ✓ Akun sudah dibuat! Silakan masuk menggunakan email dan password akun Anda.
+                    </div>
+
+                    <div>
+                        <label for="login-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan</label>
+                        <input type="email" id="login-email" required placeholder="halo@flexi.co" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label for="login-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="login-password" required placeholder="Masukkan password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                            <button type="button" onclick="togglePasswordField('login-password', 'eye-login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
+                                <i id="eye-login-password" data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="client-login-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium">
+                        Email atau password tidak sesuai.
+                    </div>
+
+                    <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
+                        Masuk
+                    </button>
+                </form>
+
+                <form id="client-signup-form" onsubmit="handleClientSignupAccount(event)" class="hidden p-6 pt-3 space-y-3.5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="reg-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
+                            <input type="text" id="reg-name" required placeholder="Nama Lengkap" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="reg-company" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan *</label>
+                            <input type="text" id="reg-company" required placeholder="PT / Brand Anda" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="reg-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email *</label>
+                            <input type="email" id="reg-email" required placeholder="email@perusahaan.com" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="reg-wa" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">No. WhatsApp *</label>
+                            <input type="tel" id="reg-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="reg-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password *</label>
+                        <div class="relative">
+                            <input type="password" id="reg-password" required minlength="4" placeholder="Buat password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                            <button type="button" onclick="togglePasswordField('reg-password', 'eye-reg-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
+                                <i id="eye-reg-password" data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="reg-password-confirm" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Tulis Ulang Password *</label>
+                        <div class="relative">
+                            <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Ketik ulang password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
+                            <button type="button" onclick="togglePasswordField('reg-password-confirm', 'eye-reg-password-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
+                                <i id="eye-reg-password-confirm" data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="client-signup-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium"></div>
+
+                    <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
+                        Buat Akun Perusahaan
+                    </button>
+                </form>
             </div>
-
-            <form id="client-login-form" onsubmit="handleClientLogin(event)" class="p-6 pt-3 space-y-4">
-                <div id="signup-redirect-success-banner" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-[#0052FF] text-[#06152D] text-xs font-medium">
-                    ✓ Akun sudah dibuat! Silakan masuk menggunakan email dan password akun Anda.
-                </div>
-
-                <div>
-                    <label for="login-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan</label>
-                    <input type="email" id="login-email" required placeholder="halo@flexi.co" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                </div>
-
-                <div>
-                    <label for="login-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password</label>
-                    <div class="relative">
-                        <input type="password" id="login-password" required placeholder="Masukkan password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        <button type="button" onclick="togglePasswordField('login-password', 'eye-login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                            <i id="eye-login-password" data-lucide="eye" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="client-login-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium">
-                    Email atau password tidak sesuai.
-                </div>
-
-                <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                    Masuk
-                </button>
-            </form>
-
-            <form id="client-signup-form" onsubmit="handleClientSignupAccount(event)" class="hidden p-6 pt-3 space-y-3.5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label for="reg-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
-                        <input type="text" id="reg-name" required placeholder="Nama Lengkap" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                    <div>
-                        <label for="reg-company" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan *</label>
-                        <input type="text" id="reg-company" required placeholder="PT / Brand Anda" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label for="reg-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email *</label>
-                        <input type="email" id="reg-email" required placeholder="email@perusahaan.com" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                    <div>
-                        <label for="reg-wa" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">No. WhatsApp *</label>
-                        <input type="tel" id="reg-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="reg-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password *</label>
-                    <div class="relative">
-                        <input type="password" id="reg-password" required minlength="4" placeholder="Buat password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        <button type="button" onclick="togglePasswordField('reg-password', 'eye-reg-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                            <i id="eye-reg-password" data-lucide="eye" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="reg-password-confirm" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Tulis Ulang Password *</label>
-                    <div class="relative">
-                        <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Ketik ulang password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        <button type="button" onclick="togglePasswordField('reg-password-confirm', 'eye-reg-password-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                            <i id="eye-reg-password-confirm" data-lucide="eye" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="client-signup-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium"></div>
-
-                <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                    Buat Akun Perusahaan
-                </button>
-            </form>
 
         </dialog>
     </div>
 
-    <div id="admin-remove-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-6">
+    <div id="admin-remove-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-6 page-transition">
             <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D]">Remove Proyek dari Admin?</h3>
             <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 Proyek <span id="remove-modal-project-name" class="theme-heading font-bold text-[#06152D]">Nama Proyek</span> akan dihapus dari daftar aktif Admin, tetapi klien tetap bisa melihat proyeknya.
@@ -1639,7 +1433,7 @@
     </div>
 
     <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden">
-        <div class="bg-[#06152D] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-blue-500/40 flex items-center gap-3">
+        <div class="bg-[#06152D] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-blue-500/40 flex items-center gap-3 page-transition">
             <div class="w-8 h-8 rounded-xl bg-solid-blue text-white flex items-center justify-center shrink-0">
                 <i data-lucide="check" class="w-4 h-4"></i>
             </div>
