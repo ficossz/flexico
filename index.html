@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,20 +15,20 @@
 
     <header id="public-site-header" class="sticky-navbar bg-white/95 backdrop-blur-md border-b border-blue-200">
         <div class="w-full m-0 px-3 sm:px-8">
-            <div class="flex items-center justify-between h-[72px] sm:h-[76px] gap-2">
+            <div class="flex items-center justify-between h-[68px] sm:h-[76px] gap-2">
                 
-                <a href="#beranda" onclick="navigateToSection('beranda'); return false;" class="flex items-center gap-2.5 sm:gap-3 focus:outline-none shrink-0 select-none cursor-pointer">
+                <a href="#beranda" onclick="navigateToSection('beranda'); return false;" class="flex items-center gap-2 sm:gap-3 focus:outline-none min-w-0 select-none cursor-pointer">
                     <img 
                         src="logo.png" 
                         onerror="this.onerror=null;this.src='https://placehold.co/120x120/0052FF/FFFFFF?text=FX';"
                         alt="Logo flexi.co" 
                         class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-blue-200 shadow-sm shrink-0"
                     >
-                    <div class="flex flex-col">
-                        <span class="theme-heading font-heading font-extrabold text-lg sm:text-xl tracking-tight text-[#06152D] leading-none">
+                    <div class="flex flex-col min-w-0">
+                        <span class="theme-heading font-heading font-extrabold text-base sm:text-xl tracking-tight text-[#06152D] leading-none truncate">
                             flexi.co
                         </span>
-                        <span class="text-[9px] sm:text-[10px] font-medium text-[#0052FF] mt-0.5">Great websites, Honest work</span>
+                        <span class="text-[9px] sm:text-[10px] font-medium text-[#0052FF] mt-0.5 truncate">Great websites, Honest work</span>
                     </div>
                 </a>
 
@@ -56,9 +56,8 @@
                     <button type="button" onclick="navigateToSection('faq')" data-spy="faq" class="nav-pill-item px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#06152D]">
                         FAQ
                     </button>
-                    <button type="button" onclick="navigateToRoute('/dashboard')" data-spy="dashboard" class="nav-pill-item px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#06152D] flex items-center gap-1.5">
-                        <span>Proyek Saya</span>
-                        <span id="nav-my-project-count" class="hidden px-1.5 py-0.2 rounded bg-white text-[#0052FF] font-bold text-[10px]">0</span>
+                    <button type="button" onclick="navigateToSection('order-website')" data-spy="order-website" class="nav-pill-item px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#06152D]">
+                        Form Order
                     </button>
                 </nav>
 
@@ -67,69 +66,23 @@
                         type="button"
                         onclick="toggleDarkMode()"
                         aria-label="Ubah Mode Gelap atau Terang"
-                        class="btn-animated hidden md:flex w-[96px] h-[38px] rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-xs items-center justify-center gap-1.5 shrink-0 select-none"
+                        class="theme-toggle-btn btn-animated px-2.5 sm:w-[94px] h-[36px] sm:h-[38px] rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-[11px] sm:text-xs flex items-center justify-center gap-1.5 shrink-0 select-none"
                     >
-                        <i id="theme-toggle-icon" data-lucide="moon" class="w-4 h-4 shrink-0"></i>
-                        <span id="theme-toggle-label" class="inline-block w-[46px] text-center">Gelap</span>
+                        <i id="theme-toggle-icon" data-lucide="moon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0052FF] shrink-0"></i>
+                        <span id="theme-toggle-label" class="inline-block text-center">Gelap</span>
                     </button>
 
-                    <div id="nav-auth-logged-out" class="hidden sm:flex items-center gap-2 shrink-0">
-                        <button
-                            type="button"
-                            onclick="openAuthModal('login')"
-                            class="btn-animated px-3.5 h-[38px] rounded-xl text-[#002B7F] bg-[#E6F0FF] font-semibold text-xs sm:text-sm border border-blue-200"
-                        >
-                            Masuk
-                        </button>
-                        <button
-                            type="button"
-                            onclick="openProjectModal('Paket Profesional')"
-                            class="btn-animated px-3.5 h-[38px] rounded-xl bg-solid-blue text-white font-semibold text-xs sm:text-sm shadow-sm"
-                        >
-                            Buat Website
-                        </button>
-                    </div>
+                    <button
+                        type="button"
+                        onclick="scrollToOrderForm('Paket Profesional')"
+                        class="btn-animated px-3 sm:px-4 h-[36px] sm:h-[38px] rounded-xl bg-solid-blue text-white font-semibold text-[11px] sm:text-xs shadow-sm shrink-0 whitespace-nowrap"
+                    >
+                        <span class="sm:hidden">Order</span>
+                        <span class="hidden sm:inline">Buat Website</span>
+                    </button>
 
-                    <div id="nav-auth-logged-in" class="hidden items-center gap-2 shrink-0">
-                        <button
-                            type="button"
-                            onclick="openProjectModal('Paket Profesional')"
-                            class="btn-animated px-3.5 h-[38px] rounded-xl bg-solid-blue text-white font-semibold text-xs sm:text-sm shadow-sm"
-                        >
-                            + Proyek Baru
-                        </button>
-
-                        <div class="flex items-center gap-2 pl-2 border-l border-blue-200">
-                            <button
-                                type="button"
-                                onclick="navigateToRoute('/dashboard')"
-                                class="flex items-center gap-2 text-left"
-                                title="Buka Proyek Saya"
-                            >
-                                <div id="nav-user-avatar" class="w-9 h-9 rounded-xl bg-solid-blue text-white font-bold text-xs flex items-center justify-center">
-                                    FX
-                                </div>
-                                <div class="hidden 2xl:block max-w-[120px]">
-                                    <p id="nav-company-name" class="theme-heading font-bold text-xs text-[#06152D] truncate">flexi.co</p>
-                                    <p id="nav-user-email" class="theme-text text-[10px] text-slate-500 truncate">halo@flexi.co</p>
-                                </div>
-                            </button>
-                            <button
-                                type="button"
-                                onclick="handleClientLogout()"
-                                title="Keluar Akun"
-                                class="p-2 rounded-xl text-slate-500 hover:text-[#0052FF] hover:bg-blue-50 transition-colors"
-                            >
-                                <i data-lucide="log-out" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 xl:hidden">
-                        <button type="button" onclick="toggleDarkMode()" aria-label="Mode Gelap/Terang" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 shrink-0">
-                            <i data-lucide="sun-moon" class="w-4 h-4"></i>
-                        </button>
-                        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" class="w-9 h-9 flex items-center justify-center rounded-xl text-[#06152D] bg-[#E6F0FF] border border-blue-200 shrink-0">
+                    <div class="flex items-center xl:hidden">
+                        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" class="theme-toggle-btn w-9 h-9 flex items-center justify-center rounded-xl text-[#06152D] bg-[#E6F0FF] border border-blue-200 shrink-0">
                             <i data-lucide="menu" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -180,14 +133,13 @@
                 <button type="button" onclick="toggleMobileMenu(); navigateToSection('paket-harga');" class="theme-heading px-3 py-2 rounded-lg hover:bg-blue-50 text-left">Paket Harga</button>
                 <button type="button" onclick="toggleMobileMenu(); navigateToSection('cara-kerja');" class="theme-heading px-3 py-2 rounded-lg hover:bg-blue-50 text-left">Cara Kerja</button>
                 <button type="button" onclick="toggleMobileMenu(); navigateToSection('faq');" class="theme-heading px-3 py-2 rounded-lg hover:bg-blue-50 text-left">FAQ</button>
-                <button type="button" onclick="toggleMobileMenu(); navigateToRoute('/dashboard');" class="px-3 py-2 rounded-lg bg-[#E6F0FF] text-[#002B7F] font-semibold text-left">Proyek Saya</button>
+                <button type="button" onclick="toggleMobileMenu(); scrollToOrderForm('Paket Profesional');" class="px-3 py-2 rounded-lg bg-[#E6F0FF] text-[#002B7F] font-semibold text-left">Formulir Order Website</button>
             </nav>
 
-            <div class="pt-2 border-t border-blue-100 flex flex-wrap items-center justify-between gap-2">
-                <div id="mobile-auth-logged-out" class="flex items-center gap-2">
-                    <button type="button" onclick="toggleMobileMenu(); openAuthModal('login');" class="py-2 px-4 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-semibold text-xs">Masuk / Daftar</button>
-                    <button type="button" onclick="toggleMobileMenu(); openProjectModal('Paket Profesional');" class="py-2 px-4 rounded-xl bg-solid-blue text-white font-semibold text-xs">Buat Website</button>
-                </div>
+            <div class="pt-2 border-t border-blue-100 flex items-center justify-between gap-2">
+                <button type="button" onclick="toggleMobileMenu(); scrollToOrderForm('Paket Profesional');" class="py-2 px-4 rounded-xl bg-solid-blue text-white font-semibold text-xs">
+                    Isi Form Order Website
+                </button>
                 <div class="flex items-center gap-1.5">
                     <a href="https://www.instagram.com/flexicorporated/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -200,24 +152,14 @@
                     </a>
                 </div>
             </div>
-
-            <div id="mobile-auth-logged-in" class="hidden pt-2 border-t border-blue-100">
-                <div class="theme-subbox flex items-center justify-between bg-[#F2F7FF] p-2.5 rounded-lg border border-blue-200">
-                    <div>
-                        <p id="mobile-company-name" class="theme-heading font-bold text-xs text-[#06152D]">Perusahaan</p>
-                        <p id="mobile-user-email" class="theme-text text-[11px] text-slate-500">email@perusahaan.com</p>
-                    </div>
-                    <button type="button" onclick="toggleMobileMenu(); handleClientLogout();" class="px-3 py-1 rounded bg-white text-[#0052FF] border border-blue-200 text-xs font-semibold">Keluar</button>
-                </div>
-            </div>
         </div>
     </header>
 
-    <main id="main-content-wrapper" class="flex-grow w-full m-0 p-0 pt-[72px] sm:pt-[76px]">
+    <main id="main-content-wrapper" class="flex-grow w-full m-0 p-0 pt-[68px] sm:pt-[76px]">
 
         <div id="view-home" class="block page-transition w-full m-0 p-0">
 
-            <section id="beranda" class="full-bleed-section tall-section hero-showcase-section border-b border-blue-200 overflow-hidden">
+            <section id="beranda" class="full-bleed-section pt-10 pb-14 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 hero-showcase-section border-b border-blue-200 overflow-hidden">
                 <div class="hero-dots-left"></div>
                 <div class="hero-dots-right"></div>
                 <div class="hero-geo-shape hero-geo-ring-top"></div>
@@ -226,104 +168,104 @@
                 <div class="hero-geo-shape hero-geo-diamond-right"></div>
                 <div class="hero-geo-shape hero-geo-ring-bottom"></div>
 
-                <div class="relative z-10 w-full m-0 px-4 sm:px-8 lg:px-14 py-8 sm:py-12">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center reveal-on-scroll">
+                <div class="relative z-10 w-full m-0 px-4 sm:px-8 lg:px-14">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center reveal-on-scroll">
                         
-                        <div class="lg:col-span-5 text-center lg:text-left space-y-5 sm:space-y-6">
-                            <p class="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#0052FF]">
+                        <div class="lg:col-span-5 text-center lg:text-left space-y-4 sm:space-y-5">
+                            <p class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.24em] text-[#0052FF]">
                                 GRATIS KONSULTASI • SEJAK 2026
                             </p>
 
-                            <h1 class="theme-heading font-heading font-extrabold text-3xl sm:text-5xl xl:text-6xl text-[#06152D] tracking-tight leading-[1.15]">
+                            <h1 class="theme-heading font-heading font-extrabold text-3xl sm:text-5xl xl:text-[54px] text-[#06152D] tracking-tight leading-[1.12]">
                                 Great websites, Honest work
                             </h1>
 
-                            <p class="theme-text text-slate-600 text-sm sm:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                                Studio pembuatan website profesional yang cepat, bersih, dan transparan untuk mendukung pertumbuhan bisnis Anda.
+                            <p class="theme-text text-slate-600 text-xs sm:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                                Studio pembuatan website kustom yang bersih, cepat di semua layar, dan transparan untuk pertumbuhan bisnis Anda.
                             </p>
 
-                            <div class="w-20 h-1 bg-[#0052FF] mx-auto lg:mx-0 rounded-full"></div>
+                            <div class="w-16 h-1 bg-[#0052FF] mx-auto lg:mx-0 rounded-full"></div>
 
-                            <div class="pt-1 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-                                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated w-full sm:w-auto px-8 py-4 rounded-xl bg-solid-blue text-white font-bold text-sm shadow-md">
-                                    Mulai Proyek Website
+                            <div class="pt-2 flex flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-3">
+                                <button type="button" onclick="scrollToOrderForm('Paket Profesional')" class="btn-animated px-5 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm shadow-md">
+                                    Mulai Proyek
                                 </button>
-                                <button type="button" onclick="navigateToSection('portofolio')" class="btn-animated theme-card w-full sm:w-auto px-7 py-4 rounded-xl bg-white text-[#0052FF] border border-blue-200 font-bold text-sm shadow-sm">
-                                    Selengkapnya..
+                                <button type="button" onclick="navigateToSection('portofolio')" class="btn-animated theme-card px-5 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-white text-[#0052FF] border border-blue-200 font-bold text-xs sm:text-sm shadow-sm">
+                                    Lihat Karya
                                 </button>
                             </div>
                         </div>
 
-                        <div class="lg:col-span-7 relative flex items-center justify-center lg:justify-end pt-2 lg:pt-0 reveal-on-scroll reveal-delay-1">
-                            <div class="relative w-full max-w-[760px] flex flex-col sm:block items-center gap-5 sm:pb-10 sm:pl-20">
+                        <div class="lg:col-span-7 relative flex items-center justify-center lg:justify-end">
+                            <div class="hero-device-stage mx-auto lg:mx-0">
                                 
-                                <div class="realistic-laptop-frame w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-[#06152D] bg-[#06152D]">
-                                    <div class="bg-[#0A1D37] px-3 sm:px-4 py-2 sm:py-2.5 border-b border-blue-900/60 flex items-center justify-between gap-2">
-                                        <div class="flex items-center gap-1.5 shrink-0">
-                                            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                                            <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                                            <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
+                                <div class="realistic-laptop-frame w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-[3px] sm:border-4 border-[#06152D] bg-[#06152D]">
+                                    <div class="bg-[#0A1D37] px-2.5 sm:px-4 py-1.5 sm:py-2.5 border-b border-blue-900/60 flex items-center justify-between gap-2">
+                                        <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                                            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-400"></span>
+                                            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-300"></span>
+                                            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0052FF]"></span>
                                         </div>
-                                        <div class="px-3 py-1 rounded-md bg-[#06152D] border border-blue-900 text-[10px] font-medium text-blue-200 flex items-center gap-1.5 truncate">
-                                            <i data-lucide="lock" class="w-3 h-3 text-[#0052FF] shrink-0"></i>
+                                        <div class="px-2.5 py-0.5 sm:py-1 rounded-md bg-[#06152D] border border-blue-900 text-[9px] sm:text-[10px] font-medium text-blue-200 flex items-center gap-1 truncate">
+                                            <i data-lucide="lock" class="w-2.5 h-2.5 text-[#0052FF] shrink-0"></i>
                                             <span class="truncate">https://flexi.co</span>
                                         </div>
-                                        <span class="text-[10px] font-bold text-blue-300 shrink-0">Desktop 16:10</span>
+                                        <span class="text-[8px] sm:text-[10px] font-bold text-blue-300 shrink-0">Desktop View</span>
                                     </div>
-                                    <div class="relative aspect-[16/10] w-full overflow-hidden bg-[#06152D]">
+                                    <div class="relative aspect-[16/9] sm:aspect-[16/10] w-full overflow-hidden bg-[#06152D]">
                                         <img 
                                             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=85" 
                                             alt="Preview Komputer Website flexi.co" 
                                             class="w-full h-full object-cover opacity-55"
                                         >
-                                        <div class="absolute inset-0 bg-[#06152D]/68 flex flex-col justify-center px-5 sm:px-14 text-left">
-                                            <span class="inline-block self-start px-2.5 py-1 rounded-md bg-[#0052FF] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
-                                                flexi.co Web Studio
+                                        <div class="absolute inset-0 bg-[#06152D]/68 flex flex-col justify-center pl-[22%] pr-4 sm:px-14 text-left">
+                                            <span class="inline-block self-start px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-[#0052FF] text-white text-[8px] sm:text-[10px] font-bold uppercase tracking-widest mb-1.5 sm:mb-3">
+                                                flexi.co Studio
                                             </span>
-                                            <h2 class="font-heading font-extrabold text-lg sm:text-3xl lg:text-4xl text-white max-w-lg leading-tight">
+                                            <h2 class="font-heading font-extrabold text-sm sm:text-3xl lg:text-4xl text-white max-w-lg leading-tight">
                                                 Great websites, Honest work
                                             </h2>
-                                            <p class="text-[11px] sm:text-sm text-blue-100 max-w-md mt-1.5 sm:mt-2.5 leading-relaxed">
-                                                Arsitektur website modern, cepat di semua perangkat, dan disertai garansi pemeliharaan 6 bulan penuh.
+                                            <p class="text-[9px] sm:text-sm text-blue-100 max-w-md mt-1 sm:mt-2.5 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                                                Arsitektur website modern, cepat di semua perangkat, dengan garansi pemeliharaan 6 bulan penuh.
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="h-3 bg-[#0A1D37] border-t border-blue-900 flex items-center justify-center">
-                                        <div class="w-16 sm:w-20 h-1 rounded-full bg-blue-400/40"></div>
+                                    <div class="h-2 sm:h-3 bg-[#0A1D37] border-t border-blue-900 flex items-center justify-center">
+                                        <div class="w-12 sm:w-20 h-1 rounded-full bg-blue-400/40"></div>
                                     </div>
                                 </div>
 
-                                <div class="realistic-phone-frame relative sm:absolute sm:-bottom-2 sm:left-2 w-[230px] sm:w-[225px] mx-auto sm:mx-0 rounded-[32px] border-[5px] sm:border-[6px] border-[#06152D] bg-[#06152D] shadow-2xl overflow-hidden z-20">
-                                    <div class="bg-[#06152D] px-3.5 py-2 flex items-center justify-between text-white border-b border-blue-900/60">
-                                        <span class="text-[10px] font-bold text-white">9:41</span>
-                                        <div class="w-12 h-3 rounded-full bg-[#0A1D37] border border-blue-900/60"></div>
-                                        <span class="w-5 h-5 rounded-md bg-[#0052FF] text-white flex items-center justify-center">
-                                            <i data-lucide="menu" class="w-3 h-3"></i>
+                                <div class="hero-phone-overlay rounded-[18px] sm:rounded-[30px] border-[3px] sm:border-[5px] border-[#06152D] bg-[#06152D] shadow-2xl overflow-hidden">
+                                    <div class="bg-[#06152D] px-2 sm:px-3 py-1 sm:py-2 flex items-center justify-between text-white border-b border-blue-900/60">
+                                        <span class="text-[8px] sm:text-[10px] font-bold text-white">9:41</span>
+                                        <div class="w-7 sm:w-12 h-2 sm:h-2.5 rounded-full bg-[#0A1D37] border border-blue-900/60"></div>
+                                        <span class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-[#0052FF] text-white flex items-center justify-center">
+                                            <i data-lucide="menu" class="w-2.5 h-2.5 sm:w-3 sm:h-3"></i>
                                         </span>
                                     </div>
-                                    <div class="relative aspect-[9/15] sm:aspect-[9/16] w-full bg-[#06152D] overflow-hidden">
+                                    <div class="relative aspect-[9/15] w-full bg-[#06152D] overflow-hidden">
                                         <img 
                                             src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" 
                                             alt="Preview Smartphone Website flexi.co" 
                                             class="w-full h-full object-cover opacity-50"
                                         >
-                                        <div class="absolute inset-0 bg-[#06152D]/78 px-4 py-4 flex flex-col justify-center text-left">
-                                            <span class="inline-block self-start px-2.5 py-0.5 rounded bg-[#0052FF]/30 border border-blue-400/40 text-[9px] font-bold uppercase tracking-wider text-blue-200 mb-2">
-                                                Mobile Responsive
+                                        <div class="absolute inset-0 bg-[#06152D]/78 px-2.5 sm:px-4 py-2 sm:py-4 flex flex-col justify-center text-left">
+                                            <span class="inline-block self-start px-1.5 py-0.5 rounded bg-[#0052FF]/35 border border-blue-400/40 text-[7px] sm:text-[9px] font-bold uppercase tracking-wider text-blue-200 mb-1 sm:mb-2">
+                                                Mobile Ready
                                             </span>
-                                            <h3 class="font-heading font-bold text-sm sm:text-base text-white leading-snug">
-                                                Tampilan Presisi di Smartphone
+                                            <h3 class="font-heading font-bold text-[10px] sm:text-base text-white leading-snug">
+                                                Presisi di Layar HP
                                             </h3>
-                                            <p class="text-[10px] text-blue-100 mt-1.5 leading-relaxed">
-                                                Navigasi nyaman dan ringan dibuka dari berbagai layar HP.
+                                            <p class="hidden sm:block text-[10px] text-blue-100 mt-1 leading-relaxed">
+                                                Ringan dan responsif di setiap ukuran layar.
                                             </p>
-                                            <span class="mt-3 inline-block self-start px-3 py-1 rounded-full bg-[#0052FF] text-white text-[10px] font-bold shadow-sm">
-                                                flexi.co Mobile
+                                            <span class="mt-1.5 sm:mt-3 inline-block self-start px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#0052FF] text-white text-[7px] sm:text-[10px] font-bold">
+                                                flexi.co
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="bg-[#06152D] py-1.5 flex justify-center">
-                                        <div class="w-16 h-1 rounded-full bg-blue-300/50"></div>
+                                    <div class="bg-[#06152D] py-1 flex justify-center">
+                                        <div class="w-10 sm:w-14 h-0.5 sm:h-1 rounded-full bg-blue-300/50"></div>
                                     </div>
                                 </div>
 
@@ -334,7 +276,7 @@
                 </div>
             </section>
 
-            <section class="full-bleed-section theme-section-light py-5 bg-white border-b border-blue-100 m-0 reveal-on-scroll">
+            <section class="full-bleed-section py-4 sm:py-5 bg-white border-b border-blue-100 m-0 reveal-on-scroll">
                 <div class="w-full m-0 px-0">
                     <div class="marquee-viewport">
                         <div class="marquee-track">
@@ -342,76 +284,76 @@
                             <div class="marquee-badge"><i data-lucide="smartphone" class="w-4 h-4 text-[#0052FF]"></i><span>Responsif di Semua Perangkat</span></div>
                             <div class="marquee-badge"><i data-lucide="wrench" class="w-4 h-4 text-[#0052FF]"></i><span>Gratis 6 Bulan Maintenance</span></div>
                             <div class="marquee-badge"><i data-lucide="search" class="w-4 h-4 text-[#0052FF]"></i><span>Struktur Kode Rapi &amp; Ramah SEO</span></div>
-                            <div class="marquee-badge"><i data-lucide="layout" class="w-4 h-4 text-[#0052FF]"></i><span>Portal Pantau Progres Klien</span></div>
+                            <div class="marquee-badge"><i data-lucide="message-square" class="w-4 h-4 text-[#0052FF]"></i><span>Konsultasi Langsung via WhatsApp</span></div>
                             <div class="marquee-badge"><i data-lucide="calendar" class="w-4 h-4 text-[#0052FF]"></i><span>Berdiri Sejak 2026</span></div>
                             <div class="marquee-badge"><i data-lucide="check-circle" class="w-4 h-4 text-[#0052FF]"></i><span>Great websites, Honest work</span></div>
                             <div class="marquee-badge"><i data-lucide="smartphone" class="w-4 h-4 text-[#0052FF]"></i><span>Responsif di Semua Perangkat</span></div>
                             <div class="marquee-badge"><i data-lucide="wrench" class="w-4 h-4 text-[#0052FF]"></i><span>Gratis 6 Bulan Maintenance</span></div>
                             <div class="marquee-badge"><i data-lucide="search" class="w-4 h-4 text-[#0052FF]"></i><span>Struktur Kode Rapi &amp; Ramah SEO</span></div>
-                            <div class="marquee-badge"><i data-lucide="layout" class="w-4 h-4 text-[#0052FF]"></i><span>Portal Pantau Progres Klien</span></div>
+                            <div class="marquee-badge"><i data-lucide="message-square" class="w-4 h-4 text-[#0052FF]"></i><span>Konsultasi Langsung via WhatsApp</span></div>
                             <div class="marquee-badge"><i data-lucide="calendar" class="w-4 h-4 text-[#0052FF]"></i><span>Berdiri Sejak 2026</span></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="layanan" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
+            <section id="layanan" class="full-bleed-section tall-section bg-white border-b border-blue-100">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12 reveal-on-scroll">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Layanan Utama</span>
-                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-2">
-                            4 Fokus Layanan Kami
+                    <div class="text-center max-w-2xl mx-auto mb-9 sm:mb-12 reveal-on-scroll">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Layanan Utama</span>
+                        <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-1.5">
+                            4 Fokus Keahlian Kami
                         </h2>
                         <p class="theme-text text-slate-600 text-xs sm:text-sm mt-2">
-                            Layanan terfokus untuk memastikan website bisnis Anda tampil profesional, cepat, dan mudah dikelola.
+                            Dirancang agar website bisnis Anda tampil berkelas, cepat diakses, dan mudah dikelola.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 reveal-on-scroll">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-4 sm:p-7 flex flex-col justify-between">
                             <div>
-                                <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
-                                    <i data-lucide="palette" class="w-6 h-6"></i>
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-3.5 sm:mb-5">
+                                    <i data-lucide="palette" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mb-2">1. Desain Kustom</h3>
-                                <p class="theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                    Perancangan antarmuka website eksklusif yang menyesuaikan karakter brand bisnis Anda secara bersih dan modern.
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mb-1.5">1. Desain Kustom</h3>
+                                <p class="theme-text text-slate-600 text-[11px] sm:text-sm leading-relaxed">
+                                    Perancangan visual eksklusif yang menyesuaikan karakter unik brand bisnis Anda.
                                 </p>
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-1">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-4 sm:p-7 flex flex-col justify-between">
                             <div>
-                                <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
-                                    <i data-lucide="zap" class="w-6 h-6"></i>
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-3.5 sm:mb-5">
+                                    <i data-lucide="zap" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mb-2">2. Pengembangan Web Cepat</h3>
-                                <p class="theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                    Penulisan struktur kode ringan dan responsif agar halaman website terbuka cepat di HP, tablet, maupun komputer.
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mb-1.5">2. Web Cepat</h3>
+                                <p class="theme-text text-slate-600 text-[11px] sm:text-sm leading-relaxed">
+                                    Struktur kode ringan dan responsif agar halaman terbuka instan di HP maupun desktop.
                                 </p>
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-2">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-4 sm:p-7 flex flex-col justify-between">
                             <div>
-                                <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
-                                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-3.5 sm:mb-5">
+                                    <i data-lucide="shopping-bag" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mb-2">3. E-Commerce &amp; Sistem</h3>
-                                <p class="theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                    Pembuatan katalog produk, toko online, hingga sistem web kustom yang terhubung langsung ke WhatsApp &amp; pembayaran.
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mb-1.5">3. E-Commerce</h3>
+                                <p class="theme-text text-slate-600 text-[11px] sm:text-sm leading-relaxed">
+                                    Katalog produk &amp; sistem pemesanan yang terhubung langsung ke WhatsApp &amp; pembayaran.
                                 </p>
                             </div>
                         </article>
 
-                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-7 flex flex-col justify-between reveal-on-scroll reveal-delay-3">
+                        <article class="theme-card rounded-2xl bg-[#F2F7FF] border border-blue-200 p-4 sm:p-7 flex flex-col justify-between">
                             <div>
-                                <div class="w-12 h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-5">
-                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-solid-blue text-white flex items-center justify-center mb-3.5 sm:mb-5">
+                                    <i data-lucide="shield-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mb-2">4. Maintenance &amp; SEO</h3>
-                                <p class="theme-text text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                    Dukungan pemeliharaan berkala selama 6 bulan penuh serta optimasi SEO Onpage agar mudah ditemukan di Google.
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mb-1.5">4. Maintenance</h3>
+                                <p class="theme-text text-slate-600 text-[11px] sm:text-sm leading-relaxed">
+                                    Garansi pemeliharaan berkala 6 bulan penuh serta optimasi SEO Onpage di Google.
                                 </p>
                             </div>
                         </article>
@@ -419,13 +361,13 @@
                 </div>
             </section>
 
-            <section id="tentang-kami" class="full-bleed-section tall-section theme-section-alt bg-[#E6F0FF] border-b border-blue-200">
+            <section id="tentang-kami" class="full-bleed-section tall-section section-tint-bg bg-[#E6F0FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll">
                         
-                        <div class="lg:col-span-5 reveal-on-scroll">
-                            <div class="theme-card bg-white p-4 rounded-2xl border border-blue-200 shadow-sm space-y-4">
-                                <div class="rounded-xl overflow-hidden h-64 sm:h-80 bg-slate-100">
+                        <div class="lg:col-span-5">
+                            <div class="theme-card bg-white p-3.5 sm:p-4 rounded-2xl border border-blue-200 shadow-sm space-y-3.5">
+                                <div class="rounded-xl overflow-hidden h-52 sm:h-72 bg-slate-100">
                                     <img 
                                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" 
                                         alt="Tim Studio flexi.co" 
@@ -433,20 +375,20 @@
                                     >
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <div class="theme-subbox p-4 rounded-xl bg-[#F2F7FF] border border-blue-100">
-                                        <p class="font-heading font-extrabold text-lg sm:text-xl text-[#0052FF]">Sejak 2026</p>
-                                        <p class="theme-text text-xs text-slate-600 mt-0.5">Studio Web Modern</p>
+                                    <div class="theme-subbox p-3.5 rounded-xl bg-[#F2F7FF] border border-blue-100">
+                                        <p class="font-heading font-extrabold text-base sm:text-xl text-[#0052FF]">Sejak 2026</p>
+                                        <p class="theme-text text-[11px] text-slate-600 mt-0.5">Studio Web Modern</p>
                                     </div>
-                                    <div class="p-4 rounded-xl bg-solid-blue text-white">
+                                    <div class="p-3.5 rounded-xl bg-solid-blue text-white">
                                         <p class="font-heading font-bold text-xs sm:text-sm text-white">"Great websites, Honest work"</p>
-                                        <p class="text-[11px] text-white/80 mt-0.5">Prinsip Kerja Kami</p>
+                                        <p class="text-[10px] text-white/80 mt-0.5">Prinsip Kerja Kami</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="lg:col-span-7 space-y-5 reveal-on-scroll reveal-delay-1">
-                            <div class="theme-subbox inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 text-[#0052FF] text-xs font-bold uppercase tracking-wider">
+                        <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+                            <div class="theme-subbox inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 text-[#0052FF] text-[11px] font-bold uppercase tracking-wider">
                                 <i data-lucide="users" class="w-3.5 h-3.5"></i>
                                 <span>Who We Are • Tentang Kami</span>
                             </div>
@@ -455,28 +397,28 @@
                                 Partner Digital yang Mengutamakan Kualitas Kode &amp; Kejujuran Kerja.
                             </h2>
 
-                            <p class="theme-text text-slate-700 text-sm sm:text-base leading-relaxed">
-                                Didirikan pada tahun <strong>2026</strong>, <strong>flexi.co</strong> hadir dengan satu filosofi sederhana: <em>"Great websites, Honest work"</em>. Kami percaya bahwa website bisnis yang hebat lahir dari komunikasi yang jujur, harga yang transparan, dan pengerjaan teknis yang rapi.
+                            <p class="theme-text text-slate-700 text-xs sm:text-base leading-relaxed">
+                                Didirikan pada tahun <strong>2026</strong>, <strong>flexi.co</strong> hadir dengan filosofi <em>"Great websites, Honest work"</em>. Kami percaya bahwa website bisnis yang hebat lahir dari komunikasi terbuka, harga transparan, dan pengerjaan desain yang dirancang dengan hati.
                             </p>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                                <div class="theme-card p-5 rounded-xl bg-white border border-blue-200 flex items-start gap-3.5">
-                                    <div class="w-10 h-10 rounded-lg bg-solid-blue text-white flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="code" class="w-5 h-5"></i>
+                            <div class="grid grid-cols-2 gap-3.5 pt-1">
+                                <div class="theme-card p-4 rounded-xl bg-white border border-blue-200 flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-solid-blue text-white flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="code" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <h3 class="theme-heading font-heading font-bold text-base text-[#06152D]">Desain &amp; Kode Bersih</h3>
-                                        <p class="theme-text text-xs text-slate-600 mt-1 leading-relaxed">Setiap halaman dirancang agar ringan diakses dari perangkat apa pun dan mudah dirawat jangka panjang.</p>
+                                        <h3 class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">Kode Bersih</h3>
+                                        <p class="theme-text text-[11px] text-slate-600 mt-0.5 leading-relaxed">Ringan diakses dari perangkat apa pun dan mudah dirawat.</p>
                                     </div>
                                 </div>
 
-                                <div class="theme-card p-5 rounded-xl bg-white border border-blue-200 flex items-start gap-3.5">
-                                    <div class="w-10 h-10 rounded-lg bg-solid-blue text-white flex items-center justify-center shrink-0 mt-0.5">
-                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                <div class="theme-card p-4 rounded-xl bg-white border border-blue-200 flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-solid-blue text-white flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="message-circle" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <h3 class="theme-heading font-heading font-bold text-base text-[#06152D]">Transparansi Progres</h3>
-                                        <p class="theme-text text-xs text-slate-600 mt-1 leading-relaxed">Klien memiliki akun khusus untuk melihat tahapan pengerjaan proyeknya dari awal hingga rilis.</p>
+                                        <h3 class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">Komunikasi Jujur</h3>
+                                        <p class="theme-text text-[11px] text-slate-600 mt-0.5 leading-relaxed">Konsultasi langsung dan laporan perkembangan berkala via WhatsApp.</p>
                                     </div>
                                 </div>
                             </div>
@@ -486,70 +428,70 @@
                 </div>
             </section>
 
-            <section id="portofolio" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
-                <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal-on-scroll">
-                        <div>
-                            <div class="w-16 h-1 bg-[#0052FF] mb-3 rounded-full"></div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Karya Pilihan (5 Portofolio)</span>
-                            <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-1">
-                                Portofolio
-                            </h2>
-                            <p class="theme-text text-slate-600 text-xs sm:text-sm mt-1">
-                                Klik kartu untuk melihat tampilan halaman penuh (Desktop &amp; Mobile View). Gunakan tombol panah untuk menggeser.
-                            </p>
-                        </div>
+            <section id="portofolio" class="full-bleed-section pt-16 pb-24 sm:pt-24 sm:pb-32 bg-white border-b border-blue-100">
+                <div class="w-full m-0 px-3 sm:px-8">
+                    <div class="mb-8 sm:mb-10 reveal-on-scroll">
+                        <div class="w-14 h-1 bg-[#0052FF] mb-2.5 rounded-full"></div>
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Karya Pilihan Studio</span>
+                        <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-1">
+                            Portofolio
+                        </h2>
+                        <p class="theme-text text-slate-600 text-xs sm:text-sm mt-1">
+                            Klik karya untuk membuka halaman penuh beserta mode Desktop &amp; Mobile View.
+                        </p>
+                    </div>
 
-                        <div class="flex items-center gap-2.5 self-start sm:self-end shrink-0">
+                    <div class="w-full reveal-on-scroll">
+                        <div class="flex items-center gap-1.5 sm:gap-4">
                             <button 
                                 type="button" 
                                 onclick="slidePortfolio(-1)" 
                                 aria-label="Portofolio Sebelumnya"
-                                class="arrow-nav-btn w-11 h-11 rounded-2xl bg-[#E6F0FF] text-[#0052FF] border border-blue-200 flex items-center justify-center hover:bg-[#0052FF] hover:text-white shadow-sm"
+                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-200 hover:-translate-x-1 focus:outline-none"
                             >
-                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                                <i data-lucide="chevron-left" class="w-7 h-7 sm:w-10 sm:h-10 stroke-[2.5]"></i>
                             </button>
+
+                            <div class="flex-1 min-w-0">
+                                <div id="portfolio-showcase-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 items-stretch"></div>
+                            </div>
+
                             <button 
                                 type="button" 
                                 onclick="slidePortfolio(1)" 
                                 aria-label="Portofolio Berikutnya"
-                                class="arrow-nav-btn w-11 h-11 rounded-2xl bg-solid-blue text-white border border-blue-500 flex items-center justify-center shadow-sm"
+                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-200 hover:translate-x-1 focus:outline-none"
                             >
-                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                                <i data-lucide="chevron-right" class="w-7 h-7 sm:w-10 sm:h-10 stroke-[2.5]"></i>
                             </button>
                         </div>
-                    </div>
 
-                    <div class="w-full reveal-on-scroll relative overflow-hidden">
-                        <div id="portfolio-showcase-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"></div>
-
-                        <div class="mt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="mt-5 text-center">
                             <p id="portfolio-slide-counter" class="theme-text text-xs font-semibold text-slate-500">
                                 Menampilkan 1 &amp; 2 dari 5 Portofolio
                             </p>
-                            <div id="portfolio-dots-indicator" class="flex items-center gap-2"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="paket-harga" class="full-bleed-section tall-section theme-section-alt bg-[#F2F7FF] border-b border-blue-200">
+            <section id="paket-harga" class="full-bleed-section tall-section section-tint-bg bg-[#F2F7FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Investasi Transparan &amp; Negotiable</span>
-                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-2">
+                    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 reveal-on-scroll">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Investasi Transparan &amp; Negotiable</span>
+                        <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-2">
                             Pilihan Paket Pembuatan Website
                         </h2>
-                        <p class="theme-text text-slate-600 mt-2 text-sm sm:text-base">
+                        <p class="theme-text text-slate-600 mt-2 text-xs sm:text-base">
                             Harga fleksibel (Negotiable) sesuai kebutuhan fitur Anda dan sudah termasuk <strong>Gratis 6 Bulan Maintenance</strong>.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch reveal-on-scroll">
 
-                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm reveal-on-scroll">
+                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
                             <div>
-                                <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="flex items-center justify-between gap-2 mb-4">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-[#E6F0FF] text-[#0052FF] text-xs font-bold">
                                         Personal
                                     </span>
@@ -558,26 +500,26 @@
                                     </span>
                                 </div>
 
-                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D]">
                                     Paket Starter
                                 </h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-500 mt-1">
+                                <p class="theme-text text-xs text-slate-500 mt-1">
                                     Cocok untuk website personal &amp; landing page
                                 </p>
 
-                                <div class="theme-subbox mt-5 p-5 rounded-2xl bg-[#F2F7FF] border border-blue-100">
+                                <div class="theme-subbox mt-4 p-4 sm:p-5 rounded-2xl bg-[#F2F7FF] border border-blue-100">
                                     <p class="text-xs text-slate-400 line-through font-semibold">Rp 3.000.000</p>
-                                    <div class="flex items-baseline gap-1 mt-1">
-                                        <span class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                                    <div class="flex items-baseline gap-1 mt-0.5">
+                                        <span class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D]">
                                             Rp 2.000.000+
                                         </span>
                                     </div>
-                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1.5">
+                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1">
                                         Start From (Negotiable) • Gratis 6 Bulan Maintenance
                                     </p>
                                 </div>
 
-                                <ul class="mt-6 space-y-3 text-xs sm:text-sm pt-2">
+                                <ul class="mt-5 space-y-2.5 text-xs sm:text-sm">
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
                                         <span>Gratis Domain .COM/.NET/.ORG</span>
@@ -592,11 +534,7 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>Free SSL (https)</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>4 Paket Fitur Standard</span>
+                                        <span>Free SSL (https) &amp; 4 Paket Fitur Standard</span>
                                     </li>
                                     <li class="flex items-start gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
@@ -608,25 +546,21 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 text-slate-400 line-through">
                                         <i data-lucide="minus-circle" class="w-4 h-4 text-slate-300 shrink-0"></i>
-                                        <span>1 Email Bisnis</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 text-slate-400 line-through">
-                                        <i data-lucide="minus-circle" class="w-4 h-4 text-slate-300 shrink-0"></i>
-                                        <span>Setting Google Console &amp; Google Analytic</span>
+                                        <span>1 Email Bisnis &amp; Setting Google Analytic</span>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="pt-6 mt-6 border-t border-blue-100">
-                                <button type="button" onclick="openProjectModal('Paket Starter')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">
+                            <div class="pt-5 mt-5 border-t border-blue-100">
+                                <button type="button" onclick="scrollToOrderForm('Paket Starter')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">
                                     Pilih Paket Starter
                                 </button>
                             </div>
                         </article>
 
-                        <article class="theme-card bg-white rounded-3xl border-2 border-[#0052FF] p-7 sm:p-8 flex flex-col justify-between shadow-lg relative reveal-on-scroll reveal-delay-1">
+                        <article class="theme-card bg-white rounded-3xl border-2 border-[#0052FF] p-6 sm:p-8 flex flex-col justify-between shadow-lg relative">
                             <div>
-                                <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="flex items-center justify-between gap-2 mb-4">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-solid-blue text-white text-xs font-bold">
                                         Best Seller • UMKM
                                     </span>
@@ -635,26 +569,26 @@
                                     </span>
                                 </div>
 
-                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D]">
                                     Paket Profesional
                                 </h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-500 mt-1">
+                                <p class="theme-text text-xs text-slate-500 mt-1">
                                     Cocok untuk UMKM &amp; profil perusahaan
                                 </p>
 
-                                <div class="theme-subbox mt-5 p-5 rounded-2xl bg-[#E6F0FF] border border-blue-200">
+                                <div class="theme-subbox mt-4 p-4 sm:p-5 rounded-2xl bg-[#E6F0FF] border border-blue-200">
                                     <p class="text-xs text-slate-500 line-through font-semibold">Rp 6.500.000</p>
-                                    <div class="flex items-baseline gap-1 mt-1">
-                                        <span class="font-heading font-extrabold text-3xl sm:text-4xl text-[#0052FF]">
+                                    <div class="flex items-baseline gap-1 mt-0.5">
+                                        <span class="font-heading font-extrabold text-2xl sm:text-4xl text-[#0052FF]">
                                             Rp 5.000.000+
                                         </span>
                                     </div>
-                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1.5">
+                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1">
                                         Start From (Negotiable) • Gratis 6 Bulan Maintenance
                                     </p>
                                 </div>
 
-                                <ul class="mt-6 space-y-3 text-xs sm:text-sm pt-2">
+                                <ul class="mt-5 space-y-2.5 text-xs sm:text-sm">
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
                                         <span>Gratis Domain .COM/.NET/.ORG</span>
@@ -669,15 +603,11 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>Free SSL (https)</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>8 Paket Fitur Standard</span>
+                                        <span>Free SSL (https) &amp; 8 Paket Fitur Standard</span>
                                     </li>
                                     <li class="flex items-start gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
-                                        <span>5 Page standard: Home, About Us, Package, Gallery, Contact Us, Blog</span>
+                                        <span>5 Page standard + Halaman Artikel / Blog</span>
                                     </li>
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
@@ -685,25 +615,21 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 text-slate-400 line-through">
                                         <i data-lucide="minus-circle" class="w-4 h-4 text-slate-300 shrink-0"></i>
-                                        <span>1 Email Bisnis</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 text-slate-400 line-through">
-                                        <i data-lucide="minus-circle" class="w-4 h-4 text-slate-300 shrink-0"></i>
-                                        <span>Setting Google Console &amp; Google Analytic</span>
+                                        <span>1 Email Bisnis &amp; Setting Google Analytic</span>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="pt-6 mt-6 border-t border-blue-100">
-                                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm shadow-md">
+                            <div class="pt-5 mt-5 border-t border-blue-100">
+                                <button type="button" onclick="scrollToOrderForm('Paket Profesional')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm shadow-md">
                                     Pilih Paket Profesional
                                 </button>
                             </div>
                         </article>
 
-                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-7 sm:p-8 flex flex-col justify-between shadow-sm reveal-on-scroll reveal-delay-2">
+                        <article class="theme-card bg-white rounded-3xl border border-blue-200 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
                             <div>
-                                <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="flex items-center justify-between gap-2 mb-4">
                                     <span class="px-3.5 py-1.5 rounded-xl bg-[#E6F0FF] text-[#0052FF] text-xs font-bold">
                                         Korporasi &amp; Custom
                                     </span>
@@ -712,26 +638,26 @@
                                     </span>
                                 </div>
 
-                                <h3 class="theme-heading font-heading font-extrabold text-2xl text-[#06152D]">
+                                <h3 class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D]">
                                     Paket Bisnis
                                 </h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-500 mt-1">
+                                <p class="theme-text text-xs text-slate-500 mt-1">
                                     Cocok untuk website bisnis &amp; sistem e-commerce
                                 </p>
 
-                                <div class="theme-subbox mt-5 p-5 rounded-2xl bg-[#F2F7FF] border border-blue-100">
+                                <div class="theme-subbox mt-4 p-4 sm:p-5 rounded-2xl bg-[#F2F7FF] border border-blue-100">
                                     <p class="text-xs text-slate-400 line-through font-semibold">Rp 10.000.000</p>
-                                    <div class="flex items-baseline gap-1 mt-1">
-                                        <span class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D]">
+                                    <div class="flex items-baseline gap-1 mt-0.5">
+                                        <span class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D]">
                                             Rp 8.000.000+
                                         </span>
                                     </div>
-                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1.5">
+                                    <p class="text-[11px] font-semibold text-[#0052FF] mt-1">
                                         Start From (Negotiable) • Gratis 6 Bulan Maintenance
                                     </p>
                                 </div>
 
-                                <ul class="mt-6 space-y-3 text-xs sm:text-sm pt-2">
+                                <ul class="mt-5 space-y-2.5 text-xs sm:text-sm">
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
                                         <span>Gratis Domain .COM/.NET/.ORG</span>
@@ -746,15 +672,11 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>Free SSL (https)</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>16 Paket Full Fitur</span>
+                                        <span>Free SSL (https) &amp; 16 Paket Full Fitur</span>
                                     </li>
                                     <li class="flex items-start gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0 mt-0.5"></i>
-                                        <span>5 Page standard: Home, About Us, Package, Gallery, Contact Us, Blog</span>
+                                        <span>5 Page standard + Blog &amp; Katalog Dinamis</span>
                                     </li>
                                     <li class="flex items-center gap-2.5 theme-heading text-[#06152D] font-medium">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
@@ -762,17 +684,13 @@
                                     </li>
                                     <li class="flex items-center gap-2.5 text-[#0052FF] font-semibold">
                                         <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>1 Email Bisnis Resmi</span>
-                                    </li>
-                                    <li class="flex items-center gap-2.5 text-[#0052FF] font-semibold">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0052FF] shrink-0"></i>
-                                        <span>Setting Google Console &amp; Google Analytic</span>
+                                        <span>1 Email Bisnis + Google Console &amp; Analytic</span>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="pt-6 mt-6 border-t border-blue-100">
-                                <button type="button" onclick="openProjectModal('Paket Bisnis')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">
+                            <div class="pt-5 mt-5 border-t border-blue-100">
+                                <button type="button" onclick="scrollToOrderForm('Paket Bisnis')" class="btn-animated w-full py-3.5 px-5 rounded-xl bg-[#E6F0FF] text-[#002B7F] border border-blue-200 font-bold text-xs sm:text-sm">
                                     Pilih Paket Bisnis
                                 </button>
                             </div>
@@ -782,72 +700,68 @@
                 </div>
             </section>
 
-            <section id="cara-kerja" class="full-bleed-section tall-section theme-section-light bg-white border-b border-blue-100">
-                <div class="w-full m-0 px-4 sm:px-8 space-y-16">
-                    <div>
-                        <div class="max-w-3xl mb-10 reveal-on-scroll">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Alur Kerja Transparan</span>
-                            <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-2">
+            <section id="cara-kerja" class="full-bleed-section tall-section bg-white border-b border-blue-100">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    <div class="reveal-on-scroll">
+                        <div class="max-w-3xl mb-8 sm:mb-10">
+                            <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Alur Kerja Transparan</span>
+                            <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-1.5">
                                 4 Tahap Pengerjaan Website
                             </h2>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll">
-                                <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 01</span>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Diskusi &amp; Kesepakatan</h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                                    Pilih paket dan sampaikan kebutuhan website Anda. Harga dan ruang lingkup fitur dapat dinegosiasikan secara terbuka.
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+                            <div class="theme-card p-4 sm:p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                                <span class="text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md bg-solid-blue text-white">TAHAP 01</span>
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mt-3 sm:mt-4">Isi Form &amp; Diskusi</h3>
+                                <p class="theme-text text-[11px] sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                                    Pilih paket di formulir bawah dan diskusikan konsep website Anda via WhatsApp.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-1">
-                                <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 02</span>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Desain &amp; Coding</h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                                    Tim kami merancang antarmuka yang bersih, responsif, dan membangun fitur sesuai spesifikasi bisnis Anda.
+                            <div class="theme-card p-4 sm:p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                                <span class="text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md bg-solid-blue text-white">TAHAP 02</span>
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mt-3 sm:mt-4">Desain &amp; Coding</h3>
+                                <p class="theme-text text-[11px] sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                                    Perancangan antarmuka modern yang bersih dan responsif di semua perangkat.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-2">
-                                <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 03</span>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Pantau Status Progres</h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                                    Login ke akun perusahaan Anda untuk memantau apakah proyek berstatus Not Yet, In Progress, Almost Done, atau Done.
+                            <div class="theme-card p-4 sm:p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                                <span class="text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md bg-solid-blue text-white">TAHAP 03</span>
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mt-3 sm:mt-4">Review &amp; Revisi</h3>
+                                <p class="theme-text text-[11px] sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                                    Kami mengirimkan link preview secara berkala hingga sesuai dengan keinginan Anda.
                                 </p>
                             </div>
-                            <div class="theme-card p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200 reveal-on-scroll reveal-delay-3">
-                                <span class="text-xs font-bold px-3 py-1 rounded-md bg-solid-blue text-white">TAHAP 04</span>
-                                <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D] mt-4">Rilis &amp; Maintenance</h3>
-                                <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                                    Website resmi diluncurkan ke publik disertai garansi Gratis 6 Bulan Maintenance penuh.
+                            <div class="theme-card p-4 sm:p-6 rounded-2xl bg-[#F2F7FF] border border-blue-200">
+                                <span class="text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md bg-solid-blue text-white">TAHAP 04</span>
+                                <h3 class="theme-heading font-heading font-bold text-sm sm:text-lg text-[#06152D] mt-3 sm:mt-4">Rilis &amp; Garansi</h3>
+                                <p class="theme-text text-[11px] sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                                    Website rilis resmi disertai Gratis 6 Bulan Maintenance penuh.
                                 </p>
                             </div>
                         </div>
                     </div>
-
-                    <div id="cek-progres" class="pt-6 border-t border-blue-100 reveal-on-scroll">
-                        <div id="home-private-tracker-box"></div>
-                    </div>
                 </div>
             </section>
 
-            <section id="faq" class="full-bleed-section tall-section theme-section-alt bg-[#E6F0FF] border-b border-blue-200">
+            <section id="faq" class="full-bleed-section tall-section section-tint-bg bg-[#E6F0FF] border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8">
-                    <div class="max-w-3xl mb-10 reveal-on-scroll">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#0052FF]">Tanya Jawab (FAQ)</span>
-                        <h2 class="theme-heading font-heading font-extrabold text-3xl sm:text-4xl text-[#06152D] mt-2">
-                            8 Pertanyaan yang Sering Diajukan Klien
+                    <div class="max-w-3xl mb-8 sm:mb-10 reveal-on-scroll">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Tanya Jawab (FAQ)</span>
+                        <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-1.5">
+                            Pertanyaan yang Sering Diajukan
                         </h2>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start reveal-on-scroll">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5 sm:gap-4 items-start reveal-on-scroll">
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-1">
-                            <button type="button" onclick="toggleFaqItem(1)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">1. Apakah semua harga paket masih bisa dinegosiasikan?</span>
+                            <button type="button" onclick="toggleFaqItem(1)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">1. Apakah semua harga paket masih bisa dinegosiasikan?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-1" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
                                         Ya, seluruh paket (Starter Rp 2.000.000+, Profesional Rp 5.000.000+, dan Bisnis Rp 8.000.000+) bersifat <strong>Negotiable</strong> menyesuaikan kompleksitas fitur yang Anda butuhkan.
                                     </div>
                                 </div>
@@ -855,13 +769,13 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-2">
-                            <button type="button" onclick="toggleFaqItem(2)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">2. Berapa lama estimasi waktu pembuatan website?</span>
+                            <button type="button" onclick="toggleFaqItem(2)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">2. Berapa lama estimasi waktu pembuatan website?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-2" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
                                         Paket Starter selesai dalam 3–5 hari kerja, Paket Profesional 7–10 hari kerja, dan Paket Bisnis sekitar 14–21 hari kerja tergantung fitur custom.
                                     </div>
                                 </div>
@@ -869,13 +783,13 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-3">
-                            <button type="button" onclick="toggleFaqItem(3)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">3. Apa saja yang termasuk Gratis 6 Bulan Maintenance?</span>
+                            <button type="button" onclick="toggleFaqItem(3)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">3. Apa saja yang termasuk Gratis 6 Bulan Maintenance?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-3" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
                                         Meliputi pemantauan uptime server, perbaikan bug teknis, pembaruan keamanan SSL, backup berkala, dan bantuan revisi minor konten.
                                     </div>
                                 </div>
@@ -883,41 +797,41 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-4">
-                            <button type="button" onclick="toggleFaqItem(4)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">4. Bagaimana cara memantau progres pengerjaan website?</span>
+                            <button type="button" onclick="toggleFaqItem(4)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">4. Bagaimana cara memesan pembuatan website di flexi.co?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-4" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
-                                        Anda cukup masuk ke menu <strong>Proyek Saya</strong> menggunakan akun perusahaan Anda untuk melihat persentase dan tahapan pengerjaan secara transparan.
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
+                                        Anda cukup mengisi <strong>Formulir Pemesanan Website</strong> tepat di bawah bagian FAQ ini. Setelah diklik, detail pesanan Anda otomatis terhubung ke WhatsApp tim kami di <strong>0813 7456 2098</strong>.
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-5">
-                            <button type="button" onclick="toggleFaqItem(5)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">5. Apakah data proyek saya aman dari perusahaan lain?</span>
+                            <button type="button" onclick="toggleFaqItem(5)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">5. Apakah sudah termasuk domain .COM dan hosting?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-5" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
-                                        Sangat aman. Setiap akun perusahaan terisolasi sehingga Anda hanya melihat proyek milik perusahaan Anda sendiri.
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
+                                        Sudah termasuk. Semua paket dilengkapi Gratis Domain (.COM / .NET / .ORG), penyimpanan hosting cepat, serta sertifikat keamanan Free SSL (https).
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-6">
-                            <button type="button" onclick="toggleFaqItem(6)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">6. Apakah saya bisa mengubah isi teks dan gambar sendiri?</span>
-                                <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
+                            <button type="button" onclick="toggleFaqItem(6)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">6. Apakah saya bisa mengubah isi teks dan gambar sendiri?</span>
+                                <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#06152D] text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-6" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
                                         Tentu. Untuk Paket Profesional dan Paket Bisnis sudah dilengkapi CMS agar tim Anda bisa memperbarui teks, gambar, atau produk kapan saja tanpa coding.
                                     </div>
                                 </div>
@@ -925,13 +839,13 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-7">
-                            <button type="button" onclick="toggleFaqItem(7)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">7. Apakah tampilan website sudah responsif di HP dan tablet?</span>
+                            <button type="button" onclick="toggleFaqItem(7)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">7. Apakah tampilan website sudah responsif di HP dan tablet?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-7" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
                                         100% responsif. Seluruh website kami diuji di smartphone, tablet, hingga monitor desktop lebar.
                                     </div>
                                 </div>
@@ -939,14 +853,14 @@
                         </div>
 
                         <div class="faq-card theme-card bg-white rounded-2xl border border-blue-200 overflow-hidden" id="faq-card-8">
-                            <button type="button" onclick="toggleFaqItem(8)" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer">
-                                <span class="theme-heading font-heading font-bold text-sm sm:text-base text-[#06152D]">8. Bagaimana sistem pembayaran proyek di flexi.co?</span>
+                            <button type="button" onclick="toggleFaqItem(8)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4">
+                                <span class="theme-heading font-heading font-bold text-xs sm:text-base text-[#06152D]">8. Bagaimana sistem pembayaran proyek di flexi.co?</span>
                                 <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#0052FF] shrink-0"></i>
                             </button>
                             <div id="faq-ans-8" class="faq-answer-wrapper">
-                                <div class="faq-answer-inner px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    <div class="pt-2 pb-5 border-t border-blue-50 theme-text">
-                                        Pembayaran dilakukan bertahap: Down Payment (DP) 50% saat kesepakatan konsep dimulai, dan pelunasan 50% setelah website selesai (Done) dan siap mengudara.
+                                <div class="faq-answer-inner px-4 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    <div class="pt-2 pb-4 border-t border-blue-50 theme-text">
+                                        Pembayaran dilakukan bertahap: Down Payment (DP) 50% saat kesepakatan konsep dimulai, dan pelunasan 50% setelah website selesai dan siap mengudara.
                                     </div>
                                 </div>
                             </div>
@@ -955,11 +869,103 @@
                 </div>
             </section>
 
-            <section id="kontak-kantor" class="full-bleed-section theme-section-light bg-white py-16 border-b border-blue-200">
+            <section id="order-website" class="full-bleed-section tall-section bg-white border-b border-blue-200">
+                <div class="w-full m-0 px-4 sm:px-8">
+                    <div class="max-w-3xl mx-auto reveal-on-scroll">
+                        <div class="text-center mb-8 sm:mb-10">
+                            <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">Mulai Proyek Anda</span>
+                            <h2 class="theme-heading font-heading font-extrabold text-2xl sm:text-4xl text-[#06152D] mt-1.5">
+                                Formulir Pemesanan Website
+                            </h2>
+                            <p class="theme-text text-slate-600 text-xs sm:text-sm mt-2">
+                                Pilih paket dan ceritakan konsep website Anda. Pesanan akan langsung terhubung ke WhatsApp resmi kami di <strong>0813 7456 2098</strong>.
+                            </p>
+                        </div>
+
+                        <div class="theme-card bg-[#F2F7FF] rounded-3xl border border-blue-200 p-5 sm:p-8 shadow-sm">
+                            <form id="inline-order-form" onsubmit="handleWhatsAppOrderSubmit(event)" class="space-y-5">
+                                <div>
+                                    <label class="theme-heading block text-xs sm:text-sm font-bold text-[#06152D] mb-2.5">
+                                        1. Pilih Paket Website (Negotiable) *
+                                    </label>
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="package_tier" value="Paket Starter" class="peer sr-only" onchange="handleDraftInput()">
+                                            <div class="modal-radio-card p-3.5 rounded-2xl bg-white border border-blue-200 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
+                                                <p class="theme-heading font-bold text-xs sm:text-sm text-[#06152D]">Paket Starter</p>
+                                                <p class="font-bold text-xs sm:text-sm text-[#0052FF] mt-0.5">Rp 2.000.000+</p>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="package_tier" value="Paket Profesional" class="peer sr-only" checked onchange="handleDraftInput()">
+                                            <div class="modal-radio-card p-3.5 rounded-2xl bg-white border border-blue-200 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
+                                                <p class="theme-heading font-bold text-xs sm:text-sm text-[#06152D]">Paket Profesional</p>
+                                                <p class="font-bold text-xs sm:text-sm text-[#0052FF] mt-0.5">Rp 5.000.000+</p>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="package_tier" value="Paket Bisnis" class="peer sr-only" onchange="handleDraftInput()">
+                                            <div class="modal-radio-card p-3.5 rounded-2xl bg-white border border-blue-200 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
+                                                <p class="theme-heading font-bold text-xs sm:text-sm text-[#06152D]">Paket Bisnis</p>
+                                                <p class="font-bold text-xs sm:text-sm text-[#0052FF] mt-0.5">Rp 8.000.000+</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <p id="order-package-summary" class="theme-subbox theme-text text-xs text-[#06152D] bg-white border border-blue-200 rounded-xl px-4 py-2.5 mt-2.5">
+                                        Gratis Domain .COM/.NET/.ORG, Penyimpanan 2GB, 5 Page Standard + Blog, Free SSL, SEO Onpage &amp; Gratis 6 Bulan Maintenance.
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="order-client-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1.5">Nama Anda / PIC *</label>
+                                        <input type="text" id="order-client-name" required placeholder="Masukkan nama lengkap" class="w-full px-4 py-3 rounded-xl bg-white border border-blue-200 focus:border-[#0052FF] text-xs sm:text-sm focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="order-brand-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1.5">Nama Perusahaan / Brand *</label>
+                                        <input type="text" id="order-brand-name" required placeholder="Contoh: PT Cipta Kreasi / Kopi Senja" class="w-full px-4 py-3 rounded-xl bg-white border border-blue-200 focus:border-[#0052FF] text-xs sm:text-sm focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="order-client-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1.5">Alamat Email *</label>
+                                        <input type="email" id="order-client-email" required placeholder="nama@perusahaan.com" class="w-full px-4 py-3 rounded-xl bg-white border border-blue-200 focus:border-[#0052FF] text-xs sm:text-sm focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="order-client-wa" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1.5">Nomor WhatsApp Aktif *</label>
+                                        <input type="tel" id="order-client-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-xl bg-white border border-blue-200 focus:border-[#0052FF] text-xs sm:text-sm focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="order-client-brief" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1.5">
+                                        Ide, Konsep &amp; Kebutuhan Website *
+                                    </label>
+                                    <textarea 
+                                        id="order-client-brief" 
+                                        rows="4" 
+                                        required 
+                                        placeholder="Ceritakan bidang bisnis Anda, referensi tampilan, atau fitur khusus yang diinginkan..." 
+                                        class="w-full px-4 py-3 rounded-xl bg-white border border-blue-200 focus:border-[#0052FF] text-xs sm:text-sm focus:outline-none"
+                                    ></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-animated w-full py-4 px-6 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    <span>Kirim Pesanan ke WhatsApp (0813 7456 2098)</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kontak-kantor" class="full-bleed-section section-tint-bg bg-[#E6F0FF] py-12 sm:py-16 border-b border-blue-200">
                 <div class="w-full m-0 px-4 sm:px-8 lg:px-14">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start reveal-on-scroll">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start reveal-on-scroll">
                         
-                        <div class="lg:col-span-4 space-y-4">
+                        <div class="lg:col-span-4 space-y-3.5">
                             <div class="flex items-center gap-3">
                                 <img 
                                     src="logo.png" 
@@ -968,7 +974,7 @@
                                     class="w-11 h-11 rounded-xl object-cover border border-blue-200 shrink-0 shadow-sm"
                                 >
                                 <div>
-                                    <span class="theme-heading font-heading font-extrabold text-2xl text-[#06152D] block leading-none">flexi.co</span>
+                                    <span class="theme-heading font-heading font-extrabold text-xl sm:text-2xl text-[#06152D] block leading-none">flexi.co</span>
                                     <span class="text-xs text-[#0052FF] font-semibold">Great websites, Honest work</span>
                                 </div>
                             </div>
@@ -979,10 +985,10 @@
                         </div>
 
                         <div class="lg:col-span-4 space-y-3">
-                            <h3 class="theme-heading font-heading font-bold text-sm uppercase tracking-wider text-[#06152D]">
+                            <h3 class="theme-heading font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#06152D]">
                                 OUR OFFICE
                             </h3>
-                            <div class="relative rounded-2xl overflow-hidden border border-blue-200 shadow-sm bg-[#E6F0FF] h-56">
+                            <div class="relative rounded-2xl overflow-hidden border border-blue-200 shadow-sm bg-white h-48 sm:h-56">
                                 <iframe 
                                     title="Lokasi Kantor flexi.co — Sekolah Tri Ratna"
                                     src="https://maps.google.com/maps?q=Sekolah%20Tri%20Ratna%20Jl.%20Talib%20I%20No.35-37%20Krukut%20Tamansari%20Jakarta%20Barat&t=&z=16&ie=UTF8&iwloc=&output=embed" 
@@ -994,11 +1000,11 @@
                             </div>
                         </div>
 
-                        <div class="lg:col-span-4 space-y-4">
-                            <h3 class="theme-heading font-heading font-bold text-sm uppercase tracking-wider text-[#06152D]">
+                        <div class="lg:col-span-4 space-y-3.5">
+                            <h3 class="theme-heading font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#06152D]">
                                 CONTACT INFO
                             </h3>
-                            <ul class="space-y-4 text-xs sm:text-sm">
+                            <ul class="space-y-3.5 text-xs sm:text-sm">
                                 <li class="flex items-start gap-3">
                                     <i data-lucide="map-pin" class="w-5 h-5 text-[#0052FF] shrink-0 mt-0.5"></i>
                                     <span class="theme-text text-slate-600 leading-relaxed">
@@ -1027,177 +1033,6 @@
 
         </div>
 
-        <div id="view-dashboard" class="hidden page-transition min-h-[85vh] bg-[#F2F7FF] py-12 w-full m-0">
-            <div class="w-full m-0 px-4 sm:px-8">
-                <div id="client-dashboard-content"></div>
-            </div>
-        </div>
-
-        <section id="view-admin" aria-label="Portal Administrator" class="hidden page-transition min-h-screen bg-[#06152D] text-white w-full m-0 p-0">
-            
-            <div id="admin-login-screen" class="min-h-screen flex items-center justify-center px-4 py-12">
-                <div id="admin-login-card" class="w-full max-w-md bg-[#0A1D37] border border-blue-800 rounded-2xl p-7 sm:p-8 shadow-2xl">
-                    
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold">
-                            Admin Gate
-                        </span>
-                        <button type="button" onclick="navigateToRoute('/')" class="text-xs text-blue-200 hover:text-white flex items-center gap-1">
-                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-                            <span>Kembali ke Beranda</span>
-                        </button>
-                    </div>
-
-                    <h1 class="font-heading font-extrabold text-2xl text-white">Otorisasi Administrator</h1>
-                    <p class="text-xs text-blue-200 mt-1 mb-6">Masukkan kunci keamanan internal flexi.co untuk membuka konsol manajemen.</p>
-
-                    <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-4">
-                        <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <label for="admin-password-input" class="text-xs font-semibold text-blue-200">Password Admin</label>
-                                <span id="admin-attempt-badge" class="text-[11px] text-blue-300">Proteksi 30 Detik Aktif</span>
-                            </div>
-                            <div class="relative">
-                                <input 
-                                    type="password" 
-                                    id="admin-password-input" 
-                                    required
-                                    placeholder="Masukkan password admin..." 
-                                    class="w-full pl-4 pr-11 py-3 rounded-xl bg-[#06152D] border border-blue-700 focus:border-blue-400 text-sm text-white focus:outline-none"
-                                >
-                                <button 
-                                    type="button" 
-                                    onclick="toggleAdminPasswordVisibility()" 
-                                    class="absolute right-3.5 top-1/2 -translate-y-1/2 text-blue-300 hover:text-white p-1"
-                                >
-                                    <i id="password-eye-icon" data-lucide="eye" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="admin-login-error" class="hidden p-3.5 rounded-xl bg-blue-950 border border-blue-400 text-blue-100 text-xs font-medium flex items-center gap-2">
-                            <i data-lucide="clock" class="w-4 h-4 shrink-0 text-blue-300"></i>
-                            <span id="admin-login-error-text">Kunci tidak valid.</span>
-                        </div>
-
-                        <button type="submit" id="admin-login-submit-btn" class="btn-animated w-full py-3.5 px-6 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                            Masuk Konsol Admin
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="admin-dashboard-screen" class="hidden pb-16 bg-[#F2F7FF] text-[#06152D] min-h-screen w-full">
-                
-                <div class="sticky top-0 z-30 bg-[#06152D] border-b border-blue-900 text-white px-4 sm:px-8 py-4 mb-6">
-                    <div class="w-full flex flex-wrap items-center justify-between gap-3">
-                        <div class="flex items-center gap-3">
-                            <button type="button" onclick="navigateToRoute('/')" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5">
-                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                                <span>Ke Website Publik</span>
-                            </button>
-                            <span class="text-xs sm:text-sm font-bold text-blue-200">Konsol Admin flexi.co</span>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button type="button" onclick="switchAdminMainTab('projects')" id="adm-tab-projects" class="px-4 py-2 rounded-xl bg-solid-blue text-white text-xs font-bold">
-                                Daftar Proyek
-                            </button>
-                            <button type="button" onclick="switchAdminMainTab('accounts')" id="adm-tab-accounts" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-blue-100 text-xs font-semibold">
-                                Akun Terdaftar (<span id="adm-users-count-badge">0</span>)
-                            </button>
-                            <button type="button" onclick="handleAdminLogout()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold">
-                                Logout Admin
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-full px-4 sm:px-8">
-                    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-slate-500">Proyek Aktif</p>
-                            <p id="kpi-total" class="font-heading font-extrabold text-2xl text-[#06152D] mt-1">0</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-slate-500">Not Yet</p>
-                            <p id="kpi-not-yet" class="font-heading font-extrabold text-2xl text-[#06152D] mt-1">0</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-[#0052FF]">In Progress / Almost</p>
-                            <p id="kpi-almost-done" class="font-heading font-extrabold text-2xl text-[#0052FF] mt-1">0</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-[#002B7F]">Done (Selesai)</p>
-                            <p id="kpi-done" class="font-heading font-extrabold text-2xl text-[#002B7F] mt-1">0</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-slate-500">Di-Remove</p>
-                            <p id="kpi-removed" class="font-heading font-extrabold text-2xl text-slate-600 mt-1">0</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100">
-                            <p class="text-xs font-semibold text-[#0052FF]">Estimasi Nilai</p>
-                            <p id="kpi-revenue" class="font-heading font-extrabold text-lg text-[#0052FF] mt-1">Rp 0</p>
-                        </div>
-                    </div>
-
-                    <div id="admin-panel-projects-view" class="block">
-                        <div class="bg-white p-4 rounded-2xl border border-blue-100 mb-5 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-                            <div class="flex flex-wrap items-center gap-1.5 bg-[#F2F7FF] p-1.5 rounded-xl">
-                                <button type="button" onclick="setAdminFilter('all')" id="filter-btn-all" class="px-3.5 py-2 rounded-lg text-xs font-bold bg-solid-blue text-white">Semua Aktif</button>
-                                <button type="button" onclick="setAdminFilter('not_yet')" id="filter-btn-not_yet" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50">Not Yet</button>
-                                <button type="button" onclick="setAdminFilter('in_progress')" id="filter-btn-in_progress" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50">In Progress</button>
-                                <button type="button" onclick="setAdminFilter('almost_done')" id="filter-btn-almost_done" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50">Almost Done</button>
-                                <button type="button" onclick="setAdminFilter('done')" id="filter-btn-done" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50">Done</button>
-                                <button type="button" onclick="setAdminFilter('removed')" id="filter-btn-removed" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#06152D] hover:bg-blue-50">Di-Remove</button>
-                            </div>
-
-                            <div class="flex items-center gap-2">
-                                <input 
-                                    type="text" 
-                                    id="admin-search-input" 
-                                    oninput="renderAdminProjects()" 
-                                    placeholder="Cari perusahaan, email, kode..." 
-                                    class="w-full sm:w-64 px-3.5 py-2 rounded-xl bg-[#F2F7FF] border border-blue-200 text-xs sm:text-sm focus:bg-white focus:border-[#0052FF] focus:outline-none"
-                                >
-                                <button type="button" onclick="openProjectModal('Paket Profesional')" class="btn-animated px-4 py-2 rounded-xl bg-solid-blue text-white text-xs font-bold shrink-0">
-                                    + Proyek
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="admin-projects-list" class="space-y-4"></div>
-                    </div>
-
-                    <div id="admin-panel-accounts-view" class="hidden">
-                        <div class="bg-white rounded-2xl border border-blue-100 overflow-hidden">
-                            <div class="p-5 border-b border-blue-100 flex items-center justify-between">
-                                <div>
-                                    <h2 class="font-heading font-bold text-lg text-[#06152D]">Daftar Akun Perusahaan</h2>
-                                    <p class="text-xs text-slate-500">Menampilkan 2 akun bawaan beserta seluruh akun baru yang mendaftar.</p>
-                                </div>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                                    <thead>
-                                        <tr class="bg-[#E6F0FF] text-[#06152D] border-b border-blue-200">
-                                            <th class="p-4 font-bold">ID Akun</th>
-                                            <th class="p-4 font-bold">Perusahaan</th>
-                                            <th class="p-4 font-bold">Nama PIC</th>
-                                            <th class="p-4 font-bold">Email Login</th>
-                                            <th class="p-4 font-bold">WhatsApp</th>
-                                            <th class="p-4 font-bold">Total Proyek</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="admin-accounts-table-body" class="divide-y divide-blue-100"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <div id="portfolio-article-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-hidden">
@@ -1206,240 +1041,14 @@
         </dialog>
     </div>
 
-    <div id="project-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
-        <dialog id="project-modal-dialog" open class="theme-card relative w-full max-w-xl bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-2 sm:my-auto max-h-[92dvh] flex flex-col page-transition">
-            
-            <div class="bg-solid-blue px-5 sm:px-6 py-4 text-white flex items-center justify-between shrink-0">
-                <div>
-                    <h3 class="font-heading font-bold text-base sm:text-lg text-white">Formulir Pembuatan Website</h3>
-                    <p class="text-xs text-white/85">flexi.co — Great websites, Honest work</p>
-                </div>
-                <button type="button" onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white shrink-0">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <form id="project-form-view" onsubmit="handleProjectSubmit(event)" class="p-5 sm:p-6 space-y-4 overflow-y-auto modal-smooth-scroll">
-                <div>
-                    <label class="theme-heading block text-xs font-bold text-[#06152D] mb-2">Pilih Paket Website (Negotiable) *</label>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="package_tier" value="Paket Starter" class="peer sr-only" onchange="handleDraftInput()">
-                            <div class="modal-radio-card p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
-                                <p class="theme-heading font-bold text-xs text-[#06152D]">Paket Starter</p>
-                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 2.000.000+</p>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="package_tier" value="Paket Profesional" class="peer sr-only" checked onchange="handleDraftInput()">
-                            <div class="modal-radio-card p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
-                                <p class="theme-heading font-bold text-xs text-[#06152D]">Paket Profesional</p>
-                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 5.000.000+</p>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="package_tier" value="Paket Bisnis" class="peer sr-only" onchange="handleDraftInput()">
-                            <div class="modal-radio-card p-3 rounded-xl border border-blue-100 peer-checked:border-[#0052FF] peer-checked:bg-[#E6F0FF] transition-all">
-                                <p class="theme-heading font-bold text-xs text-[#06152D]">Paket Bisnis</p>
-                                <p class="font-bold text-xs text-[#0052FF] mt-0.5">Rp 8.000.000+</p>
-                            </div>
-                        </label>
-                    </div>
-                    <p id="modal-package-summary" class="theme-subbox theme-text text-xs text-[#06152D] bg-[#F2F7FF] border border-blue-100 rounded-xl px-3.5 py-2 mt-2">
-                        Gratis Domain .COM/.NET/.ORG, Kapasitas 2GB, 5 Page Standard + Blog, SEO Onpage &amp; Gratis 6 Bulan Maintenance.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div>
-                        <label for="input-client-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
-                        <input type="text" id="input-client-name" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                    <div>
-                        <label for="input-brand-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan / Brand *</label>
-                        <input type="text" id="input-brand-name" required placeholder="Nama Brand / PT" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div>
-                        <label for="input-client-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan *</label>
-                        <input type="email" id="input-client-email" required placeholder="nama@perusahaan.com" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                    <div>
-                        <label for="input-client-wa" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nomor WhatsApp *</label>
-                        <input type="tel" id="input-client-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="input-client-brief" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">
-                        Konsep &amp; Kebutuhan Website *
-                    </label>
-                    <textarea 
-                        id="input-client-brief" 
-                        rows="3" 
-                        required 
-                        placeholder="Ceritakan konsep website atau fitur yang Anda inginkan..." 
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none"
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="btn-animated w-full py-3.5 px-6 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                    Kirim &amp; Simpan Proyek
-                </button>
-            </form>
-
-            <div id="project-success-view" class="hidden p-6 sm:p-8 text-center space-y-4 overflow-y-auto modal-smooth-scroll">
-                <div class="w-14 h-14 rounded-2xl bg-[#E6F0FF] text-[#0052FF] flex items-center justify-center mx-auto">
-                    <i data-lucide="check" class="w-7 h-7"></i>
-                </div>
-                <h4 class="theme-heading font-heading font-extrabold text-xl text-[#06152D]">Proyek Website Berhasil Dibuat</h4>
-                <div class="theme-subbox p-3.5 rounded-xl bg-[#F2F7FF] border border-blue-200 flex items-center justify-between max-w-xs mx-auto">
-                    <span id="success-tracking-code" class="theme-heading font-bold text-base text-[#06152D]">FLX-2026-889</span>
-                    <button type="button" onclick="copyTrackingCode()" class="px-3 py-1 rounded-lg bg-solid-blue text-white text-xs font-bold">
-                        <span id="copy-btn-label">Salin ID</span>
-                    </button>
-                </div>
-                <div class="grid grid-cols-2 gap-3 pt-2">
-                    <button type="button" onclick="closeProjectModal(); navigateToRoute('/dashboard');" class="btn-animated py-3 px-4 rounded-xl bg-solid-blue text-white font-bold text-xs sm:text-sm">
-                        Lihat Proyek Saya
-                    </button>
-                    <button type="button" onclick="closeProjectModal()" class="theme-subbox theme-heading py-3 px-4 rounded-xl bg-slate-100 text-[#06152D] font-bold text-xs sm:text-sm">
-                        Tutup
-                    </button>
-                </div>
-            </div>
-        </dialog>
-    </div>
-
-    <div id="auth-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
-        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-0 overflow-hidden my-2 sm:my-auto max-h-[92dvh] flex flex-col page-transition">
-            
-            <div class="bg-solid-blue px-6 py-4 text-white flex items-center justify-between shrink-0">
-                <div>
-                    <h3 id="auth-modal-title" class="font-heading font-bold text-base text-white">Masuk Akun Perusahaan</h3>
-                    <p class="text-[11px] text-white/85">Portal Klien flexi.co</p>
-                </div>
-                <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white shrink-0">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <div class="overflow-y-auto modal-smooth-scroll">
-                <div class="theme-subbox grid grid-cols-2 bg-[#F2F7FF] p-1.5 m-6 mb-2 rounded-xl border border-blue-100">
-                    <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg font-bold text-xs sm:text-sm bg-solid-blue text-white transition-all">
-                        Masuk (Login)
-                    </button>
-                    <button type="button" id="tab-btn-signup" onclick="switchAuthTab('signup')" class="theme-heading py-2 rounded-lg font-bold text-xs sm:text-sm text-[#06152D] hover:text-[#0052FF] transition-all">
-                        Daftar Akun
-                    </button>
-                </div>
-
-                <form id="client-login-form" onsubmit="handleClientLogin(event)" class="p-6 pt-3 space-y-4">
-                    <div id="signup-redirect-success-banner" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-[#0052FF] text-[#06152D] text-xs font-medium">
-                        ✓ Akun sudah dibuat! Silakan masuk menggunakan email dan password akun Anda.
-                    </div>
-
-                    <div>
-                        <label for="login-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email Perusahaan</label>
-                        <input type="email" id="login-email" required placeholder="halo@flexi.co" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                    </div>
-
-                    <div>
-                        <label for="login-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password</label>
-                        <div class="relative">
-                            <input type="password" id="login-password" required placeholder="Masukkan password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                            <button type="button" onclick="togglePasswordField('login-password', 'eye-login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                                <i id="eye-login-password" data-lucide="eye" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="client-login-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium">
-                        Email atau password tidak sesuai.
-                    </div>
-
-                    <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                        Masuk
-                    </button>
-                </form>
-
-                <form id="client-signup-form" onsubmit="handleClientSignupAccount(event)" class="hidden p-6 pt-3 space-y-3.5">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label for="reg-name" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama PIC *</label>
-                            <input type="text" id="reg-name" required placeholder="Nama Lengkap" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        </div>
-                        <div>
-                            <label for="reg-company" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Nama Perusahaan *</label>
-                            <input type="text" id="reg-company" required placeholder="PT / Brand Anda" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label for="reg-email" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Email *</label>
-                            <input type="email" id="reg-email" required placeholder="email@perusahaan.com" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        </div>
-                        <div>
-                            <label for="reg-wa" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">No. WhatsApp *</label>
-                            <input type="tel" id="reg-wa" required placeholder="0812-xxxx-xxxx" class="w-full px-3 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="reg-password" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Password *</label>
-                        <div class="relative">
-                            <input type="password" id="reg-password" required minlength="4" placeholder="Buat password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                            <button type="button" onclick="togglePasswordField('reg-password', 'eye-reg-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                                <i id="eye-reg-password" data-lucide="eye" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="reg-password-confirm" class="theme-heading block text-xs font-semibold text-[#06152D] mb-1">Tulis Ulang Password *</label>
-                        <div class="relative">
-                            <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Ketik ulang password..." class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-blue-200 focus:border-[#0052FF] text-sm focus:outline-none">
-                            <button type="button" onclick="togglePasswordField('reg-password-confirm', 'eye-reg-password-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0052FF] p-1">
-                                <i id="eye-reg-password-confirm" data-lucide="eye" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="client-signup-error" class="theme-subbox theme-heading hidden p-3 rounded-xl bg-[#E6F0FF] border border-blue-400 text-[#06152D] text-xs font-medium"></div>
-
-                    <button type="submit" class="btn-animated w-full py-3.5 rounded-xl bg-solid-blue text-white font-bold text-sm">
-                        Buat Akun Perusahaan
-                    </button>
-                </form>
-            </div>
-
-        </dialog>
-    </div>
-
-    <div id="admin-remove-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <dialog open class="theme-card relative w-full max-w-md bg-white rounded-2xl border border-blue-100 shadow-2xl p-6 page-transition">
-            <h3 class="theme-heading font-heading font-bold text-lg text-[#06152D]">Remove Proyek dari Admin?</h3>
-            <p class="theme-text text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Proyek <span id="remove-modal-project-name" class="theme-heading font-bold text-[#06152D]">Nama Proyek</span> akan dihapus dari daftar aktif Admin, tetapi klien tetap bisa melihat proyeknya.
-            </p>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-                <button type="button" onclick="closeAdminRemoveModal()" class="theme-subbox theme-heading py-2.5 px-4 rounded-xl bg-slate-100 text-[#06152D] font-bold text-xs">Batal</button>
-                <button type="button" id="confirm-admin-remove-btn" class="py-2.5 px-4 rounded-xl bg-solid-blue text-white font-bold text-xs">Ya, Remove</button>
-            </div>
-        </dialog>
-    </div>
-
     <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden">
-        <div class="bg-[#06152D] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-blue-500/40 flex items-center gap-3 page-transition">
+        <div class="bg-[#06152D] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-blue-500/40 flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl bg-solid-blue text-white flex items-center justify-center shrink-0">
                 <i data-lucide="check" class="w-4 h-4"></i>
             </div>
             <div>
-                <p id="toast-title" class="font-heading font-bold text-sm text-white">Akun login</p>
-                <p id="toast-message" class="text-xs text-white/85">Berhasil masuk ke sistem.</p>
+                <p id="toast-title" class="font-heading font-bold text-sm text-white">Pesanan Siap Dikirim</p>
+                <p id="toast-message" class="text-xs text-white/85">Mengarahkan ke WhatsApp flexi.co...</p>
             </div>
         </div>
     </div>
