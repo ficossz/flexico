@@ -70,7 +70,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
     if (projectKey === 'kopisenja') {
         return `
             <div class="live-mockup-canvas bg-[#16120E] text-[#FAF6F0] select-none overflow-hidden">
-                <div class="relative flex-1 min-h-[300px] sm:min-h-[340px] flex flex-col justify-between p-5 sm:p-7 overflow-hidden">
+                <div class="relative flex-1 min-h-[340px] sm:min-h-[370px] flex flex-col justify-between p-5 sm:p-7 overflow-hidden">
                     <img 
                         src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=85" 
                         alt="Kedai Kopi Bandung" 
@@ -111,7 +111,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                 </div>
 
                 ${isFullPopup ? `
-                <div class="p-5 sm:p-8 bg-[#1E1813] border-t border-stone-800 text-left space-y-5">
+                <div class="flex-1 p-5 sm:p-8 bg-[#1E1813] border-t border-stone-800 text-left space-y-5">
                     <div class="flex flex-wrap items-end justify-between gap-2">
                         <div>
                             <span class="text-[10px] uppercase tracking-[0.2em] text-[#F5CBA7]">Pilihan Barista Pagi Ini</span>
@@ -121,7 +121,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                     </div>
                     <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="rounded-2xl bg-[#27201A] border border-stone-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Filter Coffee" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Filter Coffee" class="w-full h-36 object-cover">
                             <div class="p-4">
                                 <div class="flex justify-between items-center">
                                     <p class="font-editorial text-base text-white">Flores Manggarai V60</p>
@@ -131,7 +131,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                             </div>
                         </div>
                         <div class="rounded-2xl bg-[#27201A] border border-stone-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Butter Croissant" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Butter Croissant" class="w-full h-36 object-cover">
                             <div class="p-4">
                                 <div class="flex justify-between items-center">
                                     <p class="font-editorial text-base text-white">Kouign-Amann Kayu Manis</p>
@@ -141,7 +141,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                             </div>
                         </div>
                         <div class="rounded-2xl bg-[#27201A] border border-stone-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Kopi Susu Braga" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Kopi Susu Braga" class="w-full h-36 object-cover">
                             <div class="p-4">
                                 <div class="flex justify-between items-center">
                                     <p class="font-editorial text-base text-white">Es Kopi Susu Braga</p>
@@ -159,7 +159,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
 
     if (projectKey === 'hohomatcha') {
         return `
-            <div class="live-mockup-canvas bg-[#4A6B32] text-white select-none overflow-hidden">
+            <div class="live-mockup-canvas bg-[#3B5926] text-white select-none overflow-hidden">
                 <div class="px-4 sm:px-6 py-2.5 bg-[#0F190C] text-white flex items-center justify-between gap-3 shrink-0">
                     <span class="font-display-clean font-extrabold text-xs sm:text-sm tracking-tight text-white shrink-0">
                         Ho-Ho Matcha!
@@ -223,7 +223,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                 </div>
 
                 ${isFullPopup ? `
-                <div class="p-5 sm:p-7 bg-[#F4F7F0] text-[#182910] border-t border-emerald-900/15 text-left space-y-4">
+                <div class="flex-1 p-5 sm:p-7 bg-[#F4F7F0] text-[#182910] border-t border-emerald-900/15 text-left space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="text-[10px] font-bold uppercase tracking-widest text-[#4A6B32]">Ceremonial &amp; Culinary Grade</span>
@@ -274,49 +274,49 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
 
     if (projectKey === 'nusanet') {
         return `
-            <div class="live-mockup-canvas bg-white text-slate-900 select-none overflow-hidden">
-                <div class="px-4 sm:px-5 py-2.5 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+            <div class="live-mockup-canvas bg-slate-50 text-slate-900 select-none overflow-hidden">
+                <div class="px-4 sm:px-5 py-2.5 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
                     <div class="flex items-center gap-2">
-                        <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#E11D48] text-white font-extrabold text-xs flex items-center justify-center">N</span>
-                        <span class="font-extrabold text-xs sm:text-sm text-slate-900">Nusa<span class="text-[#E11D48]">Net</span></span>
+                        <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#B91C1C] text-white font-extrabold text-xs flex items-center justify-center">N</span>
+                        <span class="font-extrabold text-xs sm:text-sm text-slate-900">Nusa<span class="text-[#B91C1C]">Net</span></span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-1 rounded-lg bg-[#E11D48] text-white font-bold text-[10px]">
+                        <span class="px-2.5 py-1 rounded-lg bg-[#B91C1C] text-white font-bold text-[10px]">
                             Langganan Sekarang
                         </span>
                     </div>
                 </div>
-                <div class="flex-1 p-4 sm:p-6 flex flex-col justify-between text-left bg-white">
+                <div class="flex-1 p-4 sm:p-6 flex flex-col justify-between text-left bg-gradient-to-br from-white via-slate-50 to-slate-100">
                     <div class="space-y-2.5">
                         <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-[9px] sm:text-[10px] font-semibold text-slate-700">
-                            <span class="w-2 h-2 rounded-full bg-[#E11D48] shrink-0"></span>
+                            <span class="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0"></span>
                             <span>Jaringan Fiber Optik Ultra Cepat 100% Simetris</span>
                         </div>
                         <h4 class="font-heading font-extrabold text-base sm:text-xl text-slate-900 leading-tight">
-                            Koneksi Internet Tanpa Batas untuk <span class="text-[#E11D48]">Rumah &amp; Bisnis Anda.</span>
+                            Koneksi Internet Tanpa Batas untuk <span class="text-[#B91C1C]">Rumah &amp; Bisnis Anda.</span>
                         </h4>
-                        <p class="text-[10px] sm:text-[11px] text-slate-500 leading-relaxed line-clamp-2">
-                            Nikmati kecepatan hingga <strong class="text-slate-800">1 Gbps True Unlimited</strong> tanpa kuota FUP untuk streaming 4K &amp; kerja jarak jauh.
+                        <p class="text-[10px] sm:text-[11px] text-slate-600 leading-relaxed line-clamp-2">
+                            Nikmati kecepatan hingga <strong class="text-slate-900">1 Gbps True Unlimited</strong> tanpa kuota FUP untuk streaming 4K &amp; kerja jarak jauh.
                         </p>
                     </div>
 
                     <div class="grid grid-cols-3 gap-2 my-auto py-2">
-                        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                             <p class="text-[8px] sm:text-[9px] text-slate-500">Kecepatan</p>
                             <p class="font-extrabold text-[11px] sm:text-sm text-slate-900 mt-0.5">1 Gbps</p>
                         </div>
-                        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                             <p class="text-[8px] sm:text-[9px] text-slate-500">Kuota (FUP)</p>
-                            <p class="font-extrabold text-[11px] sm:text-sm text-[#E11D48] mt-0.5">Unlimited</p>
+                            <p class="font-extrabold text-[11px] sm:text-sm text-[#B91C1C] mt-0.5">Unlimited</p>
                         </div>
-                        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                             <p class="text-[8px] sm:text-[9px] text-slate-500">Uptime</p>
                             <p class="font-extrabold text-[11px] sm:text-sm text-slate-900 mt-0.5">99.9% SLA</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <span class="px-3.5 py-1.5 rounded-xl bg-[#E11D48] text-white font-bold text-[10px] sm:text-[11px]">
+                        <span class="px-3.5 py-1.5 rounded-xl bg-[#B91C1C] text-white font-bold text-[10px] sm:text-[11px]">
                             Pilih Paket Sekarang
                         </span>
                         <span class="px-3.5 py-1.5 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-[10px] sm:text-[11px]">
@@ -325,25 +325,25 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                     </div>
                 </div>
                 ${isFullPopup ? `
-                <div class="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 text-left space-y-3">
+                <div class="flex-1 p-4 sm:p-6 bg-slate-100 border-t border-slate-200 text-left space-y-3">
                     <h5 class="font-heading font-extrabold text-xs sm:text-sm text-slate-900">Pilihan Paket Fiber Optik &amp; Top-Up Digital</h5>
                     <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div class="bg-white p-4 rounded-xl border border-slate-200">
                             <span class="text-[10px] font-bold text-slate-500 uppercase">Home Fiber 150</span>
                             <p class="font-extrabold text-base text-slate-900 mt-1">150 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
-                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 299.000</p>
+                            <p class="text-xs font-bold text-[#B91C1C] mt-1">Rp 299.000</p>
                             <p class="text-[10px] text-slate-500 mt-1">Gratis Router WiFi 6 Dual-Band &amp; Instalasi</p>
                         </div>
-                        <div class="bg-white p-4 rounded-xl border-2 border-[#E11D48]">
-                            <span class="text-[10px] font-bold text-[#E11D48] uppercase">Gamer Pro 500</span>
+                        <div class="bg-white p-4 rounded-xl border-2 border-[#B91C1C]">
+                            <span class="text-[10px] font-bold text-[#B91C1C] uppercase">Gamer Pro 500</span>
                             <p class="font-extrabold text-base text-slate-900 mt-1">500 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
-                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 499.000</p>
+                            <p class="text-xs font-bold text-[#B91C1C] mt-1">Rp 499.000</p>
                             <p class="text-[10px] text-slate-500 mt-1">IP Public Static + Prioritas Routing Gaming</p>
                         </div>
                         <div class="bg-white p-4 rounded-xl border border-slate-200">
                             <span class="text-[10px] font-bold text-slate-500 uppercase">Dedicated 1 Gbps</span>
                             <p class="font-extrabold text-base text-slate-900 mt-1">1.000 Mbps <span class="text-xs font-normal text-slate-500">/ bln</span></p>
-                            <p class="text-xs font-bold text-[#E11D48] mt-1">Rp 899.000</p>
+                            <p class="text-xs font-bold text-[#B91C1C] mt-1">Rp 899.000</p>
                             <p class="text-[10px] text-slate-500 mt-1">SLA 99.9% + Dukungan Teknisi Prioritas 24/7</p>
                         </div>
                     </div>
@@ -404,14 +404,14 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                 </div>
 
                 ${isFullPopup ? `
-                <div class="p-5 sm:p-7 bg-white border-t border-stone-200 text-left space-y-4">
+                <div class="flex-1 p-5 sm:p-7 bg-[#F3EDE2] border-t border-stone-200 text-left space-y-4">
                     <div class="flex items-center justify-between">
                         <h5 class="font-editorial font-bold text-base sm:text-xl text-[#1C1613]">Tonight's Wood-Fired &amp; Trattoria Specials</h5>
                         <span class="text-xs font-bold text-[#B84A27]">18–22 Min Delivery</span>
                     </div>
                     <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="rounded-2xl border border-stone-200 overflow-hidden bg-[#FAF6F0]">
-                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Diavola Pizza" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Diavola Pizza" class="w-full h-36 object-cover">
                             <div class="p-3.5">
                                 <div class="flex justify-between font-bold text-xs text-[#1C1613]">
                                     <span>Diavola Piccante</span>
@@ -421,7 +421,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                             </div>
                         </div>
                         <div class="rounded-2xl border border-stone-200 overflow-hidden bg-[#FAF6F0]">
-                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Tagliatelle Truffle" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Tagliatelle Truffle" class="w-full h-36 object-cover">
                             <div class="p-3.5">
                                 <div class="flex justify-between font-bold text-xs text-[#1C1613]">
                                     <span>Tajarin al Tartufo Nero</span>
@@ -431,7 +431,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
                             </div>
                         </div>
                         <div class="rounded-2xl border border-stone-200 overflow-hidden bg-[#FAF6F0]">
-                            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80" alt="Tiramisu Classico" class="w-full h-32 object-cover">
+                            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80" alt="Tiramisu Classico" class="w-full h-36 object-cover">
                             <div class="p-3.5">
                                 <div class="flex justify-between font-bold text-xs text-[#1C1613]">
                                     <span>Tiramisù Treviso</span>
@@ -449,7 +449,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
 
     return `
         <div class="live-mockup-canvas bg-[#0B1517] text-[#F5EFE6] select-none overflow-hidden">
-            <div class="relative flex-1 min-h-[300px] sm:min-h-[340px] flex flex-col justify-between p-5 sm:p-7 overflow-hidden">
+            <div class="relative flex-1 min-h-[340px] sm:min-h-[370px] flex flex-col justify-between p-5 sm:p-7 overflow-hidden">
                 <img 
                     src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=85" 
                     alt="Aurelia Cliffside Suites Bali" 
@@ -496,7 +496,7 @@ function renderHardcodedPortfolioMockup(projectKey, isFullPopup = false) {
             </div>
 
             ${isFullPopup ? `
-            <div class="p-5 sm:p-7 bg-[#0F1E21] border-t border-white/10 text-left space-y-4">
+            <div class="flex-1 p-5 sm:p-7 bg-[#0F1E21] border-t border-white/10 text-left space-y-4">
                 <h5 class="font-luxury text-lg sm:text-2xl text-[#E9D5A1]">Private Pool Residences &amp; Privileges</h5>
                 <div class="pm-stack-mobile grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                     <div class="p-4 rounded-2xl bg-[#15282C] border border-white/10">
@@ -527,7 +527,7 @@ function getPortfolioPerView() {
 
 window.renderPortfolioCarousel = function() {
     const gridEl = document.getElementById('portfolio-showcase-grid');
-    const counterEl = document.getElementById('portfolio-slide-counter');
+    const dotsEl = document.getElementById('portfolio-slide-dots');
     if (!gridEl) return;
 
     const perView = getPortfolioPerView();
@@ -536,9 +536,12 @@ window.renderPortfolioCarousel = function() {
     if (window.currentPortfolioIndex >= total) window.currentPortfolioIndex = 0;
     if (window.currentPortfolioIndex < 0) window.currentPortfolioIndex = total - 1;
 
+    const visibleIndices = [];
     const visibleKeys = [];
     for (let i = 0; i < perView; i++) {
-        visibleKeys.push(PORTFOLIO_KEYS[(window.currentPortfolioIndex + i) % total]);
+        const idx = (window.currentPortfolioIndex + i) % total;
+        visibleIndices.push(idx);
+        visibleKeys.push(PORTFOLIO_KEYS[idx]);
     }
 
     const animClass = window.portfolioSlideDirection === 'prev' ? 'portfolio-slide-prev' : 'portfolio-slide-next';
@@ -551,7 +554,7 @@ window.renderPortfolioCarousel = function() {
                 class="portfolio-card ${animClass} theme-card rounded-3xl border border-blue-200 overflow-hidden bg-[#F2F7FF] flex flex-col justify-between shadow-sm"
             >
                 <div class="p-2.5 sm:p-4">
-                    <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 bg-white shadow-sm">
+                    <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 shadow-sm">
                         <div class="portfolio-browser-bar px-3 sm:px-4 py-2 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
                             <div class="flex items-center gap-1.5 shrink-0">
                                 <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
@@ -579,24 +582,37 @@ window.renderPortfolioCarousel = function() {
                         </span>
                     </div>
                     <span class="btn-animated shrink-0 px-3.5 sm:px-4 py-2 rounded-xl bg-solid-blue text-white font-bold text-xs shadow-sm">
-                        Buka Web
+                        Preview
                     </span>
                 </div>
             </article>
         `;
     }).join('');
 
-    if (counterEl) {
-        if (perView === 2) {
-            const firstNum = window.currentPortfolioIndex + 1;
-            const secondNum = ((window.currentPortfolioIndex + 1) % total) + 1;
-            counterEl.textContent = `Menampilkan ${firstNum} & ${secondNum} dari ${total} Portofolio`;
-        } else {
-            counterEl.textContent = `Menampilkan ${window.currentPortfolioIndex + 1} dari ${total} Portofolio`;
-        }
+    if (dotsEl) {
+        dotsEl.innerHTML = PORTFOLIO_KEYS.map((key, idx) => {
+            const isActive = idx === window.currentPortfolioIndex;
+            const item = PORTFOLIO_ARTICLES[key];
+            return `
+                <button
+                    type="button"
+                    onclick="goToPortfolioSlide(${idx})"
+                    aria-label="Lihat Portofolio ${escapeHtml(item.title)}"
+                    title="${escapeHtml(item.title)}"
+                    class="portfolio-dot ${isActive ? 'is-active' : ''}"
+                ></button>
+            `;
+        }).join('');
     }
 
     if (window.lucide) window.lucide.createIcons();
+};
+
+window.goToPortfolioSlide = function(targetIndex) {
+    if (targetIndex === window.currentPortfolioIndex) return;
+    window.portfolioSlideDirection = targetIndex > window.currentPortfolioIndex ? 'next' : 'prev';
+    window.currentPortfolioIndex = targetIndex;
+    renderPortfolioCarousel();
 };
 
 window.slidePortfolio = function(step) {
@@ -711,7 +727,7 @@ window.openPortfolioArticleModal = function(projectKey) {
             </button>
         </div>
 
-        <div class="flex-1 w-full bg-[#E6F0FF] dark:bg-[#0A1D37] overflow-hidden flex items-center justify-center">
+        <div class="flex-1 w-full bg-[#06152D] overflow-hidden flex items-center justify-center">
             <div id="portfolio-live-stage" class="portfolio-live-stage modal-smooth-scroll">
                 ${renderHardcodedPortfolioMockup(projectKey, true)}
             </div>
@@ -738,7 +754,7 @@ window.setPortfolioPopupViewport = function(mode) {
         if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all";
         if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all";
     }
-    stageEl.scrollTop = 0;
+    stageEl.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 window.closePortfolioArticleModal = function() {

@@ -168,8 +168,8 @@
                 <div class="hero-geo-shape hero-geo-diamond-right"></div>
                 <div class="hero-geo-shape hero-geo-ring-bottom"></div>
 
-                <div class="relative z-10 w-full m-0 px-4 sm:px-8 lg:px-14">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center reveal-on-scroll">
+                <div class="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center reveal-on-scroll">
                         
                         <div class="lg:col-span-5 text-center lg:text-left space-y-4 sm:space-y-5">
                             <p class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.24em] text-[#0052FF]">
@@ -180,7 +180,7 @@
                                 Great websites, Honest work
                             </h1>
 
-                            <p class="theme-text text-slate-600 text-xs sm:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                            <p class="theme-text text-slate-600 text-xs sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
                                 Studio pembuatan website kustom yang bersih, cepat di semua layar, dan transparan untuk pertumbuhan bisnis Anda.
                             </p>
 
@@ -437,7 +437,7 @@
                             Portofolio
                         </h2>
                         <p class="theme-text text-slate-600 text-xs sm:text-sm mt-1">
-                            Klik karya untuk membuka halaman penuh beserta mode Desktop &amp; Mobile View.
+                            Klik karya untuk melihat preview halaman penuh beserta mode Desktop &amp; Mobile View.
                         </p>
                     </div>
 
@@ -447,7 +447,7 @@
                                 type="button" 
                                 onclick="slidePortfolio(-1)" 
                                 aria-label="Portofolio Sebelumnya"
-                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-200 hover:-translate-x-1 focus:outline-none"
+                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-300 hover:-translate-x-1 focus:outline-none"
                             >
                                 <i data-lucide="chevron-left" class="w-7 h-7 sm:w-10 sm:h-10 stroke-[2.5]"></i>
                             </button>
@@ -460,17 +460,13 @@
                                 type="button" 
                                 onclick="slidePortfolio(1)" 
                                 aria-label="Portofolio Berikutnya"
-                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-200 hover:translate-x-1 focus:outline-none"
+                                class="portfolio-side-arrow shrink-0 p-1.5 sm:p-2 text-[#0052FF] hover:text-[#002B7F] transition-transform duration-300 hover:translate-x-1 focus:outline-none"
                             >
                                 <i data-lucide="chevron-right" class="w-7 h-7 sm:w-10 sm:h-10 stroke-[2.5]"></i>
                             </button>
                         </div>
 
-                        <div class="mt-5 text-center">
-                            <p id="portfolio-slide-counter" class="theme-text text-xs font-semibold text-slate-500">
-                                Menampilkan 1 &amp; 2 dari 5 Portofolio
-                            </p>
-                        </div>
+                        <div id="portfolio-slide-dots" class="mt-8 sm:mt-10 flex items-center justify-center gap-2.5" aria-label="Indikator Slide Portofolio"></div>
                     </div>
                 </div>
             </section>
@@ -1014,13 +1010,13 @@
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <i data-lucide="phone" class="w-5 h-5 text-[#0052FF] shrink-0"></i>
-                                    <a href="https://wa.me/6281374562098" target="_blank" rel="noopener noreferrer" class="theme-text text-slate-600 hover:text-[#0052FF] font-medium">
+                                    <a href="https://wa.me/6281374562098" target="_blank" rel="noopener noreferrer" class="interactive-link theme-text text-slate-600 font-medium">
                                         +62 813 7456 2098
                                     </a>
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <i data-lucide="mail" class="w-5 h-5 text-[#0052FF] shrink-0"></i>
-                                    <a href="mailto:flexicorporated@gmail.com" class="theme-text text-slate-600 hover:text-[#0052FF] font-medium">
+                                    <a href="mailto:flexicorporated@gmail.com" class="interactive-link theme-text text-slate-600 font-medium">
                                         flexicorporated@gmail.com
                                     </a>
                                 </li>
@@ -1036,7 +1032,7 @@
     </main>
 
     <div id="portfolio-article-modal-backdrop" class="fixed inset-0 z-50 hidden bg-[#06152D]/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-        <dialog id="portfolio-article-modal-dialog" open class="theme-card relative w-full max-w-6xl bg-[#E6F0FF] rounded-2xl sm:rounded-3xl border border-blue-200 shadow-2xl p-0 overflow-hidden m-auto h-[92dvh] flex flex-col page-transition">
+        <dialog id="portfolio-article-modal-dialog" open class="theme-card relative w-full max-w-6xl bg-[#06152D] rounded-2xl sm:rounded-3xl border border-blue-900 shadow-2xl p-0 overflow-hidden m-auto h-[92dvh] flex flex-col page-transition">
             <div id="portfolio-article-modal-content" class="w-full h-full flex flex-col overflow-hidden"></div>
         </dialog>
     </div>
