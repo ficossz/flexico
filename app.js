@@ -9,37 +9,38 @@ window.currentPortfolioIndex = 0;
 window.currentPortfolioPopupKey = 'kopisenja';
 window.currentPortfolioViewport = 'desktop';
 window.portfolioSlideDirection = 'next';
+window.viewportSwitchTimer = null;
 
 const PORTFOLIO_ARTICLES = {
     kopisenja: {
         key: "kopisenja",
-        title: "Kopi Senja Braga",
-        domain: "https://kopisenjabraga.id",
-        badgeLabel: "Kedai Kopi • Editorial"
+        title: "Kedai Kopi",
+        subtitle: "Website Food and Beverage, Kedai Kopi",
+        badgeLabel: "Website Food and Beverage"
     },
     hohomatcha: {
         key: "hohomatcha",
-        title: "Ho-Ho Matcha!",
-        domain: "https://hohomatcha.jp",
-        badgeLabel: "Artisan Matcha Bar"
+        title: "HO-HO Matcha",
+        subtitle: "Website Food and Beverage, HO-HO Matcha.",
+        badgeLabel: "Website Food and Beverage"
     },
     nusanet: {
         key: "nusanet",
-        title: "NusaNet Fiber",
-        domain: "https://nusanet.id",
-        badgeLabel: "ISP & Telco"
+        title: "NusaNet",
+        subtitle: "Website bisnis, NusaNet",
+        badgeLabel: "Website Bisnis"
     },
     bitemart: {
         key: "bitemart",
-        title: "BiteMart Cucina",
-        domain: "https://bitemart.eu",
-        badgeLabel: "European Culinary"
+        title: "BITEMART",
+        subtitle: "Website E-commerce Kuliner Eropa, Bitemart",
+        badgeLabel: "Website E-commerce Kuliner Eropa"
     },
     aurelia: {
         key: "aurelia",
-        title: "Aurelia Cliff Resort",
-        domain: "https://aureliasuites.com",
-        badgeLabel: "Luxury Villa Bali"
+        title: "Aurelia",
+        subtitle: "Website Staycation Bali, Aurelia",
+        badgeLabel: "Website Staycation Bali"
     }
 };
 
@@ -555,17 +556,6 @@ window.renderPortfolioCarousel = function() {
             >
                 <div class="p-2.5 sm:p-4">
                     <div class="portfolio-browser-frame rounded-2xl overflow-hidden border border-blue-200 shadow-sm">
-                        <div class="portfolio-browser-bar px-3 sm:px-4 py-2 bg-[#E6F0FF] border-b border-blue-200 flex items-center justify-between gap-2">
-                            <div class="flex items-center gap-1.5 shrink-0">
-                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
-                            </div>
-                            <span class="text-[10px] sm:text-[11px] font-semibold text-[#002B7F] truncate">${escapeHtml(item.domain)}</span>
-                            <span class="px-2.5 py-0.5 rounded-md bg-solid-blue text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shrink-0">
-                                ${escapeHtml(item.badgeLabel)}
-                            </span>
-                        </div>
                         <div class="portfolio-card-viewport">
                             ${renderHardcodedPortfolioMockup(item.key, false)}
                         </div>
@@ -573,13 +563,13 @@ window.renderPortfolioCarousel = function() {
                 </div>
 
                 <div class="px-4 sm:px-6 pb-4 sm:pb-5 pt-1 flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-2 min-w-0">
+                    <div class="min-w-0">
                         <h3 class="theme-heading font-heading font-extrabold text-base sm:text-xl text-[#06152D] truncate">
                             ${escapeHtml(item.title)}
                         </h3>
-                        <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-lg bg-[#E6F0FF] text-[#0052FF] text-[10px] font-bold shrink-0">
-                            Desktop &amp; Mobile View
-                        </span>
+                        <p class="theme-text text-xs sm:text-sm text-slate-600 font-medium truncate mt-0.5">
+                            ${escapeHtml(item.subtitle)}
+                        </p>
                     </div>
                     <span class="btn-animated shrink-0 px-3.5 sm:px-4 py-2 rounded-xl bg-solid-blue text-white font-bold text-xs shadow-sm">
                         Preview
@@ -684,14 +674,12 @@ window.openPortfolioArticleModal = function(projectKey) {
 
     contentBox.innerHTML = `
         <div class="shrink-0 bg-[#06152D] text-white px-3.5 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-2 border-b border-blue-900">
-            <div class="flex items-center gap-2 min-w-0">
-                <div class="hidden sm:flex items-center gap-1.5 shrink-0">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-300"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#0052FF]"></span>
-                </div>
-                <span class="px-3 py-1 rounded-lg bg-[#0A1D37] text-blue-200 text-xs font-semibold truncate border border-blue-800">
-                    ${escapeHtml(article.domain)}
+            <div class="flex items-center gap-2.5 min-w-0">
+                <span class="font-heading font-extrabold text-sm sm:text-base text-white truncate">
+                    ${escapeHtml(article.title)}
+                </span>
+                <span class="hidden md:inline-block px-2.5 py-0.5 rounded-lg bg-[#0A1D37] text-blue-200 text-xs font-medium truncate border border-blue-800">
+                    ${escapeHtml(article.subtitle)}
                 </span>
             </div>
 
@@ -700,7 +688,7 @@ window.openPortfolioArticleModal = function(projectKey) {
                     type="button" 
                     id="popup-btn-desktop"
                     onclick="setPortfolioPopupViewport('desktop')" 
-                    class="px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all"
+                    class="px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all duration-300"
                 >
                     <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
                     <span>Desktop View</span>
@@ -709,7 +697,7 @@ window.openPortfolioArticleModal = function(projectKey) {
                     type="button" 
                     id="popup-btn-mobile"
                     onclick="setPortfolioPopupViewport('mobile')" 
-                    class="px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all"
+                    class="px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all duration-300"
                 >
                     <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
                     <span>Mobile View</span>
@@ -727,7 +715,7 @@ window.openPortfolioArticleModal = function(projectKey) {
             </button>
         </div>
 
-        <div class="flex-1 w-full bg-[#06152D] overflow-hidden flex items-center justify-center">
+        <div id="portfolio-live-stage-wrapper" class="flex-1 portfolio-live-stage-wrapper">
             <div id="portfolio-live-stage" class="portfolio-live-stage modal-smooth-scroll">
                 ${renderHardcodedPortfolioMockup(projectKey, true)}
             </div>
@@ -739,22 +727,41 @@ window.openPortfolioArticleModal = function(projectKey) {
 };
 
 window.setPortfolioPopupViewport = function(mode) {
+    if (window.currentPortfolioViewport === mode) return;
     window.currentPortfolioViewport = mode;
+
     const stageEl = document.getElementById('portfolio-live-stage');
+    const wrapperEl = document.getElementById('portfolio-live-stage-wrapper');
     const btnDesktop = document.getElementById('popup-btn-desktop');
     const btnMobile = document.getElementById('popup-btn-mobile');
     if (!stageEl) return;
 
+    if (window.viewportSwitchTimer) clearTimeout(window.viewportSwitchTimer);
+
     if (mode === 'mobile') {
-        stageEl.classList.add('is-mobile-preview');
-        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all";
-        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all";
+        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all duration-300";
+        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all duration-300";
     } else {
-        stageEl.classList.remove('is-mobile-preview');
-        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all";
-        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all";
+        if (btnDesktop) btnDesktop.className = "px-3 py-1.5 rounded-lg bg-solid-blue text-white font-bold text-xs flex items-center gap-1.5 transition-all duration-300";
+        if (btnMobile) btnMobile.className = "px-3 py-1.5 rounded-lg text-blue-200 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all duration-300";
     }
-    stageEl.scrollTo({ top: 0, behavior: 'smooth' });
+
+    stageEl.classList.add('is-switching-viewport');
+
+    requestAnimationFrame(() => {
+        if (mode === 'mobile') {
+            wrapperEl?.classList.add('is-mobile-wrapper');
+            stageEl.classList.add('is-mobile-preview');
+        } else {
+            wrapperEl?.classList.remove('is-mobile-wrapper');
+            stageEl.classList.remove('is-mobile-preview');
+        }
+
+        window.viewportSwitchTimer = setTimeout(() => {
+            stageEl.classList.remove('is-switching-viewport');
+            stageEl.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 160);
+    });
 };
 
 window.closePortfolioArticleModal = function() {
